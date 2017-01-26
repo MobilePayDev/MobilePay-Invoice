@@ -29,6 +29,19 @@ When the **Agreement** between **Merchant** and MobilePay **User** is establishe
 |**OrderDate**         |              |date        | required |*Order date of invoice*|ISO date format: yyyy-MM-dd|
 |**Note**              |              |string      |          |*Free text of additional information to the consumer*||
 |**PaymentReference**  |              |string(60)  | required |*Reference used on the payment to do reconsilitaion*||
+|**InvoiceLineItem[]   |              |            | required |*At least one invoice line is required *||
+|    |**ArticleNumber**               |string      | required |*Article Number*||
+|    |**ArticleDescription**          |string      | required |*Article Descrition*||
+|    |**TotalPrice**                  |number(0.00)| required |*Total price of article without VAT*|>= 0.00, decimals separated with a dot.|
+|    |**VATRate**                     |number(0.00)| required |*VAT Rate of article*|>= 0.00, decimals separated with a dot.|
+|    |**TotalVATAmount**              |number(0.00)| required |*Total VAT amount of article*|>= 0.00, decimals separated with a dot.|
+|    |**TotalPriceIncludingVat**      |number(0.00)| required |*Total price of article including VAT*|>= 0.00, decimals separated with a dot.|
+|    |**Unit**                        |string      | required |*Unit ???r*||
+|    |**Quantity**                    |number(0.00)| required |*Quantity of article*|>= 0.00, decimals separated with a dot.|
+|    |**PricePerUnit**                |number(0.00)|          |*Price per unit*|>= 0.00, decimals separated with a dot.|
+|    |**PriceReduction**              |number(0.00)|          |*Price reduction*|>= 0.00, decimals separated with a dot.|
+|    |**PriceDiscount**               |number(0.00)|          |*Price discount*|>= 0.00, decimals separated with a dot.|
+|    |**Bonus**                       |number(0.00)|          |*Quantity of article*|>= 0.00, decimals separated with a dot.|
 
 
 ##### HTTP 202 Response body example
