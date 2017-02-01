@@ -15,6 +15,9 @@ When the **Agreement** between **Merchant** and MobilePay **User** is establishe
 |Parameter             |Sub Parameter |Type        |Required  |Description                                       |Valid values|
 |----------------------|--------------|------------|----------|--------------------------------------------------|------------|
 |**MerchantId**        |              |guid        | required |*MobilePay agreement identifying the unique Merchant in MobilePay||
+|**ConsumerAlias**     |              |    | required |*Mobile alias of the MobilePay user to be invoiced *||
+|    | **Alias**  |string      | required |*Alias value of the MobilePay user *||
+|    | **AliasType**  |string      | required |*Alias type of the MobilePay user, allowed values are: Phone number *||
 |**ConsumerAlias**     |              |string      | required |*Mobile no. of the MobilePay user to be invoiced *||
 |**ConsumerName**      |              |string      | required |*Full name of the MobilePay user *||
 |**TotalAmount**       |              |number(0.00)| required |*The requested amount to be paid.*|>= 0.00, decimals separated with a dot.|
