@@ -31,8 +31,8 @@ When the **Agreement** between **Merchant** and MobilePay **User** is establishe
 |**OrderDate**         |              |date        | required |*Order date of invoice*|ISO date format: yyyy-MM-dd|
 |**Note**              |              |string      |          |*Free text of additional information to the consumer*||
 |**MerchantContactName**|              |string      |          |*Contact name for the individual who issued the invoice*||
-|**MerchantOrderNumber**|              |string      |          |*The ordernumber for the invoice used by merchant*||
-|**BuyerOrderNumber**|              |string      |          |*The ordernumber for the invoice used by merchant*||
+|**MerchantOrderNumber**|              |string      |          |*The ordernumber for the invoice used internally by the merchant*||
+|**BuyerOrderNumber**|              |string      |          |*The ordernumber for the invoice used externally by the merchant*||
 |**PaymentReference**  |              |string(60)  | required |*Reference used on the payment to do reconsilitaion*||
 |**InvoiceLineItem[]   |              |            | required |*At least one invoice line is required *||
 |    |**ArticleNumber**               |string      | required |*Article Number*||
