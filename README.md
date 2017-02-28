@@ -15,6 +15,7 @@ When the **Agreement** between **Merchant** and MobilePay **User** is establishe
 |Parameter             |Sub Parameter |Type        |Required  |Description                                       |Valid values|
 |----------------------|--------------|------------|----------|--------------------------------------------------|------------|
 |**MerchantId**        |              |guid        | required |*MobilePay agreement identifying the unique Merchant in MobilePay||
+|**Invoice Delegate**  |              |guid        | required |*The ID of the invoicing department/branch of the merchant||
 |**ConsumerAlias**     |              |    | required |*Mobile alias of the MobilePay user to be invoiced *||
 |    | **Alias**  |string      | required |*Alias value of the MobilePay user *||
 |    | **AliasType**  |string      | required |*Alias type of the MobilePay user, allowed values are: Phone number *||
@@ -29,9 +30,9 @@ When the **Agreement** between **Merchant** and MobilePay **User** is establishe
 |**IssueDate**         |              |date        | required |*Issue date of invoice*|ISO date format: yyyy-MM-dd|
 |**DueDate**           |              |date        | required |*Payment due date. Must be between today and +400 days ahead, otherwise the Request will be declined.*|ISO date format: yyyy-MM-dd|
 |**OrderDate**         |              |date        | required |*Order date of invoice*|ISO date format: yyyy-MM-dd|
-|**Note**              |              |string      |          |*Free text of additional information to the consumer*||
-|**MerchantContactName**|              |string      |          |*Contact name for the individual who issued the invoice*||
-|**MerchantOrderNumber**|              |string      |          |*The ordernumber for the invoice used internally by the merchant*||
+|**Comment**           |              |string      |          |*Free text of additional information to the consumer*||
+|**MerchantContactName**|             |string      |          |*Contact name for the individual who issued the invoice*||
+|**MerchantOrderNumber**|             |string      |          |*The ordernumber for the invoice used internally by the merchant*||
 |**BuyerOrderNumber**|              |string      |          |*The ordernumber for the invoice used externally by the merchant*||
 |**PaymentReference**  |              |string(60)  | required |*Reference used on the payment to do reconsilitaion*||
 |**InvoiceLineItem[]   |              |            | required |*At least one invoice line is required *||
