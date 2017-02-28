@@ -14,12 +14,12 @@ When the **Agreement** between **Merchant** and MobilePay **User** is establishe
 
 |Parameter             |Sub Parameter |Type        |Required  |Description                                       |Valid values|
 |----------------------|--------------|------------|----------|--------------------------------------------------|------------|
-|**MerchantId**        |              |guid        | required |*MobilePay agreement identifying the unique Merchant in MobilePay||
-|**Invoice Delegate**  |              |guid        | required |*The ID of the invoicing department/branch of the merchant||
-|**ConsumerAlias**     |              |    | required |*Mobile alias of the MobilePay user to be invoiced *||
-|    | **Alias**  |string      | required |*Alias value of the MobilePay user *||
-|    | **AliasType**  |string      | required |*Alias type of the MobilePay user, allowed values are: Phone number *||
-|**ConsumerName**      |              |string      | required |*Full name of the MobilePay user *||
+|**MerchantId**        |              |guid        | required |*MobilePay agreement identifying the unique Merchant in MobilePay*||
+|**Invoice Delegate**  |              |guid        | required |*The ID of the invoicing department/branch of the merchant*||
+|**ConsumerAlias**     |              |            | required |*Mobile alias of the MobilePay user to be invoiced*||
+|    | **Alias**  |string      | required |*Alias value of the MobilePay user*||
+|    | **AliasType**  |string      | required |*Alias type of the MobilePay user, allowed values are: Phone number*||
+|**ConsumerName**      |              |string      | required |*Full name of the MobilePay user*||
 |**TotalAmount**       |              |number(0.00)| required |*The requested amount to be paid.*|>= 0.00, decimals separated with a dot.|
 |**TotalVatAmount**    |              |number(0.00)| required |*VAT amount*|>= 0.00, decimals separated with a dot.|
 |**CountryCode**       |              |string(2)   | required |*Country code*| eg. DK |
@@ -35,7 +35,7 @@ When the **Agreement** between **Merchant** and MobilePay **User** is establishe
 |**MerchantOrderNumber**|             |string      |          |*The ordernumber for the invoice used internally by the merchant*||
 |**BuyerOrderNumber**|              |string      |          |*The ordernumber for the invoice used externally by the merchant*||
 |**PaymentReference**  |              |string(60)  | required |*Reference used on the payment to do reconsilitaion*||
-|**InvoiceLineItem[]   |              |            | required |*At least one invoice line is required *||
+|**InvoiceLineItem[]   |              |            | required |*At least one invoice line is required*||
 |    |**ArticleNumber**               |string      | required |*Article Number*||
 |    |**ArticleDescription**          |string      | required |*Article Descrition*||
 |    |**TotalPrice**                  |number(0.00)| required |*Total price of article without VAT*|>= 0.00, decimals separated with a dot.|
