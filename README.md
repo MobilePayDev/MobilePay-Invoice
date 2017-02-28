@@ -35,7 +35,7 @@ When the **Agreement** between **Merchant** and MobilePay **User** is establishe
 |**MerchantOrderNumber**|             |string      |          |*The ordernumber for the invoice used internally by the merchant*||
 |**BuyerOrderNumber**|              |string      |          |*The ordernumber for the invoice used externally by the merchant*||
 |**PaymentReference**  |              |string(60)  | required |*Reference used on the payment to do reconsilitaion*||
-|**InvoiceLineItem[]   |              |            | required |*At least one invoice line is required*||
+|**InvoiceLineItem[]** |              |            | required |*At least one invoice line is required*||
 |    |**ArticleNumber**               |string      | required |*Article Number*||
 |    |**ArticleDescription**          |string      | required |*Article Descrition*||
 |    |**TotalPrice**                  |number(0.00)| required |*Total price of article without VAT*|>= 0.00, decimals separated with a dot.|
