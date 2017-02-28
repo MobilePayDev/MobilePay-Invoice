@@ -8,7 +8,7 @@ Billing your customers with MobilePay Invoice is easy using our MobilePay Invoic
 
 ### Invoice
 
-When the **Agreement** between **Merchant** and MobilePay **User** is established, use the `POST /api/merchants/me/paymentrequest` endpoint to en-queue **Payment Requests**. This service accepts a JSON array of individual **Payment Requests** to be processed asynchronously. Notice that the **Payment Request** payload does not contain a currency code - this will be fetched from the **Agreement** using the provided *agreement_id*.
+When the **Agreement** between **Merchant** and MobilePay **User** is established, use the `POST /api/merchants/me/paymentrequest` endpoint to en-queue **Payment Requests**. This service accepts a JSON array of individual **Payment Requests** to be processed asynchronously.
 
 #### Request parameters
 
