@@ -14,8 +14,9 @@ When the **Agreement** between **Merchant** and MobilePay **User** is establishe
 
 |Parameter             |Sub Parameter |Type        |Required  |Description                                       |Valid values|
 |----------------------|--------------|------------|----------|--------------------------------------------------|------------|
+|**ThirdPartyId**      |              |guid        | required |*The onboarded API third party user*||
 |**MerchantId**        |              |guid        | required |*MobilePay agreement identifying the unique Merchant in MobilePay*||
-|**Invoice Delegate**  |              |guid        | required |*The ID of the invoicing department/branch of the merchant*||
+|**InvoiceIssuer**  |              |guid        | required |*The ID of the invoicing department/branch of the merchant*||
 |**ConsumerAlias**     |              |            | required |*Mobile alias of the MobilePay user to be invoiced*||
 |    | **Alias**  |string      | required |*Alias value of the MobilePay user*||
 |    | **AliasType**  |string      | required |*Alias type of the MobilePay user, allowed values are: Phone number*||
@@ -38,7 +39,7 @@ When the **Agreement** between **Merchant** and MobilePay **User** is establishe
 |**InvoiceLineItem[]** |              |            | required |*At least one invoice line is required*||
 |    |**ArticleNumber**               |string      | required |*Article Number*||
 |    |**ArticleDescription**          |string      | required |*Article Descrition*||
-|    |**TotalPrice**                  |number(0.00)| required |*Total price of article without VAT*|>= 0.00, decimals separated with a dot.|
+dot.|
 |    |**VATRate**                     |number(0.00)| required |*VAT Rate of article*|>= 0.00, decimals separated with a dot.|
 |    |**TotalVATAmount**              |number(0.00)| required |*Total VAT amount of article*|>= 0.00, decimals separated with a dot.|
 |    |**TotalPriceIncludingVat**      |number(0.00)| required |*Total price of article including VAT*|>= 0.00, decimals separated with a dot.|
