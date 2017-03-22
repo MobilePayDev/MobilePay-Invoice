@@ -42,7 +42,7 @@ When the **Agreement** between **Merchant** and MobilePay **User** is establishe
 |    |**VATRate**                     |number(0.00)| required |*VAT Rate of article*|>= 0.00, decimals separated with a dot.|
 |    |**TotalVATAmount**              |number(0.00)| required |*Total VAT amount of article*|>= 0.00, decimals separated with a dot.|
 |    |**TotalPriceIncludingVat**      |number(0.00)| required |*Total price of article including VAT*|>= 0.00, decimals separated with a dot.|
-|    |**Unit**                        |string      | required |*Unit ???r*||
+|    |**Unit**                        |string      | required |*Unit*||
 |    |**Quantity**                    |number(0.00)| required |*Quantity of article*|>= 0.00, decimals separated with a dot.|
 |    |**PricePerUnit**                |number(0.00)|          |*Price per unit*|>= 0.00, decimals separated with a dot.|
 |    |**PriceReduction**              |number(0.00)|          |*Price reduction*|>= 0.00, decimals separated with a dot.|
