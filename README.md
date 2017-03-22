@@ -39,7 +39,6 @@ When the **Agreement** between **Merchant** and MobilePay **User** is establishe
 |**InvoiceLineItem[]** |              |            | required |*At least one invoice line is required*||
 |    |**ArticleNumber**               |string      | required |*Article Number*||
 |    |**ArticleDescription**          |string      | required |*Article Descrition*||
-dot.|
 |    |**VATRate**                     |number(0.00)| required |*VAT Rate of article*|>= 0.00, decimals separated with a dot.|
 |    |**TotalVATAmount**              |number(0.00)| required |*Total VAT amount of article*|>= 0.00, decimals separated with a dot.|
 |    |**TotalPriceIncludingVat**      |number(0.00)| required |*Total price of article including VAT*|>= 0.00, decimals separated with a dot.|
