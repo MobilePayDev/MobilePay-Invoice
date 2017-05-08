@@ -30,17 +30,18 @@ In the sections below, the following steps will be explained.
 
 ### API Gateway     
 The first step needed in order to integrate to MobilePay invoice is obtaining access to the sandbox environment. The sandbox environment is a production like environment used in MobilePay to test technical integrations. The environment is located [here](https://sandbox-developer.mobilepay.dk/).</br>
-Make sure that it is clear that the invoice product is wanted when requesting access. Once logged in, create an app representing your application. This will yield a client id and a secret, remember this, as they are neede in every call. After this, navigate to the invoice product and subscribe with your newly created app. All facilities and information for testing connection should be available inside the sandbox environment when logged in.
+Make sure that it is clear that the invoice product is wanted when requesting access. Once logged in, create an app representing your application. This will yield a client id and a secret, remember these as they are neede in every call. After this, navigate to the invoice product and subscribe with your newly created app. All facilities and information for testing connection should be available inside the sandbox environment when logged in.
 
 <a name="openidconnect"/>  
 
-### OpenID Connect      
+### OpenID Connect   
+When the merchant is onboarded, he has a user in MobilePay that is able to manage which products the merchant wishes to use. Not all merchants are has the technical capabilities to make technical integrations to MobilePay, instead they may need to go through applications whith these capabilities. In order for this to work, the merchant must grant consent to an application with these capabilities. This consent is granted through mechanism in the [OpenID Connect](http://openid.net/connect/) protocol suite.
 
 <a name="invoiceapi"/>      
 
 ## Invoice API
 
-When the **Consent** between **Merchant** and the **Integrator** is established, use the `POST /api/merchants/me/paymentrequest` endpoint to en-queue **Invoice Requests**. This service accepts a JSON array of individual **Invoice Requests** to be processed asynchronously.
+When the **Consent** between **Merchant** and the **Integrator** is established, use the merchant api endpoint to en-queue **Invoice Requests**. This service accepts a JSON array of individual **Invoice Requests** to be processed asynchronously.
 
 #### Request parameters
 
