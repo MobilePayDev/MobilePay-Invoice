@@ -45,6 +45,8 @@ If the merchant grants consent, an authorization code is returned which the clie
 
 When the **Consent** between **Merchant** and the **Integrator** is established, use the merchant api endpoint to en-queue **Invoice Requests**. This service accepts a JSON array of individual **Invoice Requests** to be processed asynchronously.
 
+### POST
+
 #### Request parameters
 
 |Parameter             |Sub Parameter |Type        |Required  |Description                                       |Valid values|
