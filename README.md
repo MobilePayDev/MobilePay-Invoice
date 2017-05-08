@@ -7,7 +7,7 @@ This document explains how to make a technical integration to the MobilePay Invo
 
 ### Table of Contents
 * [Integration](#integration)     
-    * [Onboard](#onboard)     
+    * [Merchant Onboarding](#merchantonboarding)     
     * [API Connect](#apiconnect)  
     * [OpenID Connect](#openidconnect)    
 * [Invoice API](#invoiceapi)   
@@ -15,11 +15,16 @@ This document explains how to make a technical integration to the MobilePay Invo
 <a name="integration"/>  
 
 ## Integration     
-Integration to MobilePay invoice is technically a multistep process involving creating an app in our API gateway, subscribing to the invoice product and calling the invoice RESTful API's on behalf of onboarded merchants.
+Integrating to MobilePay invoice is technically a multistep process involving creating an app in our API gateway, subscribing to the invoice product and calling the invoice RESTful API's on behalf of onboarded merchants.</br>
+In the sections below, the following steps will be explained.
+1. Merchant onboarding  
+2. Subscribing to the Invoice product through the API Connect gateway
+3. Using OpenID Connect enabling integrators to call the invoice API on-behalf of merchants
+4. How does the Invoice API look like and how is it called.
 
-<a name="onboard"/>  
+<a name="merchantonboarding"/>  
 
-### Onboard     
+### Merchant Onboarding     
 
 <a name="apiconnect"/>  
 
