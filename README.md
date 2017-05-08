@@ -7,8 +7,8 @@ This document explains how to make a technical integration to the MobilePay Invo
 
 ### Table of Contents
 * [Integration](#integration)     
-** [Onboard](#onboard)     
-** [OpenID Connect](#openidconnect)    
+    * [Onboard](#onboard)     
+    * [OpenID Connect](#openidconnect)    
 * [Invoice API](#invoiceapi)   
 
 <a name="integration"/>  
