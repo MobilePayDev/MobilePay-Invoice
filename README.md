@@ -35,7 +35,9 @@ Make sure that it is clear that the invoice product is wanted when requesting ac
 <a name="openidconnect"/>  
 
 ### OpenID Connect   
-When the merchant is onboarded, he has a user in MobilePay that is able to manage which products the merchant wishes to use. Not all merchants are has the technical capabilities to make technical integrations to MobilePay, instead they may need to go through applications whith these capabilities. In order for this to work, the merchant must grant consent to an application with these capabilities. This consent is granted through mechanism in the [OpenID Connect](http://openid.net/connect/) protocol suite.
+When the merchant is onboarded, he has a user in MobilePay that is able to manage which products the merchant wishes to use. Not all merchants have the technical capabilities to make integrations to MobilePay, instead they may need to go through applications whith these capabilities. In order for this to work, the merchant must grant consent to an application with these capabilities. This consent is granted through mechanism in the [OpenID Connect](http://openid.net/connect/) protocol suite.</br>
+The OpenID Connect protocol is a simple identity layer on top of the OAuth 2.0 protocol. Integrator are the same as clients in the OAuth 2.0 protocol. The first thing that must be done as a client is to go and register [here](). Once this is done the client must initiate the [hybrid flow](http://openid.net/specs/openid-connect-core-1_0.html#HybridFlowAuth) specified in OpenID connect. For invoices the client must request consent from the merchant using the 'invoice' scope. The authorization server in sandbox is located [here]().</br>
+If the merchant grants consent, an authorization code is returned which the client must exchange for a id token, access token and a refresh token. The refresh token is used to refresh ended sessions without asking for merchant consent again. This means that if the client receiveds an answer from the api gateway saying that the access token is invalid, the refresh token is exchanged for a new access token and refresh token.
 
 <a name="invoiceapi"/>      
 
