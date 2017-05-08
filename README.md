@@ -6,7 +6,7 @@ Billing your customers with MobilePay Invoice is easy using our MobilePay Invoic
 This document explains how to make a technical integration to the MobilePay Invoice product. The audience for this document is either technical integrators acting on behalf of merchants, or merchant creating their own integrations.
 
 ### Table of Contents
-[Headers](#headers)  
+[Invoice API](#headers)  
 [Emphasis](#emphasis)   
 <a name="headers"/>
 ## Headers
