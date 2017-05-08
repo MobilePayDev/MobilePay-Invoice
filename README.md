@@ -6,10 +6,10 @@ Billing your customers with MobilePay Invoice is easy using our MobilePay Invoic
 This document explains how to make a technical integration to the MobilePay Invoice product. The audience for this document is either technical integrators acting on behalf of merchants, or merchant creating their own integrations.
 
 ### Table of Contents
-[Invoice API](#invoiceapi)  
+[Headers](#headers)  
 
-<a name="invoiceapi"/> 
-## Invoice API
+<a name="headers"/>
+## Headers
 
 When the **Consent** between **Merchant** and the **Integrator** is established, use the `POST /api/merchants/me/paymentrequest` endpoint to en-queue **Invoice Requests**. This service accepts a JSON array of individual **Invoice Requests** to be processed asynchronously.
 
