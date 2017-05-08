@@ -8,7 +8,7 @@ This document explains how to make a technical integration to the MobilePay Invo
 ### Table of Contents
 * [Integration](#integration)     
     * [Merchant Onboarding](#merchantonboarding)     
-    * [API Connect](#apiconnect)  
+    * [API Gateway](#apigateway)  
     * [OpenID Connect](#openidconnect)    
 * [Invoice API](#invoiceapi)   
 
@@ -18,7 +18,7 @@ This document explains how to make a technical integration to the MobilePay Invo
 Integrating to MobilePay invoice is technically a multistep process involving creating an app in our API gateway, subscribing to the invoice product and calling the invoice RESTful API's on behalf of onboarded merchants.</br>
 In the sections below, the following steps will be explained.
 1. Merchant onboarding  
-2. Subscribing to the Invoice product through the API Connect gateway
+2. Subscribing to the Invoice product through the API gateway
 3. Using OpenID Connect enabling integrators to call the invoice API on-behalf of merchants
 4. How does the Invoice API look like and how is it called.
 
@@ -26,9 +26,10 @@ In the sections below, the following steps will be explained.
 
 ### Merchant Onboarding     
 
-<a name="apiconnect"/>  
+<a name="apigateway"/>  
 
-### API Connect     
+### API Gateway     
+The first step needed in order to integrate to MobilePay invoice is obtaining access to the sandbox environment. The sandbox environment is a production like environment used in MobilePay to test technical integrations. The environment is located <a href="https://sandbox-developer.mobilepay.dk/>here</a>.
 
 <a name="openidconnect"/>  
 
