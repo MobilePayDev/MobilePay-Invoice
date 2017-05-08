@@ -13,7 +13,7 @@ This document explains how to make a technical integration to the MobilePay Invo
 
 <a name="integration"/>  
 
-### Integration     
+## Integration     
 
 <a name="onboard"/>  
 
@@ -23,10 +23,9 @@ This document explains how to make a technical integration to the MobilePay Invo
 
 ### OpenID Connect      
 
-
 <a name="invoiceapi"/>      
 
-### Invoice API
+## Invoice API
 
 When the **Consent** between **Merchant** and the **Integrator** is established, use the `POST /api/merchants/me/paymentrequest` endpoint to en-queue **Invoice Requests**. This service accepts a JSON array of individual **Invoice Requests** to be processed asynchronously.
 
