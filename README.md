@@ -7,6 +7,7 @@ This document explains how to make a technical integration to the MobilePay Invo
 
 ### Table of Contents
 [Invoice API](#invoiceapi) 
+
 <a name="invoiceapi"/>
 ## Invoice API
 
