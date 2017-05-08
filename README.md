@@ -7,10 +7,9 @@ This document explains how to make a technical integration to the MobilePay Invo
 
 ### Table of Contents
 [Headers](#headers)  
-[Emphasis](#em
-
+[Emphasis](#emphasis)   
 <a name="headers"/>
-### Headers
+## Headers
 
 When the **Consent** between **Merchant** and the **Integrator** is established, use the `POST /api/merchants/me/paymentrequest` endpoint to en-queue **Invoice Requests**. This service accepts a JSON array of individual **Invoice Requests** to be processed asynchronously.
 
