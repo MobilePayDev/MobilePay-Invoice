@@ -29,7 +29,8 @@ In the sections below, the following steps will be explained.
 <a name="apigateway"/>  
 
 ### API Gateway     
-The first step needed in order to integrate to MobilePay invoice is obtaining access to the sandbox environment. The sandbox environment is a production like environment used in MobilePay to test technical integrations. The environment is located <a href="https://sandbox-developer.mobilepay.dk/>here</a>.
+The first step needed in order to integrate to MobilePay invoice is obtaining access to the sandbox environment. The sandbox environment is a production like environment used in MobilePay to test technical integrations. The environment is located [here](https://sandbox-developer.mobilepay.dk/).</br>
+Make sure that it is clear that the invoice product is wanted when requesting access. Once logged in, create an app representing your application. This will yield a client id and a secret, remember this, as they are neede in every call. After this, navigate to the invoice product and subscribe with your newly created app. All facilities and information for testing connection should be available inside the sandbox environment when logged in.
 
 <a name="openidconnect"/>  
 
