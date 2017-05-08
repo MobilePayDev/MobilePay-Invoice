@@ -2,20 +2,19 @@
 
 ### Overview
 
-Billing your customers with MobilePay Invoice is easy using our MobilePay Invoice Api's
+Billing your customers with MobilePay Invoice is easy using our MobilePay Invoice Api's. </br>
+This document explains how to make a technical integration to the MobilePay Invoice product. The audience for this document is either technical integrators acting on behalf of merchants, or merchant creating their own integrations.
 
 ### Table of Contents
 
-### Invoice
+### Invoice API
 
-When the **Agreement** between **Merchant** and MobilePay **User** is established, use the `POST /api/merchants/me/paymentrequest` endpoint to en-queue **Payment Requests**. This service accepts a JSON array of individual **Payment Requests** to be processed asynchronously.
+When the **Consent** between **Merchant** and the **Integrator** is established, use the `POST /api/merchants/me/paymentrequest` endpoint to en-queue **Invoice Requests**. This service accepts a JSON array of individual **Invoice Requests** to be processed asynchronously.
 
 #### Request parameters
 
 |Parameter             |Sub Parameter |Type        |Required  |Description                                       |Valid values|
 |----------------------|--------------|------------|----------|--------------------------------------------------|------------|
-|**ThirdPartyId**      |              |guid        | required |*The onboarded API third party user*||
-|**MerchantId**        |              |guid        | required |*MobilePay agreement identifying the unique Merchant in MobilePay*||
 |**InvoiceIssuer**  |              |guid        | required |*The ID of the invoicing department/branch of the merchant*||
 |**ConsumerAlias**     |              |            | required |*Mobile alias of the MobilePay user to be invoiced*||
 |    | **Alias**  |string      | required |*Alias value of the MobilePay user*||
