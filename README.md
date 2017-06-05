@@ -105,8 +105,9 @@ This endpoint is used to request the status of individual invoices
 There is no JSON input model in this endpoint, instead, format the request the in the following way: </br>
 **{merchantid:guid}/invoices/{invoiceid:guid}/status**
 
-##### HTTP 202 Response body example
+##### HTTP 200 Response body example
 
 |Parameter Name |Type |Description |Valid values |
 |----------------------|--------------|------------|----------|
-|**InvoiceIssuer**  | guid        |*The ID of the invoiciinvoice *|5e1210f9-4153-4fc3-83ec-2a8fc4843ea6|
+|**InvoiceId**  | guid        |*The ID of the invoice *|5e1210f9-4153-4fc3-83ec-2a8fc4843ea6 |
+|**Status**  | string        |*Status of the invoice *| 1: Created </br> 2: Paid </br> 3: Rejected </br> 4: Expired |
