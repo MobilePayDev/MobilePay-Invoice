@@ -48,7 +48,7 @@ If the merchant grants consent, an authorization code is returned which the clie
 
 ## Invoice API
 
-When the **Consent** between **Merchant** and the **Integrator** is established, use the merchant api endpoint to en-queue **Invoice Requests**. The invoice API consists of the following endpoints:
+When the **Consent** between **Merchant** and the **Integrator** is established, use the merchant api endpoint to en-queue **Invoice Requests**. The invoice API consists of the following endpoints:</br>
 1: Invoice POST request
 2: Invoice status GET request
 3: InvoiceIssuers GET request (Not complete yet)
