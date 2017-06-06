@@ -71,7 +71,7 @@ This endpoint accepts a JSON array of individual **Invoice Requests** to be proc
 |**CountryCode**       |              |string(2)   | required |*Country code*| DK |
 |**CurrencyCode**      |              |string(3)   | required |*Currency code*|DKK |
 |**ConsumerAddressLines**|            |string      | required |*Address of consumer receiving the invoice*|Free text|
-|**DeliveryAddressLines**|            |string      | required |*Delivery address*|Free text|
+|**DeliveryAddressLines**|            |string      |          |*Delivery address*|Free text|
 |**InvoiceNumber**     |              |string      | required |*Invoice Number*|Free text e.g. 123456798ABCD|
 |**IssueDate**         |              |date        | required |*Issue date of invoice*|ISO date format: YYYY-MM-DD|
 |**DueDate**           |              |date        | required |*Payment due date. Must be between today and +400 days ahead, otherwise the Request will be declined.*|ISO date format: YYYY-MM-DD|
@@ -80,16 +80,16 @@ This endpoint accepts a JSON array of individual **Invoice Requests** to be proc
 |**MerchantContactName**|             |string      |          |*Contact name for the individual who issued the invoice*|Free text, Name|
 |**MerchantOrderNumber**|             |string      |          |*The ordernumber for the invoice used internally by the merchant*|Free text e.g. 123456798ABCD|
 |**BuyerOrderNumber**|              |string      |          |*The ordernumber for the invoice used externally by the merchant*|Free text e.g. 123456798ABCD|
-|**PaymentReference**  |              |string(60)  | required |*Reference used on the payment to do reconsilitaion*|Free text e.g. 123456798ABCD|
+|**PaymentReference**  |              |string(60)  |          |*Reference used on the payment to do reconsilitaion. If not filled, invoice number will be used as reference*|Free text e.g. 123456798ABCD|
 |**InvoiceLineItem[]** |              |            | required |*At least one invoice line is required*||
-|    |**ArticleNumber**               |string      | required |*Article Number*|e.g. 123456ABC|
-|    |**ArticleDescription**          |string      | required |*Article Descrition*|Free text|
-|    |**VATRate**                     |number(0.00)| required |*VAT Rate of article*|>= 0.00, decimals separated with a dot.|
-|    |**TotalVATAmount**              |number(0.00)| required |*Total VAT amount of article*|>= 0.00, decimals separated with a dot.|
-|    |**TotalPriceIncludingVat**      |number(0.00)| required |*Total price of article including VAT*|>= 0.00, decimals separated with a dot.|
-|    |**Unit**                        |string      | required |*Unit*|e.g. Pcs, Coli|
-|    |**Quantity**                    |number(0.00)| required |*Quantity of article*|>= 0.00, decimals separated with a dot.|
-|    |**PricePerUnit**                |number(0.00)|          |*Price per unit*|>= 0.00, decimals separated with a dot.|
+|    |**ArticleNumber**               |string      |          |*Article Number*|e.g. 123456ABC|
+|    |**ArticleDescription**          |string      |          |*Article Descrition*|Free text|
+|    |**VATRate**                     |number(0.00)|          |*VAT Rate of article*|>= 0.00, decimals separated with a dot.|
+|    |**TotalVATAmount**              |number(0.00)|          |*Total VAT amount of article*|>= 0.00, decimals separated with a dot.|
+|    |**TotalPriceIncludingVat**      |number(0.00)|          |*Total price of article including VAT*|>= 0.00, decimals separated with a dot.|
+|    |**Unit**                        |string      |          |*Unit*|e.g. Pcs, Coli|
+|    |**Quantity**                    |number(0.00)|          |*Quantity of article*|>= 0.00, decimals separated with a dot.|
+|    |**PricePerUnit**                |number(0.00)|          |*Price per unit*|>= 0.00, decimals separated with a dot.|
 |    |**PriceReduction**              |number(0.00)|          |*Price reduction*|>= 0.00, decimals separated with a dot.|
 |    |**PriceDiscount**               |number(0.00)|          |*Price discount*|>= 0.00, decimals separated with a dot.|
 |    |**Bonus**                       |number(0.00)|          |*Quantity of article*|>= 0.00, decimals separated with a dot.|
