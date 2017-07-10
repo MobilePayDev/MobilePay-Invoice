@@ -134,6 +134,17 @@ There is no JSON input model in this endpoint, instead, format the request the i
 
 ##### HTTP 200 Response body example
 
-|Parameter Name |Type |Description |Valid values |
+|Parameter Name |Type |Description |Value |
 |----------------------|--------------|------------|----------|
-|**InvoiceId**  | guid        |*The ID of the invoice *|5e1210f9-4153-4fc3-83ec-2a8fc4843ea6 |
+|**InvoiceIssuers**  | List        |*List of invoice issuers for a merchant*|{
+  "InvoiceIssuers": [
+    {
+      "Id": "1f8288d9-4511-43ef-a1ce-667835470577",
+      "Name": "Test Fik Issuer"
+    },
+    {
+      "Id": "3d579d95-5cbe-4e45-b3e0-3b73d37e8b9c",
+      "Name": "TestName"
+    }
+  ]
+} |
