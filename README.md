@@ -136,15 +136,4 @@ There is no JSON input model in this endpoint, instead, format the request the i
 
 |Parameter Name |Type |Description |Value |
 |----------------------|--------------|------------|----------|
-|**InvoiceIssuers**  | List        |*List of invoice issuers for a merchant*|{
-  "InvoiceIssuers": [
-    {
-      "Id": "1f8288d9-4511-43ef-a1ce-667835470577",
-      "Name": "Test Fik Issuer"
-    },
-    {
-      "Id": "3d579d95-5cbe-4e45-b3e0-3b73d37e8b9c",
-      "Name": "TestName"
-    }
-  ]
-} |
+|**InvoiceIssuers**  | List        |*List of invoice issuers for a merchant*| { </br>"Id": "1f8288d9-4511-43ef-a1ce-667835470577", </br>"Name": "Test Fik Issuer"</br>},</br>{</br>"Id": "3d579d95-5cbe-4e45-b3e0-3b73d37e8b9c",</br></br>"Name": "TestName"</br>} |
