@@ -119,7 +119,21 @@ This endpoint is used to get the merchant id associated with a merchant.
 #### Request parameters
 
 There is no JSON input model in this endpoint, instead, format the request the in the following way: </br>
-**{/api/v1/merchants/me**
+**/api/v1/merchants/me**
 
 ##### HTTP 200 Response body example
 MerchantId: 5e1210f9-4153-4fc3-83ec-2a8fc4843ea6
+
+### InvoiceIssuers GET request
+This endpoint is used to get the invoice issuers associated with a merchant.
+
+#### Request parameters
+
+There is no JSON input model in this endpoint, instead, format the request the in the following way: </br>
+**/api/v1/merchants/{merchantid}/invoiceissuers**
+
+##### HTTP 200 Response body example
+
+|Parameter Name |Type |Description |Valid values |
+|----------------------|--------------|------------|----------|
+|**InvoiceIssuers**  | List        |*List of invoice issuers for a merchant *| [ { "Id": 1f8288d9-4511-43ef-a1ce-667835470577, Name: "Test Fik Issuer" }, { "Id": 3d579d95-5cbe-4e45-b3e0-3b73d37e8b9c, Name: "TestName" } ] |
