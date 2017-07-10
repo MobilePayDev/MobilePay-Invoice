@@ -112,3 +112,14 @@ There is no JSON input model in this endpoint, instead, format the request the i
 |----------------------|--------------|------------|----------|
 |**InvoiceId**  | guid        |*The ID of the invoice *|5e1210f9-4153-4fc3-83ec-2a8fc4843ea6 |
 |**Status**  | string        |*Status of the invoice *| 1: Created </br> 2: Paid </br> 3: Rejected </br> 4: Expired |
+
+### MerchantId GET request
+This endpoint is used to get the merchant id associated with a merchant.
+
+#### Request parameters
+
+There is no JSON input model in this endpoint, instead, format the request the in the following way: </br>
+**{/api/v1/merchants/me**
+
+##### HTTP 200 Response body example
+MerchantId: 5e1210f9-4153-4fc3-83ec-2a8fc4843ea6
