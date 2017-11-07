@@ -45,6 +45,9 @@ The OpenID Connect protocol is a simple identity layer on top of the OAuth 2.0 p
 If the merchant grants consent, an authorization code is returned which the client must exchange for an id token, an access token and a refresh token. The refresh token is used to refresh ended sessions without asking for merchant consent again. This means that if the client receives an answer from the api gateway saying that the access token is invalid, the refresh token is exchanged for a new access token and refresh token. </br> </br>
 An example of how to use OpenID connect in C# can be found [here](https://github.com/MobilePayDev/MobilePay-Invoice/tree/master/ClientExamples).
 
+### <a name="openid-flow"></a>OpenID flow
+![](images/Diagram.png)
+
 <a name="invoiceapi"/>      
 
 ## Invoice API
