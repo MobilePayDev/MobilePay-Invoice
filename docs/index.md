@@ -4,8 +4,6 @@ layout: default
 
 <a name="invoice"/>
 
-# MobilePay Invoice (in development)
-
 ### Overview
 
 Billing your customers with MobilePay Invoice is easy using our MobilePay Invoice Api's. </br>
