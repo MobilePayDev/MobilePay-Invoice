@@ -16,7 +16,7 @@
       <header>
         <h1>{{ site.title | default: site.github.repository_name }}</h1>
  
-   {% for item in site.data.nav %}
+   {% for item in site.data.nav.docs %}
       <p class="view"><a href="{{ site.base_url }}{{ item.url }}">{{ item.title }}</a></p>
    {% endfor %}
 
