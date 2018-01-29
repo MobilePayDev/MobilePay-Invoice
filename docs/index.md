@@ -1,7 +1,9 @@
 ---
 layout: default
 ---
+
 <a name="invoice"/>
+
 # MobilePay Invoice (in development)
 
 ### Overview
