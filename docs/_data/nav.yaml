@@ -7,7 +7,7 @@ docs :
   url: "#integration"
 
 - title: Invoice
-  url: "#invoiceapi"
+  url: "#invoice"
 
 - title: Invoice Link
   url: "#invoice-link"

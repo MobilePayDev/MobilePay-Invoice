@@ -46,115 +46,14 @@ If the merchant grants consent, an authorization code is returned which the clie
 
 An example of how to use OpenID connect in C# can be found [here](https://github.com/MobilePayDev/MobilePay-Invoice/tree/master/ClientExamples).
 
-### <a name="openid-flow"></a>OpenID flow
+### <a name="openid-flow"></a> OpenID flow
 ![](assets/images/Diagram.png)
 
-<a name="invoiceapi"/>      
+<a name="invoice"/>      
 
-## Invoice API
+## Invoice
 
-When the **Consent** between **Merchant** and the **Integrator** is established, use the merchant api endpoint to en-queue **Invoice Requests**. The invoice API consists of the following endpoints: <br />
-1. Request Invoice `POST api/v1/merchants/{merchantId}/invoices`    
-2. Get Invoice status `GET api/v1/merchants/{merchantId}/invoices/{invoiceId}/status`
-3. Get Invoice issuers `GET api/v1/merchants/{merchantId}/invoiceissuers`
-4. Get merchantId `GET api/v1/merchants/me`
-5. Request Invoice Link `POST api/v1/merchants/{merchantId}/invoices/link`
-
-### Invoice POST request
-This endpoint accepts a JSON array of individual **Invoice Requests** to be processed asynchronously.
-
-#### Request parameters
-
-|Parameter             |Sub Parameter |Type        |Required  |Description                                       |Valid values|
-|----------------------|--------------|------------|----------|--------------------------------------------------|------------|
-|**InvoiceIssuer**  |              |guid        | required |*The ID of the invoicing department/branch of the merchant*|5e1210f9-4153-4fc3-83ec-2a8fc4843ea6|
-|**ConsumerAlias**     |              |            | required |*Mobile alias of the MobilePay user to be invoiced*||
-|    | **Alias**  |string      | required |*Alias value of the MobilePay user*|e.g. 004512345678, 12345678, +4512345678|
-|    | **AliasType**  |string      | required |*Alias type of the MobilePay user, allowed values are: Phone number*|Phone|
-|**ConsumerName**      |              |string      | required |*Full name of the MobilePay user*|Free text, Contact Name|
-|**TotalAmount**       |              |number(0.00)| required |*The requested amount to be paid.*|>= 0.00, decimals separated with a dot.|
-|**TotalVatAmount**    |              |number(0.00)| required |*VAT amount*|>= 0.00, decimals separated with a dot.|
-|**CountryCode**       |              |string(2)   | required |*Country code*| DK |
-|**CurrencyCode**      |              |string(3)   | required |*Currency code*|DKK |
-|**ConsumerAddressLines**|            |string      | required |*Address of consumer receiving the invoice*|Free text|
-|**DeliveryAddressLines**|            |string      |          |*Delivery address*|Free text|
-|**InvoiceNumber**     |              |string      | required |*Invoice Number*|Free text e.g. 123456798ABCD|
-|**IssueDate**         |              |date        | required |*Issue date of invoice*|ISO date format: YYYY-MM-DD|
-|**DueDate**           |              |date        | required |*Payment due date. Must be between today and +400 days ahead, otherwise the Request will be declined.*|ISO date format: YYYY-MM-DD|
-|**OrderDate**         |              |date        | required |*Order date of invoice*|ISO date format: YYYY-MM-DD|
-|**DeliveryDate**      |              |date        | required |*Delivery date of invoice*|ISO date format: YYYY-MM-DD|
-|**Comment**           |              |string      |          |*Free text of additional information to the consumer*|Free text|
-|**MerchantContactName**|             |string      |          |*Contact name for the individual who issued the invoice*|Free text, Name|
-|**MerchantOrderNumber**|             |string      |          |*The ordernumber for the invoice used internally by the merchant*|Free text e.g. 123456798ABCD|
-|**BuyerOrderNumber**|              |string      |          |*The ordernumber for the invoice used externally by the merchant*|Free text e.g. 123456798ABCD|
-|**PaymentReference**  |              |string(60)  |          |*Reference used on the payment to do reconsilitaion. If not filled, invoice number will be used as reference*|Free text e.g. 123456798ABCD|
-|**InvoiceArticles** |              |  list          | required |*At least one invoice article is required*||
-|    |**ArticleNumber**               |string      |          |*Article Number*|e.g. 123456ABC|
-|    |**ArticleDescription**          |string      |          |*Article Descrition*|Free text|
-|    |**VATRate**                     |number(0.00)|          |*VAT Rate of article*|>= 0.00, decimals separated with a dot.|
-|    |**TotalVATAmount**              |number(0.00)|          |*Total VAT amount of article*|>= 0.00, decimals separated with a dot.|
-|    |**TotalPriceIncludingVat**      |number(0.00)|          |*Total price of article including VAT*|>= 0.00, decimals separated with a dot.|
-|    |**Unit**                        |string      |          |*Unit*|e.g. Pcs, Coli|
-|    |**Quantity**                    |number(0.00)|          |*Quantity of article*|>= 0.00, decimals separated with a dot.|
-|    |**PricePerUnit**                |number(0.00)|          |*Price per unit*|>= 0.00, decimals separated with a dot.|
-|    |**PriceReduction**              |number(0.00)|          |*Price reduction*|>= 0.00, decimals separated with a dot.|
-|    |**PriceDiscount**               |number(0.00)|          |*Price discount*|>= 0.00, decimals separated with a dot.|
-|    |**Bonus**                       |number(0.00)|          |*Bonus of article*|>= 0.00, decimals separated with a dot.|
-
-
-##### HTTP 202 Response body example
-InvoiceId: 5e1210f9-4153-4fc3-83ec-2a8fc4843ea6
-
-### Invoice status GET request
-This endpoint is used to request the status of individual invoices
-
-#### Request parameters
-
-There is no JSON input model in this endpoint, instead, format the request the in the following way: <br />
-`GET api/v1/merchants/{merchantId}/invoices/{invoiceId}/status`
-
-##### HTTP 200 Response body example
-
-|Parameter Name     |Type     |Description               |Valid values                         |
-|-------------------|---------|--------------------------|-------------------------------------|
-|**InvoiceId**      | guid    |*The ID of the invoice*   |5e1210f9-4153-4fc3-83ec-2a8fc4843ea6 |
-|**Status**         | string  |*Status of the invoice*   | 1: Created <br /> 2: Paid <br /> 3: Rejected <br /> 4: Expired |
-
-### MerchantId GET request
-This endpoint is used to get the merchant id associated with a merchant user.
-
-#### Request parameters
-
-There is no JSON input model in this endpoint, instead, format the request the in the following way: <br />
-`GET /api/v1/merchants/me`
-
-##### HTTP 200 Response body example
-MerchantId: 5e1210f9-4153-4fc3-83ec-2a8fc4843ea6
-
-### InvoiceIssuers GET request
-This endpoint is used to get the invoice issuers associated with a merchant.
-
-#### Request parameters
-
-There is no JSON input model in this endpoint, instead, format the request the in the following way: <br />
-`GET api/v1/merchants/{merchantId}/invoiceissuers`
-
-##### HTTP 200 Response body example
-
-|Parameter Name                   |Type         |Description           |Value                        |
-|---------------------------------|-------------|----------------------|-----------------------------|
-|**InvoiceIssuers**           | List        |*List of invoice issuers for a merchant* | {<br />"Id": "1f8288d9-4511-43ef-a1ce-667835470577", <br /> "Name": "Test Fik Issuer" <br /> "AccountType": "FIK" <br /> },<br /> { <br /> "Id": "3d579d95-5cbe-4e45-b3e0-3b73d37e8b9c", <br /> "Name": "TestName" <br /> "AccountType": "Account" <br /> } |
-
-
-<a name="invoice-link"/>   
-
-## Invoice Link
-
-Merchant's can create an Invoice that can be paid by any MobilePay user. Merchant's back-end system must call the `POST api/v1/merchants/{merchantId}/invoices/link` endpoint in order to generate a **Link** refering to **Invoice**, which can be activated by the MobilePay user through the app or web browser.
-
-#### Invoice Link POST request
-
-This endpoint accepts a JSON object of Invoice Request to be processed asynchronously.
+When the **Consent** between **Merchant** and the **Integrator** is established, use the `POST api/v1/merchants/{merchantId}/invoices` endpoint to en-queue **Invoice**.
 
 ```json
 {
@@ -201,14 +100,149 @@ This endpoint accepts a JSON object of Invoice Request to be processed asynchron
   ]
 }
 ```
-#### <a name="InvoiceLink_paramters"></a>Request parameters
+
+The *Created* **Invoice**, if not accepted, will expire 30 days after due date.
+
+#### Request parameters
+
+|Parameter             |Sub Parameter |Type        |Required  |Description                                       |Valid values|
+|----------------------|--------------|------------|----------|--------------------------------------------------|------------|
+|**InvoiceIssuer**  |              |guid        | required |*The ID of the invoicing department/branch of the merchant*|5e1210f9-4153-4fc3-83ec-2a8fc4843ea6|
+|**ConsumerAlias**     |              |            | required |*Mobile alias of the MobilePay user to be invoiced*||
+|    | **Alias**  |string      | required |*Alias value of the MobilePay user*|e.g. 004512345678, 12345678, +4512345678|
+|    | **AliasType**  |string      | required |*Alias type of the MobilePay user*|Phone|
+|**ConsumerName**      |              |string      | required |*Full name of the MobilePay user*|Free text, Contact Name|
+|**TotalAmount**       |              |number(0.00)| required |*The requested amount to be paid.*|>= 0.00, decimals separated with a dot.|
+|**TotalVatAmount**    |              |number(0.00)| required |*VAT amount*|>= 0.00, decimals separated with a dot.|
+|**CountryCode**       |              |string(2)   | required |*Country code*| DK |
+|**CurrencyCode**      |              |string(3)   | required |*Currency code*|DKK |
+|**ConsumerAddressLines**|            |string      | required |*Address of consumer receiving the invoice*|Free text|
+|**DeliveryAddressLines**|            |string      |          |*Delivery address*|Free text|
+|**InvoiceNumber**     |              |string      | required |*Invoice Number*|Free text e.g. 123456798ABCD|
+|**IssueDate**         |              |date        | required |*Issue date of invoice*|ISO date format: YYYY-MM-DD|
+|**DueDate**           |              |date        | required |*Payment due date. Must be between today and +400 days ahead, otherwise the Request will be declined.*|ISO date format: YYYY-MM-DD|
+|**OrderDate**         |              |date        | required |*Order date of invoice*|ISO date format: YYYY-MM-DD|
+|**DeliveryDate**      |              |date        | required |*Delivery date of invoice*|ISO date format: YYYY-MM-DD|
+|**Comment**           |              |string      |          |*Free text of additional information to the consumer*|Free text|
+|**MerchantContactName**|             |string      |          |*Contact name for the individual who issued the invoice*|Free text, Name|
+|**MerchantOrderNumber**|             |string      |          |*The merchant order number for the invoice used internally by the merchant*|Free text e.g. 123456798ABCD|
+|**BuyerOrderNumber**|              |string      |          |*The buyer order number for the invoice used externally by the merchant*|Free text e.g. 123456798ABCD|
+|**PaymentReference**  |              |string(60)  |          |*Reference used on the payment to do reconciliation. If not filled, invoice number will be used as reference*|Free text e.g. 123456798ABCD|
+|**InvoiceArticles** |              |  list          | required |*At least one invoice article is required*||
+|    |**ArticleNumber**               |string      |          |*Article Number*|e.g. 123456ABC|
+|    |**ArticleDescription**          |string      |          |*Article Description*|Free text|
+|    |**VATRate**                     |number(0.00)|          |*VAT Rate of article*|>= 0.00, decimals separated with a dot.|
+|    |**TotalVATAmount**              |number(0.00)|          |*Total VAT amount of article*|>= 0.00, decimals separated with a dot.|
+|    |**TotalPriceIncludingVat**      |number(0.00)|          |*Total price of article including VAT*|>= 0.00, decimals separated with a dot.|
+|    |**Unit**                        |string      |          |*Unit*|e.g. Pcs, Coli|
+|    |**Quantity**                    |number(0.00)|          |*Quantity of article*|>= 0.00, decimals separated with a dot.|
+|    |**PricePerUnit**                |number(0.00)|          |*Price per unit*|>= 0.00, decimals separated with a dot.|
+|    |**PriceReduction**              |number(0.00)|          |*Price reduction*|>= 0.00, decimals separated with a dot.|
+|    |**PriceDiscount**               |number(0.00)|          |*Price discount*|>= 0.00, decimals separated with a dot.|
+|    |**Bonus**                       |number(0.00)|          |*Bonus of article*|>= 0.00, decimals separated with a dot.|
+
+The `POST api/v1/merchants/{merchantId}/invoices` service returns HTTP 202 - Accepted response if **Invoice** with at least one article is provided in the request payload.
+
+The response body contains property:
+* **InvoiceId** - a unique id of the **Invoice**, that was accepted for processing and now is in a _Created_ state.
+
+##### HTTP 202 Response body example
+
+```json
+{
+    "InvoiceId" : "63679ab7-cc49-4f75-80a7-86217fc105ea"
+}
+```
+
+### Invoice status
+Use `POST api/v1/merchants/{merchantId}/invoices/{invoiceid}/status` to request the status of individual **Invoices**.
+
+The table below shows possible status, status_text and status_code values depending on the **Invoice** status changes.
+
+|New Status | Condition                               |
+|-----------|------------------------------------------|
+|Created    |_Merchant created the Invoice_            |
+|Accepted   |_User swiped to accept the Invoice_       |
+|Paid       |_Invoice was paid_|
+|Rejected   |_User tapped the reject button during the signup_    |
+|Expired    |_User did not do anything during the invoice timeout period._      |
+
+#### Request parameters
+
+There is no JSON input model in this endpoint, instead, format the request the in the following way: <br />
+`GET api/v1/merchants/{merchantId}/invoices/{invoiceId}/status`
+
+The response of `GET api/v1/merchants/{merchantId}/invoices/{invoiceId}/status` contains two properties:
+* **InvoiceId** - a unique id of the invoice.
+* **Status** - a status of the invoice.
+
+##### HTTP 200 Response body example
+
+```json
+{
+    "InvoiceId" : "5e1210f9-4153-4fc3-83ec-2a8fc4843ea6",
+    "Status" : "Created"
+}
+```
+
+## <a name="invoice-link"/> Invoice Link
+
+Merchant can create a **Link** to **Invoice** that is sent to **Customer** via email, allowing them to pay using **MobilePay**.
+Use the `POST api/v1/merchants/{merchantId}/invoices/link` endpoint to generate an **Invoice link**. This service accepts a JSON object of single **Invoice** to be processed asynchronously. Notice that the **Invoice** payload does not require a customer alias - **Invoice** can be paid by any **MobilePay** user.
+
+```json
+{
+  "InvoiceIssuer": "efd08c19-24cf-4833-a4a4-bfa7bd58fbb2",
+  "ConsumerAlias": {
+    "Alias": "",
+    "AliasType": ""
+  },
+  "ConsumerName": "Consumer Name",
+  "TotalAmount": "360",
+  "TotalVATAmount": "72",
+  "CountryCode": "DK",
+  "CurrencyCode": "DKK",
+  "ConsumerAddressLines": [
+    "Paradisæblevej 13 1234 Andeby"
+  ],
+  "DeliveryAddressLines": [
+    "Østerbrogade 120"
+  ],
+  "InvoiceNumber": "301",
+  "IssueDate": "2018-02-12",
+  "DueDate": "2018-03-12",
+  "OrderDate": "2018-02-05",
+  "DeliveryDate": "2018-02-10",
+  "Comment": "Any comment",
+  "MerchantContactName": "Snowboard gear shop",
+  "MerchantOrderNumber": "938",
+  "BuyerOrderNumber": "631",
+  "PaymentReference": "186",
+  "InvoiceArticles": [
+    {
+      "ArticleNumber": "1-123",
+      "ArticleDescription": "Process Flying V Snowboard",
+      "VATRate": 25,
+      "TotalVATAmount": 72,
+      "TotalPriceIncludingVat": 360,
+      "Unit": "1",
+      "Quantity": 1,
+      "PricePerUnit": 288,
+      "PriceReduction": 0,
+      "PriceDiscount": 0,
+      "Bonus": 5
+    }      
+  ]
+}
+```
+#### Request parameters
 
 |Parameter             |Sub Parameter   |Type        |Required  |Description                                                 |Valid values|
 |:---------------------|:---------------|:-----------|:---------|:-----------------------------------------------------------|:-----------|
 |**InvoiceIssuer**     |                     | guid       | required |*The ID of the invoicing department/branch of the merchant*|5e1210f9-4153-4fc3-83ec-2a8fc4843ea6|
 |**ConsumerAlias**     |                     | object     |          |*Mobile alias of the MobilePay user to be invoiced*| |
 |                      | **Alias**           |string      |          |*Alias value of the MobilePay user*| e.g. 004512345678, 12345678, +4512345678|
-|                      | **AliasType**       |string      |          |*Alias type of the MobilePay user, allowed values are: Phone number*| Phone |
+|                      | **AliasType**       |string      |          |*Alias type of the MobilePay user*| Phone |
 |**ConsumerName**       |   | string | required  |*Full name of the MobilePay user*| Free text e.g. Contact Name|
 |**TotalAmount**        |   | decimal | required |*The requested amount to be paid.*|>= 0.00, decimals separated with a dot.|
 |**TotalVATAmount**     |   | decimal | required |*VAT amount*| >= 0.00, decimals separated with a dot. |
@@ -218,17 +252,17 @@ This endpoint accepts a JSON object of Invoice Request to be processed asynchron
 |**DeliveryAddressLines**    |   | string[] |  |*Delivery address*| Free text |
 |**InvoiceNumber**      |   | string | required |*Invoice Number*| Free text e.g. 123456798ABCD |
 |**IssueDate**          |   | Date | required |*Issue date of invoice*| ISO date format: YYYY-MM-DD |
-|**DueDate**            |   | Date | required |*Payment due date. Must be between today and +400 days ahead, otherwise the Request will be declined*| ISO date format: YYYY-MM-DD |
+|**DueDate**            |   | Date | required |*Invoice payment due date. Must be between today and +400 days ahead, otherwise the Request will be declined*| ISO date format: YYYY-MM-DD |
 |**OrderDate**          |   | Date | required |*Order date of invoice* | ISO date format: YYYY-MM-DD |
 |**DeliveryDate**       |   | Date |  |*Delivery date of invoice* | ISO date format: YYYY-MM-DD |
 |**Comment**            |   | string |  |*Free text of additional information to the consumer*| Free text |
-|**MerchantContactName**     |   | string |  |*Contact name for the individual who issued the invoice*| Free text, Name |
-|**MerchantOrderNumber**     |   | string |  |*The order number for the invoice used internally by the merchant*| Free text e.g. 123456798ABCD |
-|**BuyerOrderNumber**        |   | string |  |*he ordernumber for the invoice used externally by the merchant*| Free text e.g. 123456798ABCD |
-|**PaymentReference**        |   | string |  |*Reference used on the payment to do reconsilitaion. If not filled, invoice number will be used as reference*| Free text e.g. 123456798ABCD |
-|**InvoiceArticles**         |   | list | required |*At least one invoice line is required*|  |
+|**MerchantContactName**     |   | string |  |*The merchant Contact name for the individual who issued the invoice*| Free text, Name |
+|**MerchantOrderNumber**     |   | string |  |*The merchant order number for the invoice used internally by the merchant*| Free text e.g. 123456798ABCD |
+|**BuyerOrderNumber**        |   | string |  |*The buyer order number for the invoice used externally by the merchant*| Free text e.g. 123456798ABCD |
+|**PaymentReference**        |   | string |  |*Reference used on the payment to do reconciliation. If not filled, invoice number will be used as reference*| Free text e.g. 123456798ABCD |
+|**InvoiceArticles**         |   | list | required |*At least one invoice article is required*|  |
 |               |  **ArticleNumber** | string |  |*Article Number*| e.g. 123456ABC |
-|               | **ArticleDescription**  | string |  |*Article Descrition*| Free text |
+|               | **ArticleDescription**  | string |  |*Article description*| Free text |
 |               | **VATRate** | decimal |  |*VAT Rate of article*| >= 0.00, decimals separated with a dot. |
 |               | **TotalVATAmount** | decimal |  |*Total VAT amount of article*| >= 0.00, decimals separated with a dot. |
 |               | **TotalPriceIncludingVat**  | decimal |  |*Total price of article including VAT*| >= 0.00, decimals separated with a dot. |
@@ -239,8 +273,11 @@ This endpoint accepts a JSON object of Invoice Request to be processed asynchron
 |               | **PriceDiscount**  | decimal |  |*Price discount*| >= 0.00, decimals separated with a dot. |
 |               |  **Bonus**    | decimal |  |*Bonus of article*| >= 0.00, decimals separated with a dot. |
 
+The `POST /api/v1/merchants/{merchantId}/invoices/link` service returns HTTP 202 - Accepted response if **Invoice** with at least one  article is provided in the request payload.
 
-The response of `POST /api/v1/merchants/{merchantId}/invoices/link` contains two values: a unique id of the Invoice and a Link rel = user-redirect
+The response body contains two properties:
+* **InvoiceId** - a unique id of the **Invoice**, that was accepted for processing and now is in a _Created_ state.
+* The link **Rel = user-redirect** - value contains the hyperlink reference address, which is structured in the following way: _https://&lt;mobile-pay-invoice-restapi&gt;/&lt;path-to-invoices&gt;/{invoice_id}/link_. The invoice_id property is of type guid and uniquely identifies the **Invoice** for the app to get the details and subsequently do an accept request.
 
 ##### HTTP 202 Response body example
 ```json
@@ -254,10 +291,8 @@ The response of `POST /api/v1/merchants/{merchantId}/invoices/link` contains two
     ]
 }
 ```
-* The InvoiceId value can be used on the merchant’s back-end system to map a Invoice with a specific user on the merchant’s side.
-* The link rel = user-redirect value contains the hyperlink reference address, which is structured in the following way: _https://&lt;mobile-pay-invoice-restapi&gt;/&lt;path-to-invoices&gt;/{invoice_id}/link_. The invoice_id property is of type guid and uniquely identifies the Invoice for the app to get the details and subsequently do an accept request.
 
-The **Invoice Link** can be used in two ways:
+The **Invoice link** can be used in two ways:
 
-1. Redirect the user automatically using the HTTP response **302** or **303**. Once the user is redirected, the MobilePay app will be opened to activate the **Invoice**.
-2. E-mail the generated link to the user. Once the user clicks on the **Invoice Link**, the MobilePay app will be opened to activate the **Invoice**. Note, that the Invoice link will be valid only until the user accepts the Invoice or it will expire 30 days after due date.
+1. Redirect the user automatically using the HTTP response **302** or **303**. Once the user is redirected, the **MobilePay** app will be opened to activate the **Invoice**.
+2. E-mail the generated **Invoice link** to the user. Once the user clicks on the **Invoice link**, the **MobilePay** app will be opened to activate the **Invoice**. Note, that the **Invoice link** will be valid only until the user accepts the **Invoice** or it will expire 30 days after due date.
