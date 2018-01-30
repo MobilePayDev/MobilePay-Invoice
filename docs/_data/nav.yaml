@@ -1,19 +1,13 @@
-docs:
+docs :
+
+- title: Overview
+  url: "#overview"
+
+- title: Integration
+  url: "#integration"
 
 - title: Invoice
-  url: https://mobilepaydev.github.io/MobilePay-Invoice/#invoice
-  
-- title: Integration
-  url: https://mobilepaydev.github.io/MobilePay-Invoice/#integration
-  
-  - title: Merchant Onboarding
-  url: https://mobilepaydev.github.io/MobilePay-Invoice/#merchantonboarding
-  
-  - title: API Gateway
-  url: https://mobilepaydev.github.io/MobilePay-Invoice/#apigateway
-  
-  - title: OpenID Connect
-  url: https://mobilepaydev.github.io/MobilePay-Invoice/#openidconnect
-  
-  - title: Invoice API
-  url: https://mobilepaydev.github.io/MobilePay-Invoice/#invoiceapi
+  url: "#invoiceapi"
+
+- title: Invoice Link
+  url: "#invoice-link"
