@@ -1,0 +1,7 @@
+title: MobilePay Invoice
+base_url: https://mobilepaydev.github.io/MobilePay-Invoice/
+description: MobilePay Invoice API documentation.
+show_downloads: false
+theme: jekyll-theme-minimal
+repository: MobilePayDev/MobilePay-Invoice
+google_analytics: UA-92933803-2
