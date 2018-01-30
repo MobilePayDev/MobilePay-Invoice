@@ -82,12 +82,13 @@ This endpoint accepts a JSON array of individual **Invoice Requests** to be proc
 |**IssueDate**         |              |date        | required |*Issue date of invoice*|ISO date format: YYYY-MM-DD|
 |**DueDate**           |              |date        | required |*Payment due date. Must be between today and +400 days ahead, otherwise the Request will be declined.*|ISO date format: YYYY-MM-DD|
 |**OrderDate**         |              |date        | required |*Order date of invoice*|ISO date format: YYYY-MM-DD|
+|**DeliveryDate**      |              |date        | required |*Delivery date of invoice*|ISO date format: YYYY-MM-DD|
 |**Comment**           |              |string      |          |*Free text of additional information to the consumer*|Free text|
 |**MerchantContactName**|             |string      |          |*Contact name for the individual who issued the invoice*|Free text, Name|
 |**MerchantOrderNumber**|             |string      |          |*The ordernumber for the invoice used internally by the merchant*|Free text e.g. 123456798ABCD|
 |**BuyerOrderNumber**|              |string      |          |*The ordernumber for the invoice used externally by the merchant*|Free text e.g. 123456798ABCD|
 |**PaymentReference**  |              |string(60)  |          |*Reference used on the payment to do reconsilitaion. If not filled, invoice number will be used as reference*|Free text e.g. 123456798ABCD|
-|**InvoiceLineItem[]** |              |            | required |*At least one invoice line is required*||
+|**InvoiceArticles** |              |  list          | required |*At least one invoice article is required*||
 |    |**ArticleNumber**               |string      |          |*Article Number*|e.g. 123456ABC|
 |    |**ArticleDescription**          |string      |          |*Article Descrition*|Free text|
 |    |**VATRate**                     |number(0.00)|          |*VAT Rate of article*|>= 0.00, decimals separated with a dot.|
@@ -98,7 +99,7 @@ This endpoint accepts a JSON array of individual **Invoice Requests** to be proc
 |    |**PricePerUnit**                |number(0.00)|          |*Price per unit*|>= 0.00, decimals separated with a dot.|
 |    |**PriceReduction**              |number(0.00)|          |*Price reduction*|>= 0.00, decimals separated with a dot.|
 |    |**PriceDiscount**               |number(0.00)|          |*Price discount*|>= 0.00, decimals separated with a dot.|
-|    |**Bonus**                       |number(0.00)|          |*Quantity of article*|>= 0.00, decimals separated with a dot.|
+|    |**Bonus**                       |number(0.00)|          |*Bonus of article*|>= 0.00, decimals separated with a dot.|
 
 
 ##### HTTP 202 Response body example
@@ -110,7 +111,7 @@ This endpoint is used to request the status of individual invoices
 #### Request parameters
 
 There is no JSON input model in this endpoint, instead, format the request the in the following way: <br />
-**{merchantid:guid}/invoices/{invoiceid:guid}/status**
+`GET api/v1/merchants/{merchantId}/invoices/{invoiceId}/status`
 
 ##### HTTP 200 Response body example
 
@@ -120,12 +121,12 @@ There is no JSON input model in this endpoint, instead, format the request the i
 |**Status**         | string  |*Status of the invoice*   | 1: Created <br /> 2: Paid <br /> 3: Rejected <br /> 4: Expired |
 
 ### MerchantId GET request
-This endpoint is used to get the merchant id associated with a merchant.
+This endpoint is used to get the merchant id associated with a merchant user.
 
 #### Request parameters
 
 There is no JSON input model in this endpoint, instead, format the request the in the following way: <br />
-`/api/v1/merchants/me`
+`GET /api/v1/merchants/me`
 
 ##### HTTP 200 Response body example
 MerchantId: 5e1210f9-4153-4fc3-83ec-2a8fc4843ea6
@@ -136,7 +137,7 @@ This endpoint is used to get the invoice issuers associated with a merchant.
 #### Request parameters
 
 There is no JSON input model in this endpoint, instead, format the request the in the following way: <br />
-`/api/v1/merchants/{merchantid}/invoiceissuers`
+`GET api/v1/merchants/{merchantId}/invoiceissuers`
 
 ##### HTTP 200 Response body example
 
@@ -149,7 +150,7 @@ There is no JSON input model in this endpoint, instead, format the request the i
 
 ## Invoice Link
 
-Merchant's can create an Invoice that can be paid by any MobilePay user. Merchant's back-end system must call the `POST /api/v1/merchants/{merchantid:guid}/invoices/link` endpoint in order to generate a **Link** refering to **Invoice**, which can be activated by the MobilePay user through the app or web browser.
+Merchant's can create an Invoice that can be paid by any MobilePay user. Merchant's back-end system must call the `POST api/v1/merchants/{merchantId}/invoices/link` endpoint in order to generate a **Link** refering to **Invoice**, which can be activated by the MobilePay user through the app or web browser.
 
 #### Invoice Link POST request
 
@@ -218,8 +219,8 @@ This endpoint accepts a JSON object of Invoice Request to be processed asynchron
 |**InvoiceNumber**      |   | string | required |*Invoice Number*| Free text e.g. 123456798ABCD |
 |**IssueDate**          |   | Date | required |*Issue date of invoice*| ISO date format: YYYY-MM-DD |
 |**DueDate**            |   | Date | required |*Payment due date. Must be between today and +400 days ahead, otherwise the Request will be declined*| ISO date format: YYYY-MM-DD |
-|**OrderDate**          |   | Date | required | | ISO date format: YYYY-MM-DD |
-|**DeliveryDate**       |   | Date |  | |  |
+|**OrderDate**          |   | Date | required |*Order date of invoice* | ISO date format: YYYY-MM-DD |
+|**DeliveryDate**       |   | Date |  |*Delivery date of invoice* | ISO date format: YYYY-MM-DD |
 |**Comment**            |   | string |  |*Free text of additional information to the consumer*| Free text |
 |**MerchantContactName**     |   | string |  |*Contact name for the individual who issued the invoice*| Free text, Name |
 |**MerchantOrderNumber**     |   | string |  |*The order number for the invoice used internally by the merchant*| Free text e.g. 123456798ABCD |
@@ -236,7 +237,7 @@ This endpoint accepts a JSON object of Invoice Request to be processed asynchron
 |               | **PricePerUnit**  | decimal |  |*Price per unit*| >= 0.00, decimals separated with a dot. |
 |               | **PriceReduction**  | decimal |  |*Price reduction*| >= 0.00, decimals separated with a dot. |
 |               | **PriceDiscount**  | decimal |  |*Price discount*| >= 0.00, decimals separated with a dot. |
-|               |  **Bonus**    | decimal |  |*Quantity of article*| >= 0.00, decimals separated with a dot. |
+|               |  **Bonus**    | decimal |  |*Bonus of article*| >= 0.00, decimals separated with a dot. |
 
 
 The response of `POST /api/v1/merchants/{merchantId}/invoices/link` contains two values: a unique id of the Invoice and a Link rel = user-redirect
