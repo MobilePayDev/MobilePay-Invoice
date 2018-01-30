@@ -1,3 +1,4 @@
+<a name="invoice"/>
 # MobilePay Invoice (in development)
 
 ### Overview
@@ -11,6 +12,7 @@ This document explains how to make a technical integration to the MobilePay Invo
     * [API Gateway](#apigateway)  
     * [OpenID Connect](#openidconnect)    
 * [Invoice API](#invoiceapi)   
+* [Invoice Link](#invoice-link)   
 
 <a name="integration"/>  
 
@@ -24,7 +26,7 @@ In the sections below, the following steps will be explained.
 
 <a name="merchantonboarding"/>  
 
-### Merchant Onboarding 
+### Merchant Onboarding
 As a merchant wanting to send invoices via MobilePay, you enroll to the product via [MobilePay.dk](http://www.MobilePay.dk) or the MobilePay Business Administration portal. Here you will find information about our products as well as an easy way of enrolling. As an integrator or 3rd party service provider acting on behalf of a merchant, you need your customer to enroll to the product prior to doing the integration.</br>
 During the first product enrollment, you, as a merchant, will be requested details about your company such as company size, type etc. You will also be asked to confirm the account(s) you wish to use. These informations are required in order for us to verify your company information to be able to transfer the money to you securely. </br>
 During the enrollment you will also be given the option to define parameters such as name, logo, address, etc. for how your MobilePay Invoice Issuer should reflect your company in MobilePay.
@@ -52,7 +54,7 @@ An example of how to use OpenID connect in C# can be found [here](https://github
 
 ## Invoice API
 
-When the **Consent** between **Merchant** and the **Integrator** is established, use the merchant api endpoint to en-queue **Invoice Requests**. The invoice API consists of the following endpoints: </br> 
+When the **Consent** between **Merchant** and the **Integrator** is established, use the merchant api endpoint to en-queue **Invoice Requests**. The invoice API consists of the following endpoints: </br>
 1. Invoice POST request    
 2. Invoice status GET request
 3. InvoiceIssuers GET request (Not complete yet)
@@ -140,3 +142,127 @@ There is no JSON input model in this endpoint, instead, format the request the i
 |Parameter Name |Type |Description |Value |
 |----------------------|--------------|------------|----------|
 |**InvoiceIssuers**  | List        |*List of invoice issuers for a merchant*| { </br>&nbsp;&nbsp;&nbsp;&nbsp;"Id": "1f8288d9-4511-43ef-a1ce-667835470577", </br>&nbsp;&nbsp;&nbsp;&nbsp;"Name": "Test Fik Issuer"</br>&nbsp;&nbsp;&nbsp;&nbsp;"AccountType": "FIK"</br>},</br>{</br>&nbsp;&nbsp;&nbsp;&nbsp;"Id": "3d579d95-5cbe-4e45-b3e0-3b73d37e8b9c",</br>&nbsp;&nbsp;&nbsp;&nbsp;"Name": "TestName"</br>&nbsp;&nbsp;&nbsp;&nbsp;"AccountType": "Account"</br>} |
+
+
+<a name="invoice-link"/>   
+
+## Invoice Link (coming soon)
+
+Merchant's can create an Invoice that can be paid by any MobilePay user. Merchant's back-end system must call the `POST /api/v1/merchants/{merchantid:guid}/invoices/link` endpoint in order to generate a **Link** refering to **Invoice**, which can be activated by the MobilePay user through the app or web browser.
+
+#### Invoice Link POST request
+
+This endpoint accepts a JSON object of Invoice Request to be processed asynchronously.
+
+```json
+{
+  "InvoiceIssuer": "efd08c19-24cf-4833-a4a4-bfa7bd58fbb2",
+  "ConsumerAlias": {
+    "Alias": "+4577007700",
+    "AliasType": "Phone"
+  },
+  "ConsumerName": "Consumer Name",
+  "TotalAmount": "360",
+  "TotalVATAmount": "72",
+  "CountryCode": "DK",
+  "CurrencyCode": "DKK",
+  "ConsumerAddressLines": [
+    "Paradisæblevej 13 1234 Andeby"
+  ],
+  "DeliveryAddressLines": [
+    "Østerbrogade 120"
+  ],
+  "InvoiceNumber": "301",
+  "IssueDate": "2018-02-12",
+  "DueDate": "2018-03-12",
+  "OrderDate": "2018-02-05",
+  "DeliveryDate": "2018-02-10",
+  "Comment": "Any comment",
+  "MerchantContactName": "Snowboard gear shop",
+  "MerchantOrderNumber": "938",
+  "BuyerOrderNumber": "631",
+  "PaymentReference": "186",
+  "InvoiceArticles": [
+    {
+      "ArticleNumber": "1-123",
+      "ArticleDescription": "Process Flying V Snowboard",
+      "VATRate": 25,
+      "TotalVATAmount": 72,
+      "TotalPriceIncludingVat": 360,
+      "Unit": "1",
+      "Quantity": 1,
+      "PricePerUnit": 288,
+      "PriceReduction": 0,
+      "PriceDiscount": 0,
+      "Bonus": 5
+    }      
+  ]
+}
+```
+#### <a name="InvoiceLink_paramters"></a>Request parameters
+|Parameter             |Child parameter      ||Type        |Required  |Description                                                      |Valid values|
+|:---------------------|:-----------|:---------|:----------------------------------------------------------------|:-----------|
+|**InvoiceIssuer**     |   | guid | required |*__The ID of the invoicing department/branch of the merchant*|5e1210f9-4153-4fc3-83ec-2a8fc4843ea6|
+|**ConsumerAlias**     |   | object | |*Mobile alias of the MobilePay user to be invoiced*| |
+|              | **Alias**  |string | |*Alias value of the MobilePay user*| e.g. 004512345678, 12345678, +4512345678|
+|              | **AliasType**  |string | |*Alias type of the MobilePay user, allowed values are: Phone number*| Phone |
+|**ConsumerName**       |   | string | required  |*Full name of the MobilePay user*| Free text, Contact Name|
+|**TotalAmount**        |   | decimal | required |*The requested amount to be paid.*|>= 0.00, decimals separated with a dot.|
+|**TotalVATAmount**     |   | decimal | required |* VAT amount *| >= 0.00, decimals separated with a dot. |
+|**CountryCode**        |   | string | required |* Country code *| DK, FI |
+|**CurrencyCode**       |   | string | required |* Currency code *| DKK, EUR |
+|**ConsumerAddressLines**    |   | string[] | At least one |* Address of consumer receiving the invoice *| Free text |
+|**DeliveryAddressLines**    |   | string[] |  |* Delivery address *| Free text |
+|**InvoiceNumber**      |   | string | required |* Invoice Number *| Free text e.g. 123456798ABCD |
+|**IssueDate**          |   | Date | required |* Issue date of invoice *| ISO date format: YYYY-MM-DD |
+|**DueDate**            |   | Date | required |* Payment due date. Must be between today and +400 days ahead, otherwise the Request will be declined. *| ISO date format: YYYY-MM-DD |
+|**OrderDate**          |   | Date | required |*  *| ISO date format: YYYY-MM-DD |
+|**DeliveryDate**       |   | Date |  |*  *|  |
+|**Comment**            |   | string |  |* Free text of additional information to the consumer *| Free text |
+|**MerchantContactName**     |   | string |  |* Contact name for the individual who issued the invoice *| Free text, Name |
+|**MerchantOrderNumber**     |   | string |  |* The order number for the invoice used internally by the merchant *| Free text e.g. 123456798ABCD |
+|**BuyerOrderNumber**        |   | string |  |* he ordernumber for the invoice used externally by the merchant *| Free text e.g. 123456798ABCD |
+|**PaymentReference**        |   | string |  |* Reference used on the payment to do reconsilitaion. If not filled, invoice number will be used as reference *| Free text e.g. 123456798ABCD |
+|**InvoiceArticles**         |   | list | required |* At least one invoice line is required *|  |
+|               |  **ArticleNumber** | string |  |* Article Number *| e.g. 123456ABC |
+|               | **ArticleDescription**  | string |  |* Article Descrition *| Free text |
+|               | **VATRate** | decimal |  |* VAT Rate of article *| >= 0.00, decimals separated with a dot. |
+|               | **TotalVATAmount** | decimal |  |* Total VAT amount of article *| >= 0.00, decimals separated with a dot. |
+|               | **TotalPriceIncludingVat**  | decimal |  |* Total price of article including VAT *| >= 0.00, decimals separated with a dot. |
+|               | **Unit**  | decimal |  |* Unit *| e.g. Pcs, Coli |
+|               | **Quantity**  | decimal |  |* Quantity of article *| >= 0.00, decimals separated with a dot. |
+|               | **PricePerUnit**  | decimal |  |* Price per unit *| >= 0.00, decimals separated with a dot. |
+|               | **PriceReduction**  | decimal |  |* Price reduction *| >= 0.00, decimals separated with a dot. |
+|               | **PriceDiscount**  | decimal |  |* Price discount *| >= 0.00, decimals separated with a dot. |
+|               |  **Bonus**    | decimal |  |* Quantity of article *| >= 0.00, decimals separated with a dot. |
+
+The response of `POST /api/v1/merchants/{merchantid:guid}/invoices/link` contains two values: a unique id of the newly Invoice and a Link rel = user-redirect
+
+##### HTTP 202 Response body example
+```json
+{
+    "InvoiceId": "c5d4fde3-81e2-49de-8cfe-8c96f449e367",
+    "Links": [
+        {
+            "Rel": "user-redirect",
+            "Href":"https://api.sandbox.mobilepay.dk/invoice-restapi/api/v1/consumers/me/invoices/invoices/c5d4fde3-81e2-49de-8cfe-8c96f449e367/link"
+        }
+    ]
+}
+```
+* The InvoiceId value can be used on the merchant’s back-end system to map a Invoice with a specific user on the merchant’s side.
+* The link rel = user-redirect value contains the hyperlink reference address, which is structured in the following way: https://&lt;mobile-pay-invoice-restapi&gt;/&lt;path-to-invoices&gt;/{invoice_id}/link. The invoice_id property is of type guid and uniquely identifies the Invoice for the app to get the details and subsequently do an accept request.
+
+The **Invoice Link** can be used in two ways:
+
+1. Redirect the user automatically using the HTTP response **302** or **303**. Once the user is redirected, the MobilePay app will be opened to activate the **Invoice**.
+2. E-mail the generated link to the user. Once the user clicks on the **Invoice Link**, the MobilePay app will be opened to activate the **Invoice**. Note, that the Invoice link will be valid only until the user accepts the Invoice or it will expire 30 days after due date.
+
+##### Invoice Link creation flow (pictures/screens)
+To Do
+
+##### Invoice Link statuses
+To Do
+
+##### Invoice Link state Diagram
+To Do
