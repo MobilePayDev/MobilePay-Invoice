@@ -28,7 +28,6 @@ During the first product enrollment, you, as a merchant, will be requested detai
 
 During the enrollment you will also be given the option to define parameters such as name, logo, address, etc. for how your MobilePay Invoice Issuer should reflect your company in MobilePay.
 
-
 <a name="apigateway"/>  
 
 ### API Gateway     
@@ -46,7 +45,6 @@ When the merchant is onboarded, he has a user in MobilePay that is able to manag
 The OpenID Connect protocol is a simple identity layer on top of the OAuth 2.0 protocol. Integrators are the same as clients in the OAuth 2.0 protocol. The first thing that must be done as a client is to go and register [here]( https://www.mobilepay.dk/da-dk/Erhverv/Pages/MobilePay-integrator.aspx). Once this is done the client must initiate the [hybrid flow](http://openid.net/specs/openid-connect-core-1_0.html#HybridFlowAuth) specified in OpenID connect. For invoices the client must request consent from the merchant using the 'invoice' scope. The authorization server in sandbox is located  https://api.sandbox.mobilepay.dk/merchant-authentication-openidconnect <br />
 
 If the merchant grants consent, an authorization code is returned which the client must exchange for an id token, an access token and a refresh token. The refresh token is used to refresh ended sessions without asking for merchant consent again. This means that if the client receives an answer from the api gateway saying that the access token is invalid, the refresh token is exchanged for a new access token and refresh token.
-
 
 An example of how to use OpenID connect in C# can be found [here](https://github.com/MobilePayDev/MobilePay-Invoice/tree/master/ClientExamples).
 
@@ -106,8 +104,7 @@ When the **Consent** between **Merchant** and the **Integrator** is established,
 ```
 
 The *Created* **Invoice**, if not accepted, will expire 30 days after due date.
-
-#### Request parameters
+### <a name="request_parameters"></a> Request parameters
 
 |Parameter             |Sub Parameter |Type        |Required  |Description                                       |Valid values|
 |----------------------|--------------|------------|----------|--------------------------------------------------|------------|
@@ -149,16 +146,14 @@ The `POST api/v1/merchants/{merchantId}/invoices` service returns HTTP 202 - Acc
 
 The response body contains property:
 * **InvoiceId** - a unique id of the **Invoice**, that was accepted for processing and now is in a _Created_ state.
-
-##### HTTP 202 Response body example
+##### <a name="http202_response_body_example"></a> HTTP 202 Response body example
 
 ```json
 {
     "InvoiceId" : "63679ab7-cc49-4f75-80a7-86217fc105ea"
 }
 ```
-
-### Invoice status
+### <a name="invoice_status"></a> Invoice status
 Use `POST api/v1/merchants/{merchantId}/invoices/{invoiceid}/status` to request the status of individual **Invoices**.
 
 The table below shows possible status, status_text and status_code values depending on the **Invoice** status changes.
@@ -171,7 +166,7 @@ The table below shows possible status, status_text and status_code values depend
 |Rejected   |_User tapped the reject button during the signup_    |
 |Expired    |_User did not do anything during the invoice timeout period._      |
 
-#### Request parameters
+#### <a name="invoice_status_request_parameters"></a> Request parameters
 
 There is no JSON input model in this endpoint, instead, format the request the in the following way: <br />
 `GET api/v1/merchants/{merchantId}/invoices/{invoiceId}/status`
@@ -239,7 +234,7 @@ Use the `POST api/v1/merchants/{merchantId}/invoices/link` endpoint to generate 
   ]
 }
 ```
-#### Request parameters
+#### <a name="invoice-link-request-parameter"/> Invoice Link Request parameters
 
 |Parameter             |Sub Parameter   |Type        |Required  |Description                                                 |Valid values|
 |:---------------------|:---------------|:-----------|:---------|:-----------------------------------------------------------|:-----------|
@@ -282,6 +277,7 @@ The `POST /api/v1/merchants/{merchantId}/invoices/link` service returns HTTP 202
 The response body contains two properties:
 * **InvoiceId** - a unique id of the **Invoice**, that was accepted for processing and now is in a _Created_ state.
 * The link **Rel = user-redirect** - value contains the hyperlink reference address, which is structured in the following way: _https://&lt;mobile-pay-invoice-restapi&gt;/&lt;path-to-invoices&gt;/{invoice_id}/link_. The invoice_id property is of type guid and uniquely identifies the **Invoice** for the app to get the details and subsequently do an accept request.
+
 
 ##### HTTP 202 Response body example
 ```json
