@@ -193,8 +193,8 @@ Use the `POST api/v1/merchants/{merchantId}/invoices/link` endpoint to generate 
 {
   "InvoiceIssuer": "efd08c19-24cf-4833-a4a4-bfa7bd58fbb2",
   "ConsumerAlias": {
-    "Alias": "",
-    "AliasType": ""
+    "Alias": "+4577007700",
+    "AliasType": "Phone"
   },
   "ConsumerName": "Consumer Name",
   "TotalAmount": "360",
@@ -240,8 +240,8 @@ Use the `POST api/v1/merchants/{merchantId}/invoices/link` endpoint to generate 
 |:---------------------|:---------------|:-----------|:---------|:-----------------------------------------------------------|:-----------|
 |**InvoiceIssuer**     |                     | guid       | required |*The ID of the invoicing department/branch of the merchant*|5e1210f9-4153-4fc3-83ec-2a8fc4843ea6|
 |**ConsumerAlias**     |                     | object     |          |*Mobile alias of the MobilePay user to be invoiced*| |
-|                      | **Alias**           |string      |          |*Alias value of the MobilePay user*| e.g. 004512345678, 12345678, +4512345678|
-|                      | **AliasType**       |string      |          |*Alias type of the MobilePay user*| Phone |
+|                      | **Alias**           |string      | required |*Alias value of the MobilePay user*| e.g. 004512345678, 12345678, +4512345678|
+|                      | **AliasType**       |string      | required |*Alias type of the MobilePay user*| Phone |
 |**ConsumerName**       |   | string | required  |*Full name of the MobilePay user*| Free text e.g. Contact Name|
 |**TotalAmount**        |   | decimal | required |*The requested amount to be paid.*|>= 0.00, decimals separated with a dot.|
 |**TotalVATAmount**     |   | decimal | required |*VAT amount*| >= 0.00, decimals separated with a dot. |
