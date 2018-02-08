@@ -10,8 +10,8 @@ This document explains how to make a technical integration to the MobilePay Invo
 
 ### <a name="overview_available"></a>Where is Invoice available ?
 
-- Denmark 
-- Finland 
+- Denmark
+- Finland
 
 ## <a name="integration"/> Integration     
 Integrating to MobilePay invoice is technically a multistep process involving creating an application interacting with our systems via our API gateway, subscribing to the invoice product and calling the invoice RESTful API's.<br />
@@ -38,7 +38,7 @@ Make sure that it is clear that the invoice product is wanted when requesting ac
 
 <a name="openidconnect"/>  
 
-### OpenID Connect   
+### OpenID Connect
 
 When the merchant is onboarded, he has a user in MobilePay that is able to manage which products the merchant wishes to use. Not all merchants have the technical capabilities to make integrations to MobilePay, instead they may need to go through applications whith these capabilities. In order for this to work, the merchant must grant consent to an application with these capabilities. This consent is granted through mechanism in the [OpenID Connect](http://openid.net/connect/) protocol suite.<br />
 
@@ -51,9 +51,45 @@ An example of how to use OpenID connect in C# can be found [here](https://github
 ### <a name="openid-flow"></a> OpenID flow
 ![](assets/images/Invoice_OpenID_Flow_Sophia.png)
 
-<a name="invoice"/>      
 
-## Invoice
+## <a name="general-notes"/> General notes
+
+### <a name="invoice_status"></a> Invoice status
+Use `POST api/v1/merchants/{merchantId}/invoices/{invoiceid}/status` to request the status of individual **Invoices**.
+
+The table below shows possible status, status_text and status_code values depending on the **Invoice** status changes.
+
+|New Status | Condition                               |
+|-----------|------------------------------------------|
+|Created    |_Merchant created the Invoice_            |
+|Accepted   |_User swiped to accept the Invoice_       |
+|Paid       |_Invoice was paid_|
+|Rejected   |_User tapped the reject button during the signup_    |
+|Expired    |_User did not do anything during the invoice timeout period._      |
+
+#### <a name="invoice_status_request_parameters"></a> Request parameters
+
+There is no JSON input model in this endpoint, instead, format the request the in the following way: <br />
+`GET api/v1/merchants/{merchantId}/invoices/{invoiceId}/status`
+
+The response of `GET api/v1/merchants/{merchantId}/invoices/{invoiceId}/status` contains two properties:
+* **InvoiceId** - a unique id of the invoice.
+* **Status** - a status of the invoice.
+
+##### HTTP 200 Response body example
+
+```json
+{
+    "InvoiceId" : "5e1210f9-4153-4fc3-83ec-2a8fc4843ea6",
+    "Status" : "Created"
+}
+```
+
+### <a name="pdf"></a> PDF
+![](assets/pdf/PDF_generation.pdf)
+[PDF_generation.pdf](http://127.0.0.1:4000/assets/pdf/PDF_generation.pdf)
+
+## <a name="invoice-direct"/>  InvoiceDirect
 
 When the **Consent** between **Merchant** and the **Integrator** is established, use the `POST api/v1/merchants/{merchantId}/invoices` endpoint to en-queue **Invoice**.
 
@@ -153,41 +189,11 @@ The response body contains property:
     "InvoiceId" : "63679ab7-cc49-4f75-80a7-86217fc105ea"
 }
 ```
-### <a name="invoice_status"></a> Invoice status
-Use `POST api/v1/merchants/{merchantId}/invoices/{invoiceid}/status` to request the status of individual **Invoices**.
 
-The table below shows possible status, status_text and status_code values depending on the **Invoice** status changes.
-
-|New Status | Condition                               |
-|-----------|------------------------------------------|
-|Created    |_Merchant created the Invoice_            |
-|Accepted   |_User swiped to accept the Invoice_       |
-|Paid       |_Invoice was paid_|
-|Rejected   |_User tapped the reject button during the signup_    |
-|Expired    |_User did not do anything during the invoice timeout period._      |
-
-#### <a name="invoice_status_request_parameters"></a> Request parameters
-
-There is no JSON input model in this endpoint, instead, format the request the in the following way: <br />
-`GET api/v1/merchants/{merchantId}/invoices/{invoiceId}/status`
-
-The response of `GET api/v1/merchants/{merchantId}/invoices/{invoiceId}/status` contains two properties:
-* **InvoiceId** - a unique id of the invoice.
-* **Status** - a status of the invoice.
-
-##### HTTP 200 Response body example
-
-```json
-{
-    "InvoiceId" : "5e1210f9-4153-4fc3-83ec-2a8fc4843ea6",
-    "Status" : "Created"
-}
-```
-
-## <a name="invoice-link"/> Invoice Link
+## <a name="invoice-link"/> InvoiceLink
 
 Merchant can create a **Link** to **Invoice** that is sent to **Customer** via email, allowing them to pay using **MobilePay**.
-Use the `POST api/v1/merchants/{merchantId}/invoices/link` endpoint to generate an **Invoice link**. This service accepts a JSON object of single **Invoice** to be processed asynchronously. Notice that the **Invoice** payload does not require a customer alias - **Invoice** can be paid by any **MobilePay** user.
+Use the `POST api/v1/merchants/{merchantId}/invoices/link` endpoint to generate an **InvoiceLink**. This service accepts a JSON object of single **Invoice** to be processed asynchronously. Notice that the **Invoice** payload does not require a customer alias - **Invoice** can be paid by any **MobilePay** user.
 
 ```json
 {
