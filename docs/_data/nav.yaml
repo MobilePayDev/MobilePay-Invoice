@@ -6,8 +6,11 @@ docs :
 - title: Integration
   url: "#integration"
 
-- title: Invoice
-  url: "#invoice"
+- title: General Notes
+  url: "#general-notes"
 
-- title: Invoice Link
+- title: InvoiceDirect
+  url: "#invoice-direct"
+
+- title: InvoiceLink
   url: "#invoice-link"
