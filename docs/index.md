@@ -86,7 +86,7 @@ The response of `GET api/v1/merchants/{merchantId}/invoices/{invoiceId}/status` 
 ```
 
 ### <a name="pdf"></a> PDF
-[PDF_generation.pdf](https://github.com/MobilePayDev/MobilePay-Invoice/blob/master/docs/assets/pdf/PDF_generation.pdf)
+[embed]https://github.com/MobilePayDev/MobilePay-Invoice/blob/master/docs/assets/pdf/PDF_generation.pdf[/embed]
 
 ## <a name="invoice-direct"/>  InvoiceDirect
 
