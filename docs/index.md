@@ -85,6 +85,56 @@ The response of `GET api/v1/merchants/{merchantId}/invoices/{invoiceId}/status` 
 }
 ```
 
+All dates and time-stamps use the ISO 8601 format: date format - `YYYY-MM-DD` , date-time format - `YYYY-MM-DDTHH:mm:ssZ` .
+
+Amounts are enquoted with double quotation marks using `0.00` format, decimals separated with a dot.
+
+### <a name="errors"></a> Errors
+
+Possible error responses contain these five properties:
+
+* **correlation_id** - a unique id used for logging and debugging purposes.
+* **error** - a string specifying error type. Possible values: `DomainError`, `InputError` & `ServerError`
+* **error_code** - integer specifying error unique code.
+* **error_description** - a string indetifying human friendlly error description.
+* **error_context** - a string indetifying context in which error has occured.
+
+1. `HTTP 400` , if request input is invalid
+>
+  ```json
+  {
+      "correlation_id": "54ccc98b-7d9f-40ea-8c1a-249d57126c39",
+      "error": "InputError",
+      "error_code": null,
+      "error_description": "input.TotalAmount : Invalid input\r\n",
+      "error_context": "Invoices"
+  }
+  ```
+
+2. `HTTP 409` , request is not compatible with a current state
+>
+  ```json
+  {
+      "correlation_id": "8c153279-98f1-4e33-b053-3c6e3555adff",
+      "error": "DomainError",
+      "error_code": "10504",
+      "error_description": "Invoice has already been paid",
+      "error_context": "Invoices"
+  }
+  ```
+
+3. `HTTP 500` , server error
+>
+  ```json
+  {
+      "correlation_id": "56db684c-7845-4abf-9f19-5632a625a47b",
+      "error": "ServerError",
+      "error_code": null,
+      "error_description": "The given key was not present in the dictionary.",
+      "error_context": "Invoices"
+  }
+  ```
+
 ### <a name="pdf"></a> PDF
 
 ![](assets/images/pdf.png)
@@ -103,8 +153,8 @@ When the **Consent** between **Merchant** and the **Integrator** is established,
     "AliasType": "Phone"
   },
   "ConsumerName": "Consumer Name",
-  "TotalAmount": "360",
-  "TotalVATAmount": "72",
+  "TotalAmount": 360,
+  "TotalVATAmount": 72,
   "CountryCode": "DK",
   "CurrencyCode": "DKK",
   "ConsumerAddressLines": [
@@ -192,6 +242,24 @@ The response body contains property:
 }
 ```
 
+To get invoice status use `GET /api/v1/merchants/{merchantId}/invoices/{invoiceId}/status` service. The response contains two properties:
+
+* **InvoiceId** - unique Invoice id.
+* **Status** - a string representing Invoice status.
+
+```json
+{
+  "InvoiceId": "3c440dfb-b271-4d21-ad1c-f973f2c4f448",
+  "Status": "Rejected"
+}
+```
+
+### <a name="invoice-flow"/> Invoice Flow
+
+**Invoice** status flow can be visualized by the following diagram.
+
+![](assets/images/invoice_flow.png)
+
 ## <a name="invoice-link"/> InvoiceLink
 
 Merchant can create a **Link** to **Invoice** that is sent to **Customer** via email, allowing them to pay using **MobilePay**.
@@ -205,8 +273,8 @@ Use the `POST api/v1/merchants/{merchantId}/invoices/link` endpoint to generate 
     "AliasType": "Phone"
   },
   "ConsumerName": "Consumer Name",
-  "TotalAmount": "360",
-  "TotalVATAmount": "72",
+  "TotalAmount": 360,
+  "TotalVATAmount": 72,
   "CountryCode": "DK",
   "CurrencyCode": "DKK",
   "ConsumerAddressLines": [
