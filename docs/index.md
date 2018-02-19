@@ -141,6 +141,44 @@ Possible error responses contain these five properties:
 
 [PDF_generation.pdf](https://github.com/MobilePayDev/MobilePay-Invoice/blob/master/docs/assets/pdf/PDF_generation.pdf)
 
+### <a name="invoice-flow"/> Invoice Flow
+
+**Invoice** status flow can be visualized by the following diagram.
+
+![](assets/images/invoice_flow.png)
+
+### <a name="validation"/> Validation
+
+**Invoice** creation step follows business logic and may return following **Error Codes**
+
+|Error Code            |Description                                                                 |Logic                                       |
+|----------------------|----------------------------------------------------------------------------|--------------------------------------------|
+|10101                 |MobilePay User not found                                                    |-                                           |
+|10102                 |MobilePay user not available                                                |-                                           |
+|10103                 |MobilePay user not found                                                    |-                                           |
+|10104                 |Invoice already exists                                                      |-                                           |
+|10105                 |Failed to create Invoice                                                    |-                                           |
+|10106                 |Invoice country does not match consumer country                             |-                                           |
+|10107                 |Specified currency does not match specified country                         |-                                           |
+|10201                 |Limits exceeded                                                             |-                                           |
+|10202                 |Invoice issuer not found                                                    |-                                           |
+|10203                 |Account validation error                                                    |-                                           |
+|10301                 |Invoice already exists                                                      |-                                           |
+|10302                 |Merchant not found                                                          |-                                           |
+|10303                 |Invoice issuer not found                                                    |-                                           |
+|10304                 |MobilePay User not found                                                    |-                                           |
+|10305                 |MobilePay User not found                                                    |-                                           |
+|10306                 |MobilePay User not found                                                    |-                                           |
+|10307                 |Reference number is not valid for FIK payment                               |-                                           |
+|10308                 |Reference number is required for FIK  payment                               |-                                           |
+|10309                 |Reference number is not exactly 15 digits, which is required for FIK payment|-                                           |
+|10310                 |Due Date must be no later than 400 days from today.                         |Due Date > Create Date + 400(days)          |
+|10311                 |Due Date must be today or later                                             |Due Date >= Create Date                     |
+|10312                 |Issue Date must be no later than today                                      |Issue Date >= Create Date                   |
+|10313                 |Your daily limit has been reached                                           |-                                           |
+|10314                 |Limits exceeded                                                             |-                                           |
+|10315                 |FIK creditor validation error                                               |-                                           |
+
 ## <a name="invoice-direct"/>  InvoiceDirect
 
 When the **Consent** between **Merchant** and the **Integrator** is established, use the `POST api/v1/merchants/{merchantId}/invoices` endpoint to en-queue **Invoice**.
@@ -253,12 +291,6 @@ To get invoice status use `GET /api/v1/merchants/{merchantId}/invoices/{invoiceI
   "Status": "Rejected"
 }
 ```
-
-### <a name="invoice-flow"/> Invoice Flow
-
-**Invoice** status flow can be visualized by the following diagram.
-
-![](assets/images/invoice_flow.png)
 
 ## <a name="invoice-link"/> InvoiceLink
 
