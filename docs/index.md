@@ -54,8 +54,36 @@ An example of how to use OpenID connect in C# can be found [here](https://github
 
 ## <a name="general-notes"/> General notes
 
+### <a name="invoice_issuer"></a> Invoice issuer
+
+**Invoice Issuer** represents mercant company information. Before using **Invoices** merchant must have at least one **Invoice Issuer** which can be created via [MobilePay.dk](http://www.MobilePay.dk) or the MobilePay Business Administration portal. Each **Invoice Issuer** contains its own address information, account data and logo.
+
+To get merchant **Invoice Issuers** use `GET /api/v1/merchants/{merchantId}/invoiceissuers` method. Response contains an array of **Invoice Issuer** objects:
+
+```json
+{
+  "InvoiceIssuers": [
+    {
+      "Id": "00000000-0000-0000-0000-000000000000",
+      "Name": "string",
+      "AccountType": "string"
+    }
+  ]
+}
+```
+
 ### <a name="invoice_status"></a> Invoice status
-Use `POST api/v1/merchants/{merchantId}/invoices/{invoiceid}/status` to request the status of individual **Invoices**.
+Use `POST api/v1/merchants/{merchantId}/invoices/{invoiceid}/status` to request the status of individual **Invoices**. The response contains two properties:
+
+* **InvoiceId** - unique Invoice id.
+* **Status** - a string representing Invoice status.
+
+```json
+{
+  "InvoiceId": "3c440dfb-b271-4d21-ad1c-f973f2c4f448",
+  "Status": "Rejected"
+}
+```
 
 The table below shows possible status, status_text and status_code values depending on the **Invoice** status changes.
 
@@ -66,6 +94,12 @@ The table below shows possible status, status_text and status_code values depend
 |Paid       |_Invoice was paid_|
 |Rejected   |_User tapped the reject button during the signup_    |
 |Expired    |_User did not do anything during the invoice timeout period._      |
+
+### <a name="invoice-flow"/> Invoice flow
+
+**Invoice** status flow can be visualized by the following diagram.
+
+![](assets/images/invoice_flow.png)
 
 #### <a name="invoice_status_request_parameters"></a> Request parameters
 
@@ -141,43 +175,21 @@ Possible error responses contain these five properties:
 
 [PDF_generation.pdf](https://github.com/MobilePayDev/MobilePay-Invoice/blob/master/docs/assets/pdf/PDF_generation.pdf)
 
-### <a name="invoice-flow"/> Invoice Flow
-
-**Invoice** status flow can be visualized by the following diagram.
-
-![](assets/images/invoice_flow.png)
-
 ### <a name="validation"/> Validation
 
-**Invoice** creation step follows business logic and may return following **Error Codes**
+A set of business rules apply for an **Invoice** before it gets created. If any of following rules fail, an **Invoice** falls to `Not Created` state and an error response with Error Code and Description is returned
 
-|Error Code            |Description                                                                 |Logic                                       |
-|----------------------|----------------------------------------------------------------------------|--------------------------------------------|
-|10101                 |MobilePay User not found                                                    |-                                           |
-|10102                 |MobilePay user not available                                                |-                                           |
-|10103                 |MobilePay user not found                                                    |-                                           |
-|10104                 |Invoice already exists                                                      |-                                           |
-|10105                 |Failed to create Invoice                                                    |-                                           |
-|10106                 |Invoice country does not match consumer country                             |-                                           |
-|10107                 |Specified currency does not match specified country                         |-                                           |
-|10201                 |Limits exceeded                                                             |-                                           |
-|10202                 |Invoice issuer not found                                                    |-                                           |
-|10203                 |Account validation error                                                    |-                                           |
-|10301                 |Invoice already exists                                                      |-                                           |
-|10302                 |Merchant not found                                                          |-                                           |
-|10303                 |Invoice issuer not found                                                    |-                                           |
-|10304                 |MobilePay User not found                                                    |-                                           |
-|10305                 |MobilePay User not found                                                    |-                                           |
-|10306                 |MobilePay User not found                                                    |-                                           |
-|10307                 |Reference number is not valid for FIK payment                               |-                                           |
-|10308                 |Reference number is required for FIK  payment                               |-                                           |
-|10309                 |Reference number is not exactly 15 digits, which is required for FIK payment|-                                           |
-|10310                 |Due Date must be no later than 400 days from today.                         |Due Date > Create Date + 400(days)          |
-|10311                 |Due Date must be today or later                                             |Due Date >= Create Date                     |
-|10312                 |Issue Date must be no later than today                                      |Issue Date >= Create Date                   |
-|10313                 |Your daily limit has been reached                                           |-                                           |
-|10314                 |Limits exceeded                                                             |-                                           |
-|10315                 |FIK creditor validation error                                               |-                                           |
+|Field            |Country          |Validation                                         |Error Code |Description                                                         |
+|-----------------|-----------------|---------------------------------------------------|-----------|--------------------------------------------------------------------|
+|**DueDate**      |DK/FI            |*CreatedDate < DueDate < CreatedDate + 400(days)*  |10310/10311|Due Date must be no more than 400 days in the future                |
+|**IssueDate**    |DK/FI            |*IssueDate >= CreatedDate*                         |10312      |Issue Date can not be later than Invoice Creation date              | 
+|**CountryCode**  |DK/FI            |*CountryCode == Consumer CountryCode*              |10106      |Country Code must match Consumer Country Code                       | 
+|**CurrencyCode** |DK               |*CurrencyCode == DKK*                              |10107      |Only DKK is supported for DK Invoices                               |
+|                 |FI               |*CurrencyCode == EUR*                              |10107      |Only EUR is supported for FI invoices                               |
+|**TotalAmount**  |DK               |*TotalAmount <= 10000 DKK*                         |10201      |Total Amount is limited to 10000 DKK                                |
+|                 |FI               |*TotalAmount <= 500 EUR*                           |10201      |Total Amount is limited to 500 EUR                                  |
+|*Limits*         |DK/FI            |*Merchant Daily Invoice Count < 5000*              |10314      |No more then 4999 Invoices can be created per Merchant per day      |
+|*Limits*         |DK/FI            |*Consumer Daily Invoice Count < 50*                |10315      |No more then 49 Invoices can be created per Consumer from single Merchant|
 
 ## <a name="invoice-direct"/>  InvoiceDirect
 
@@ -277,18 +289,6 @@ The response body contains property:
 ```json
 {
     "InvoiceId" : "63679ab7-cc49-4f75-80a7-86217fc105ea"
-}
-```
-
-To get invoice status use `GET /api/v1/merchants/{merchantId}/invoices/{invoiceId}/status` service. The response contains two properties:
-
-* **InvoiceId** - unique Invoice id.
-* **Status** - a string representing Invoice status.
-
-```json
-{
-  "InvoiceId": "3c440dfb-b271-4d21-ad1c-f973f2c4f448",
-  "Status": "Rejected"
 }
 ```
 
