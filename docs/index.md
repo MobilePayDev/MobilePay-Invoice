@@ -56,7 +56,7 @@ An example of how to use OpenID connect in C# can be found [here](https://github
 
 ### <a name="invoice_issuer"></a> Invoice issuer
 
-**Invoice Issuer** represents mercant company information. Before using **Invoices** merchant must have at least one **Invoice Issuer** which can be created via [MobilePay.dk](http://www.MobilePay.dk) or the MobilePay Business Administration portal. Each **Invoice Issuer** contains its own address information, account data and logo.
+**Invoice Issuer** represents mercant company information. Before using **Invoices** merchant must have at least one **Invoice Issuer** which can be created via the MobilePay Business Administration portal. Each **Invoice Issuer** contains its own address information, account data and logo.
 
 To get merchant **Invoice Issuers** use `GET /api/v1/merchants/{merchantId}/invoiceissuers` method. Response contains an array of **Invoice Issuer** objects:
 
@@ -188,8 +188,8 @@ A set of business rules apply for an **Invoice** before it gets created. If any 
 |                 |FI               |*CurrencyCode == EUR*                              |10107      |Only EUR is supported for FI invoices                               |
 |**TotalAmount**  |DK               |*TotalAmount <= 10000 DKK*                         |10201      |Total Amount is limited to 10000 DKK                                |
 |                 |FI               |*TotalAmount <= 500 EUR*                           |10201      |Total Amount is limited to 500 EUR                                  |
+|*Limits*         |DK/FI            |*Consumer Daily Invoice Count < 50*                |10313      |No more then 49 Invoices can be created per Consumer from single Merchant|
 |*Limits*         |DK/FI            |*Merchant Daily Invoice Count < 5000*              |10314      |No more then 4999 Invoices can be created per Merchant per day      |
-|*Limits*         |DK/FI            |*Consumer Daily Invoice Count < 50*                |10315      |No more then 49 Invoices can be created per Consumer from single Merchant|
 
 ## <a name="invoice-direct"/>  InvoiceDirect
 
@@ -404,3 +404,20 @@ The **Invoice link** can be used in two ways:
 
 1. Redirect the user automatically using the HTTP response **302** or **303**. Once the user is redirected, the **MobilePay** app will be opened to activate the **Invoice**.
 2. E-mail the generated **Invoice link** to the user. Once the user clicks on the **Invoice link**, the **MobilePay** app will be opened to activate the **Invoice**. Note, that the **Invoice link** will be valid only until the user accepts the **Invoice** or it will expire 30 days after due date.
+
+Once merchant shares **Invoice link** consumer needs to follow on screen guide.
+
+Enter phone if not provided
+![](assets/images/lp/start.png)
+
+Timer page is displayd. On phone consumer receives **Notification** which requires to Accept or Reject an **Invoice**.
+![](assets/images/lp/timer.png)
+
+On Accept or Reject action consumer gets a message on the screen.
+ ![](assets/images/lp/approve.png)
+
+If consumer uses phone to open an **Invoice link** a screen requesting to open it in MobilePay app is displayed.
+ ![](assets/images/lp/single.png)
+
+In case when **Invoice link** expires before user action. Link expire message is displays.
+ ![](assets/images/lp/linkExpire.png)
