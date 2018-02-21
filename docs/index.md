@@ -208,10 +208,14 @@ When the **Consent** between **Merchant** and the **Integrator** is established,
   "CountryCode": "DK",
   "CurrencyCode": "DKK",
   "ConsumerAddressLines": [
-    "Paradisæblevej 13 1234 Andeby"
+    "Paradisæblevej 13",
+    "CC-1234 Andeby", 
+    "WONDERLAND"
   ],
   "DeliveryAddressLines": [
-    "Østerbrogade 120"
+    "Østerbrogade 120",
+    "CC-1234 Andeby",
+    "WONDERLAND"
   ],
   "InvoiceNumber": "301",
   "IssueDate": "2018-02-12",
@@ -310,10 +314,14 @@ Use the `POST api/v1/merchants/{merchantId}/invoices/link` endpoint to generate 
   "CountryCode": "DK",
   "CurrencyCode": "DKK",
   "ConsumerAddressLines": [
-    "Paradisæblevej 13 1234 Andeby"
+    "Paradisæblevej 13",
+    "CC-1234 Andeby", 
+    "WONDERLAND"
   ],
   "DeliveryAddressLines": [
-    "Østerbrogade 120"
+    "Østerbrogade 120",
+    "CC-1234 Andeby",
+    "WONDERLAND"
   ],
   "InvoiceNumber": "301",
   "IssueDate": "2018-02-12",
