@@ -405,19 +405,7 @@ The **Invoice link** can be used in two ways:
 1. Redirect the user automatically using the HTTP response **302** or **303**. Once the user is redirected, the **MobilePay** app will be opened to activate the **Invoice**.
 2. E-mail the generated **Invoice link** to the user. Once the user clicks on the **Invoice link**, the **MobilePay** app will be opened to activate the **Invoice**. Note, that the **Invoice link** will be valid only until the user accepts the **Invoice** or it will expire 30 days after due date.
 
-Once merchant shares **Invoice link** consumer needs to follow on screen guide.
+ ![](assets/images/lp/d_flow.png)
 
-Enter phone if not provided
-![](assets/images/lp/start.png)
-
-Timer page is displayd. On phone consumer receives **Notification** which requires to Accept or Reject an **Invoice**.
-![](assets/images/lp/timer.png)
-
-On Accept or Reject action consumer gets a message on the screen.
- ![](assets/images/lp/approve.png)
-
-If consumer uses phone to open an **Invoice link** a screen requesting to open it in MobilePay app is displayed.
- ![](assets/images/lp/single.png)
-
-In case when **Invoice link** expires before user action. Link expire message is displays.
- ![](assets/images/lp/linkExpire.png)
+If consumer opens **Invoice link** on phone flow is simplified.
+ ![](assets/images/lp/s_flow.png)
