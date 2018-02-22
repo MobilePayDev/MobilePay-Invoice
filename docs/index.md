@@ -49,13 +49,41 @@ If the merchant grants consent, an authorization code is returned which the clie
 An example of how to use OpenID connect in C# can be found [here](https://github.com/MobilePayDev/MobilePay-Invoice/tree/master/ClientExamples).
 
 ### <a name="openid-flow"></a> OpenID flow
-![](assets/images/Invoice_OpenID_Flow_Sophia.png)
+[![](assets/images/Invoice_OpenID_Flow_Sophia.png)](assets/images/Invoice_OpenID_Flow_Sophia.png)
 
 
 ## <a name="general-notes"/> General notes
 
+### <a name="invoice_issuer"></a> Invoice issuer
+
+**Invoice Issuer** represents mercant company information. Before using **Invoices** merchant must have at least one **Invoice Issuer** which can be created via the MobilePay Business Administration portal. Each **Invoice Issuer** contains its own address information, account data and logo.
+
+To get merchant **Invoice Issuers** use `GET /api/v1/merchants/{merchantId}/invoiceissuers` method. Response contains an array of **Invoice Issuer** objects:
+
+```json
+{
+  "InvoiceIssuers": [
+    {
+      "Id": "00000000-0000-0000-0000-000000000000",
+      "Name": "string",
+      "AccountType": "string"
+    }
+  ]
+}
+```
+
 ### <a name="invoice_status"></a> Invoice status
-Use `POST api/v1/merchants/{merchantId}/invoices/{invoiceid}/status` to request the status of individual **Invoices**.
+Use `POST api/v1/merchants/{merchantId}/invoices/{invoiceid}/status` to request the status of individual **Invoices**. The response contains two properties:
+
+* **InvoiceId** - unique Invoice id.
+* **Status** - a string representing Invoice status.
+
+```json
+{
+  "InvoiceId": "3c440dfb-b271-4d21-ad1c-f973f2c4f448",
+  "Status": "Rejected"
+}
+```
 
 The table below shows possible status, status_text and status_code values depending on the **Invoice** status changes.
 
@@ -66,6 +94,12 @@ The table below shows possible status, status_text and status_code values depend
 |Paid       |_Invoice was paid_|
 |Rejected   |_User tapped the reject button during the signup_    |
 |Expired    |_User did not do anything during the invoice timeout period._      |
+
+### <a name="invoice-flow"/> Invoice flow
+
+**Invoice** status flow can be visualized by the following diagram.
+
+[![](assets/images/invoice_flow.png)](assets/images/invoice_flow.png)
 
 #### <a name="invoice_status_request_parameters"></a> Request parameters
 
@@ -85,11 +119,77 @@ The response of `GET api/v1/merchants/{merchantId}/invoices/{invoiceId}/status` 
 }
 ```
 
+All dates and time-stamps use the ISO 8601 format: date format - `YYYY-MM-DD` , date-time format - `YYYY-MM-DDTHH:mm:ssZ` .
+
+Amounts are enquoted with double quotation marks using `0.00` format, decimals separated with a dot.
+
+### <a name="errors"></a> Errors
+
+Possible error responses contain these five properties:
+
+* **correlation_id** - a unique id used for logging and debugging purposes.
+* **error** - a string specifying error type. Possible values: `DomainError`, `InputError` & `ServerError`
+* **error_code** - integer specifying error unique code.
+* **error_description** - a string indetifying human friendlly error description.
+* **error_context** - a string indetifying context in which error has occured.
+
+1. `HTTP 400` , if request input is invalid
+>
+  ```json
+  {
+      "correlation_id": "54ccc98b-7d9f-40ea-8c1a-249d57126c39",
+      "error": "InputError",
+      "error_code": null,
+      "error_description": "input.TotalAmount : Invalid input\r\n",
+      "error_context": "Invoices"
+  }
+  ```
+
+2. `HTTP 409` , request is not compatible with a current state
+>
+  ```json
+  {
+      "correlation_id": "8c153279-98f1-4e33-b053-3c6e3555adff",
+      "error": "DomainError",
+      "error_code": "10504",
+      "error_description": "Invoice has already been paid",
+      "error_context": "Invoices"
+  }
+  ```
+
+3. `HTTP 500` , server error
+>
+  ```json
+  {
+      "correlation_id": "56db684c-7845-4abf-9f19-5632a625a47b",
+      "error": "ServerError",
+      "error_code": null,
+      "error_description": "The given key was not present in the dictionary.",
+      "error_context": "Invoices"
+  }
+  ```
+
 ### <a name="pdf"></a> PDF
 
-![](assets/images/pdf.png)
+[![](assets/images/pdf.png)](assets/images/pdf.png)
 
 [PDF_generation.pdf](https://github.com/MobilePayDev/MobilePay-Invoice/blob/master/docs/assets/pdf/PDF_generation.pdf)
+
+### <a name="validation"/> Validation
+
+A set of business rules apply for an **Invoice** before it gets created. If any of following rules fail, an **Invoice** falls to `Not Created` state and an error response with Error Code and Description is returned
+
+|Field            |Country          |Validation                                         |Error Code |Description                                                         |
+|-----------------|-----------------|---------------------------------------------------|-----------|--------------------------------------------------------------------|
+|**DueDate**      |DK/FI            |*CreatedDate < DueDate < CreatedDate + 400(days)*  |10310/10311|Due Date must be no more than 400 days in the future                |
+|**IssueDate**    |DK/FI            |*IssueDate >= CreatedDate*                         |10312      |Issue Date can not be later than Invoice Creation date              | 
+|**CountryCode**  |DK/FI            |*CountryCode == Consumer CountryCode*              |10106      |Country Code must match Consumer Country Code                       | 
+|**CurrencyCode** |DK               |*CurrencyCode == DKK*                              |10107      |Only DKK is supported for DK Invoices                               |
+|                 |FI               |*CurrencyCode == EUR*                              |10107      |Only EUR is supported for FI invoices                               |
+|**TotalAmount**  |DK               |*TotalAmount <= 10000 DKK*                         |10201      |Total Amount is limited to 10000 DKK                                |
+|                 |FI               |*TotalAmount <= 500 EUR*                           |10201      |Total Amount is limited to 500 EUR                                  |
+|*Limits*         |DK/FI            |*Consumer Daily Invoice Count < 50*                |10313      |No more then 49 Invoices can be created per Consumer from single Merchant|
+|*Limits*         |DK/FI            |*Merchant Daily Invoice Count < 5000*              |10314      |No more then 4999 Invoices can be created per Merchant per day      |
 
 ## <a name="invoice-direct"/>  InvoiceDirect
 
@@ -103,15 +203,19 @@ When the **Consent** between **Merchant** and the **Integrator** is established,
     "AliasType": "Phone"
   },
   "ConsumerName": "Consumer Name",
-  "TotalAmount": "360",
-  "TotalVATAmount": "72",
+  "TotalAmount": 360,
+  "TotalVATAmount": 72,
   "CountryCode": "DK",
   "CurrencyCode": "DKK",
   "ConsumerAddressLines": [
-    "Paradisæblevej 13 1234 Andeby"
+    "Paradisæblevej 13",
+    "CC-1234 Andeby", 
+    "WONDERLAND"
   ],
   "DeliveryAddressLines": [
-    "Østerbrogade 120"
+    "Østerbrogade 120",
+    "CC-1234 Andeby",
+    "WONDERLAND"
   ],
   "InvoiceNumber": "301",
   "IssueDate": "2018-02-12",
@@ -205,15 +309,19 @@ Use the `POST api/v1/merchants/{merchantId}/invoices/link` endpoint to generate 
     "AliasType": "Phone"
   },
   "ConsumerName": "Consumer Name",
-  "TotalAmount": "360",
-  "TotalVATAmount": "72",
+  "TotalAmount": 360,
+  "TotalVATAmount": 72,
   "CountryCode": "DK",
   "CurrencyCode": "DKK",
   "ConsumerAddressLines": [
-    "Paradisæblevej 13 1234 Andeby"
+    "Paradisæblevej 13",
+    "CC-1234 Andeby", 
+    "WONDERLAND"
   ],
   "DeliveryAddressLines": [
-    "Østerbrogade 120"
+    "Østerbrogade 120",
+    "CC-1234 Andeby",
+    "WONDERLAND"
   ],
   "InvoiceNumber": "301",
   "IssueDate": "2018-02-12",
@@ -304,3 +412,8 @@ The **Invoice link** can be used in two ways:
 
 1. Redirect the user automatically using the HTTP response **302** or **303**. Once the user is redirected, the **MobilePay** app will be opened to activate the **Invoice**.
 2. E-mail the generated **Invoice link** to the user. Once the user clicks on the **Invoice link**, the **MobilePay** app will be opened to activate the **Invoice**. Note, that the **Invoice link** will be valid only until the user accepts the **Invoice** or it will expire 30 days after due date.
+
+ [![](assets/images/lp/d_flow.png)](assets/images/lp/d_flow.png)
+
+If consumer opens **Invoice link** on phone flow is simplified.
+ [![](assets/images/lp/s_flow.png)](assets/images/lp/s_flow.png)
