@@ -49,7 +49,7 @@ If the merchant grants consent, an authorization code is returned which the clie
 An example of how to use OpenID connect in C# can be found [here](https://github.com/MobilePayDev/MobilePay-Invoice/tree/master/ClientExamples).
 
 ### <a name="openid-flow"></a> OpenID flow
-![](assets/images/Invoice_OpenID_Flow_Sophia.png)
+[![](assets/images/Invoice_OpenID_Flow_Sophia.png)](assets/images/Invoice_OpenID_Flow_Sophia.png)
 
 
 ## <a name="general-notes"/> General notes
@@ -99,7 +99,7 @@ The table below shows possible status, status_text and status_code values depend
 
 **Invoice** status flow can be visualized by the following diagram.
 
-![](assets/images/invoice_flow.png)
+[![](assets/images/invoice_flow.png)](assets/images/invoice_flow.png)
 
 #### <a name="invoice_status_request_parameters"></a> Request parameters
 
@@ -171,7 +171,7 @@ Possible error responses contain these five properties:
 
 ### <a name="pdf"></a> PDF
 
-![](assets/images/pdf.png)
+[![](assets/images/pdf.png)](assets/images/pdf.png)
 
 [PDF_generation.pdf](https://github.com/MobilePayDev/MobilePay-Invoice/blob/master/docs/assets/pdf/PDF_generation.pdf)
 
@@ -413,7 +413,7 @@ The **Invoice link** can be used in two ways:
 1. Redirect the user automatically using the HTTP response **302** or **303**. Once the user is redirected, the **MobilePay** app will be opened to activate the **Invoice**.
 2. E-mail the generated **Invoice link** to the user. Once the user clicks on the **Invoice link**, the **MobilePay** app will be opened to activate the **Invoice**. Note, that the **Invoice link** will be valid only until the user accepts the **Invoice** or it will expire 30 days after due date.
 
- ![](assets/images/lp/d_flow.png)
+ [![](assets/images/lp/d_flow.png)](assets/images/lp/d_flow.png)
 
 If consumer opens **Invoice link** on phone flow is simplified.
- ![](assets/images/lp/s_flow.png)
+ [![](assets/images/lp/s_flow.png)](assets/images/lp/s_flow.png)
