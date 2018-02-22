@@ -189,7 +189,7 @@ A set of business rules apply for an **Invoice** before it gets created. If any 
 |**TotalAmount**  |DK               |*TotalAmount <= 10000 DKK*                         |10201      |Total Amount is limited to 10000 DKK                                |
 |                 |FI               |*TotalAmount <= 500 EUR*                           |10201      |Total Amount is limited to 500 EUR                                  |
 |*Limits*         |DK/FI            |*Consumer Daily Invoice Count < 50*                |10313      |No more then 49 Invoices can be created per Consumer from single Merchant|
-|*Limits*         |DK/FI            |*Merchant Daily Invoice Count < 5000*              |10314      |No more then 4999 Invoices can be created per Merchant per day      |
+|*Limits*         |DK/FI            |*Invoice Issuer Daily Invoice Count < 5000*        |10314      |No more then 4999 Invoices can be created per Invoice Issuer per day|
 
 ## <a name="invoice-direct"/>  InvoiceDirect
 
