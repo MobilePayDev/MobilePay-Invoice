@@ -169,10 +169,10 @@ Possible error responses contain these five properties:
   }
   ```
 ### <a name="payment-screens"></a> Payment Screens
-[![](assets/images/lp/pay_invoice.png)](assets/images/lp/pay_invoice.png)
+[![](assets/images/pay_invoice.png)](assets/images/pay_invoice.png)
 
 ### <a name="review-invoice"></a> Review Invoice
-[![](assets/images/lp/review_invoice.png)](assets/images/lp/review_invoice.png)
+[![](assets/images/review_invoice.png)](assets/images/review_invoice.png)
 
 ### <a name="pdf"></a> PDF
 
