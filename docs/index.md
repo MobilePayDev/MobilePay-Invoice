@@ -172,8 +172,6 @@ Possible error responses contain these five properties:
   ```
 
 
-### <a name="review-invoice"></a> Review Invoice
-[![](assets/images/review_invoice.png)](assets/images/review_invoice.png)
 
 ### <a name="payment-screens"></a> Payment Screens
 [![](assets/images/pay_invoice.png)](assets/images/pay_invoice.png)
