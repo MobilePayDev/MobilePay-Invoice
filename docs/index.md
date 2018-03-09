@@ -49,7 +49,7 @@ If the merchant grants consent, an authorization code is returned which the clie
 An example of how to use OpenID connect in C# can be found [here](https://github.com/MobilePayDev/MobilePay-Invoice/tree/master/ClientExamples).
 
 ### <a name="openid-flow"></a> OpenID flow
-[![](assets/images/Invoice_OpenID_Flow_Sophia.png)](assets/images/Invoice_OpenID_Flow_Sophia.png)
+[![](assets/images/Invoice_diagram_straight.png)](assets/images/Invoice_diagram_straight.png)
 
 
 ## <a name="general-notes"/> General notes
