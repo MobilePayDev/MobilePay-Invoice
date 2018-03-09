@@ -124,7 +124,6 @@ All dates and time-stamps use the ISO 8601 format: date format - `YYYY-MM-DD` , 
 Amounts are enquoted with double quotation marks using `0.00` format, decimals separated with a dot.
 
 ### <a name="errors"></a> Errors
-
 Possible error responses contain these five properties:
 
 * **correlation_id** - a unique id used for logging and debugging purposes.
@@ -172,9 +171,11 @@ Possible error responses contain these five properties:
   ```
 
 
-
 ### <a name="payment-screens"></a> Payment Screens
 [![](assets/images/pay_invoice.png)](assets/images/pay_invoice.png)
+
+### <a name="review-invoice"></a> Review Invoice
+[![](assets/images/review_invoice.png)](assets/images/review_invoice.png)
 
 ### <a name="pdf"></a> PDF
 
