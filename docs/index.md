@@ -133,6 +133,7 @@ Possible error responses contain these five properties:
 * **error_description** - a string indetifying human friendlly error description.
 * **error_context** - a string indetifying context in which error has occured.
 
+
 1. `HTTP 400` , if request input is invalid
 >
   ```json
@@ -142,7 +143,8 @@ Possible error responses contain these five properties:
       "error_code": null,
       "error_description": "input.TotalAmount : Invalid input\r\n",
       "error_context": "Invoices"
-  }
+
+}
   ```
 
 2. `HTTP 409` , request is not compatible with a current state
@@ -170,6 +172,11 @@ Possible error responses contain these five properties:
   ```
 
 
+### <a name="review-invoice"></a> Review Invoice
+[![](assets/images/review_invoice.png)](assets/images/review_invoice.png)
+
+### <a name="payment-screens"></a> Payment Screens
+[![](assets/images/pay_invoice.png)](assets/images/pay_invoice.png)
 
 ### <a name="pdf"></a> PDF
 
