@@ -49,7 +49,7 @@ If the merchant grants consent, an authorization code is returned which the clie
 An example of how to use OpenID connect in C# can be found [here](https://github.com/MobilePayDev/MobilePay-Invoice/tree/master/ClientExamples).
 
 ### <a name="openid-flow"></a> OpenID flow
-[![](assets/images/Invoice_OpenID_Flow_Sophia.png)](assets/images/Invoice_OpenID_Flow_Sophia.png)
+[![](assets/images/Invoice_diagram_straight.png)](assets/images/Invoice_diagram_straight.png)
 
 
 ## <a name="general-notes"/> General notes
@@ -125,7 +125,6 @@ All dates and time-stamps use the ISO 8601 format: date format - `YYYY-MM-DD` , 
 Amounts are enquoted with double quotation marks using `0.00` format, decimals separated with a dot.
 
 ### <a name="errors"></a> Errors
-
 Possible error responses contain these five properties:
 
 * **correlation_id** - a unique id used for logging and debugging purposes.
@@ -133,6 +132,7 @@ Possible error responses contain these five properties:
 * **error_code** - integer specifying error unique code.
 * **error_description** - a string indetifying human friendlly error description.
 * **error_context** - a string indetifying context in which error has occured.
+
 
 1. `HTTP 400` , if request input is invalid
 >
@@ -143,7 +143,8 @@ Possible error responses contain these five properties:
       "error_code": null,
       "error_description": "input.TotalAmount : Invalid input\r\n",
       "error_context": "Invoices"
-  }
+
+}
   ```
 
 2. `HTTP 409` , request is not compatible with a current state
@@ -169,6 +170,13 @@ Possible error responses contain these five properties:
       "error_context": "Invoices"
   }
   ```
+
+
+### <a name="payment-screens"></a> Payment Screens
+[![](assets/images/pay_invoice_1.png)](assets/images/pay_invoice_1.png)
+
+### <a name="review-invoice"></a> Review Invoice
+[![](assets/images/review_invoice_1.png)](assets/images/review_invoice_1.png)
 
 ### <a name="pdf"></a> PDF
 
