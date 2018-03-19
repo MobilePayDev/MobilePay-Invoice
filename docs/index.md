@@ -232,13 +232,14 @@ When the **Consent** between **Merchant** and the **Integrator** is established,
   "DeliveryDate": "2018-02-10",
   "Comment": "Any comment",
   "MerchantContactName": "Snowboard gear shop",
-r  "MerchantOrderNumber": "938",
+  "MerchantOrderNumber": "938",
   "BuyerOrderNumber": "631",
   "PaymentReference": "186",
   "InvoiceArticles": [
     {
       "ArticleNumber": "1-123",
-      "ArticleDescription": "Process Flying V Snowboard",
+
+"ArticleDescription": "Process Flying V Snowboard",
       "VATRate": 25,
       "TotalVATAmount": 72,
       "TotalPriceIncludingVat": 360,
@@ -247,7 +248,8 @@ r  "MerchantOrderNumber": "938",
       "PricePerUnit": 288,
       "PriceReduction": 0,
       "PriceDiscount": 0,
-      "Bonus": 5
+
+"Bonus": 5
     }      
   ]
 }
@@ -275,7 +277,8 @@ The *Created* **Invoice**, if not accepted, will expire 30 days after due date.
 |**OrderDate**         |              |date        | required |*Order date of invoice*|ISO date format: YYYY-MM-DD|
 |**DeliveryDate**      |              |date        | required |*Delivery date of invoice*|ISO date format: YYYY-MM-DD|
 |**Comment**           |              |string      |          |*Free text of additional information to the consumer*|Free text|
-|**MerchantContactName**|             |string      |          |*Contact name for the individual who issued the invoice*|Free text, Name||**MerchantOrderNumber**|             |string      |          |*The merchant order number for the invoice used internally by the merchant*|Free text e.g. 123456798ABCD|
+|**MerchantContactName**|             |string      |          |*Contact name for the individual who issued the invoice*|Free text, Name|
+|**MerchantOrderNumber**|             |string      |          |*The merchant order number for the invoice used internally by the merchant*|Free text e.g. 123456798ABCD|
 |**BuyerOrderNumber**|              |string      |          |*The buyer order number for the invoice used externally by the merchant*|Free text e.g. 123456798ABCD|
 |**PaymentReference**  |              |string(60)  |          |*Reference used on the payment to do reconciliation. If not filled, invoice number will be used as reference*|Free text e.g. 123456798ABCD|
 |**InvoiceArticles** |              |  list          | required |*At least one invoice article is required*||
@@ -284,7 +287,8 @@ The *Created* **Invoice**, if not accepted, will expire 30 days after due date.
 |    |**VATRate**                     |number(0.00)|          |*VAT Rate of article*|>= 0.00, decimals separated with a dot.|
 |    |**TotalVATAmount**              |number(0.00)|          |*Total VAT amount of article*|>= 0.00, decimals separated with a dot.|
 |    |**TotalPriceIncludingVat**      |number(0.00)|          |*Total price of article including VAT*|>= 0.00, decimals separated with a dot.|
-|    |**Unit**                        |string      |          |*Unit*|e.g. Pcs, Coli||    |**Quantity**                    |number(0.00)|          |*Quantity of article*|>= 0.00, decimals separated with a dot.|
+|    |**Unit**                        |string      |          |*Unit*|e.g. Pcs, Coli|
+|    |**Quantity**                    |number(0.00)|          |*Quantity of article*|>= 0.00, decimals separated with a dot.|
 |    |**PricePerUnit**                |number(0.00)|          |*Price per unit*|>= 0.00, decimals separated with a dot.|
 |    |**PriceReduction**              |number(0.00)|          |*Price reduction*|>= 0.00, decimals separated with a dot.|
 |    |**PriceDiscount**               |number(0.00)|          |*Price discount*|>= 0.00, decimals separated with a dot.|
