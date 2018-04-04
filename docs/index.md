@@ -73,7 +73,6 @@ To get merchant **Invoice Issuers** use `GET /api/v1/merchants/{merchantId}/invo
 ```
 
 ### <a name="invoice_status"></a> Invoice status
-#### Polling method
 Use `GET api/v1/merchants/{merchantId}/invoices/{invoiceid}/status` to request the status of individual **Invoice**. The response contains two properties:
 
 * **InvoiceId** - unique Invoice id.
@@ -82,35 +81,6 @@ Use `GET api/v1/merchants/{merchantId}/invoices/{invoiceid}/status` to request t
 ```json
 {
   "InvoiceId": "3c440dfb-b271-4d21-ad1c-f973f2c4f448",
-  "Status": "Rejected"
-}
-```
-
-#### Callback method
-In order to receive callbacks about status changes for an invoice a callback URL must be specified first. But before setting your callback URL you must choose authentication method which we will use when calling your callback URL. Currently we support two authentication methods _Basic_ and _ApiKey_:  
-
-1) `PUT /api/v1/merchants/{merchantId}/auth/basic`
-```json 
-{
-  "username": "Username",
-  "password": "MySecretPswd",
-  "callback_url": "https://your.url/callbacks/invoice"
-}
-```
-
-2) `PUT /api/v1/merchants/{merchantId}/auth/apikey`
-```json
-{
-  "api_key": "SomeSecretApiKey123",
-  "callback_url": "https://your.url/callbacks/invoice"
-}
-```
-
-Example of our callback body:
-
-```json
-{
-  "Id": "3c440dfb-b271-4d21-ad1c-f973f2c4f448",
   "Status": "Rejected"
 }
 ```
@@ -338,85 +308,7 @@ The response body contains property:
 }
 ```
 
-### Multiple invoices
-The `POST /api/v1/merchants/{merchantId}/invoices/batch` can be used to create more than one invoice per single request.  
-```json
-[
-  {
-    "InvoiceIssuer": "efd08c19-24cf-4833-a4a4-bfa7bd58fbb2",
-    "ConsumerAlias": {
-      "Alias": "+4577007700",
-      "AliasType": "Phone"
-    },
-    "ConsumerName": "Consumer Name",
-    "TotalAmount": 360,
-    "TotalVATAmount": 72,
-    "CountryCode": "DK",
-    "CurrencyCode": "DKK",
-    "ConsumerAddressLines": [
-      "Paradisæblevej 13",
-      "CC-1234 Andeby", 
-      "WONDERLAND"
-    ],
-    "DeliveryAddressLines": [
-      "Østerbrogade 120",
-      "CC-1234 Andeby",
-      "WONDERLAND"
-    ],
-    "InvoiceNumber": "301",
-    "IssueDate": "2018-02-12",
-    "DueDate": "2018-03-12",
-    "OrderDate": "2018-02-05",
-    "DeliveryDate": "2018-02-10",
-    "Comment": "Any comment",
-    "MerchantContactName": "Snowboard gear shop",
-    "MerchantOrderNumber": "938",
-    "BuyerOrderNumber": "631",
-    "PaymentReference": "186",
-    "InvoiceArticles": [
-      {
-        "ArticleNumber": "1-123",
-
-  "ArticleDescription": "Process Flying V Snowboard",
-        "VATRate": 25,
-        "TotalVATAmount": 72,
-        "TotalPriceIncludingVat": 360,
-        "Unit": "1",
-        "Quantity": 1,
-        "PricePerUnit": 288,
-        "PriceReduction": 0,
-        "PriceDiscount": 0,
-
-  "Bonus": 5
-      }      
-    ]
-  },
-  ...
-]
-```
-
-##### Response body example
-```json
-{
-  "Accepted": [
-    {
-      "InvoiceNumber": "301",
-      "InvoiceId": "63679ab7-cc49-4f75-80a7-86217fc105ea"
-    }
-  ],
-  "Rejected": [
-    {
-      "InvoiceNumber": "302",
-      "ErrorText": "Country Code must match Consumer Country Code",
-      "ErrorCode": 10106
-    }
-  ]
-}
-```
-**Invoices** that passes basic validation are added to _Accepted_ field collection and those that fail are added to _Rejected_ field collection of the response. Further lifecycle of an invoice can be tracked using methods explained in the section [Invoice status](#invoice_status).
-
 ## <a name="invoice-link"/> InvoiceLink
-### Single InvoiceLink
 
 Merchant can create a **Link** to **Invoice** that is sent to **Customer** via email, allowing them to pay using **MobilePay**.
 Use the `POST api/v1/merchants/{merchantId}/invoices/link` endpoint to generate an **InvoiceLink**. This service accepts a JSON object of single **Invoice** to be processed asynchronously. Notice that the **Invoice** payload does not require a customer alias - **Invoice** can be paid by any **MobilePay** user.
@@ -537,3 +429,94 @@ The **Invoice link** can be used in two ways:
 
 If consumer opens **Invoice link** on phone flow is simplified.
  [![](assets/images/lp/s_flow.png)](assets/images/lp/s_flow.png)
+ 
+## <a name="batch-requests"/> Creating multiple invoices in one batch
+We now provide an API to create multiple invoices in a single batch
+ 
+#### InvoiceDirect
+ 
+You can `POST api/v1/merchants/{merchantId}/invoices/batch` with an array of [InvoiceDirect requests](#request_parameters) to create multiple InvoiceDirect invoices.
+```json
+[
+  {
+    // InvoiceDirect input
+  },
+  {
+    // InvoiceDirect input
+  },
+  // ...
+]
+```
+
+#### InvoiceLink
+
+You can `POST api/v1/merchants/{merchantId}/invoices/link/batch` with an array of [InvoiceLink requests](#invoice-link-request-parameter) to create multiple InvoiceLink invoices.
+```json
+[
+  {
+    // InvoiceLink input,
+  },
+  {
+    // InvoiceLink input,
+  },
+  // ...
+]
+```
+
+#### Batch response
+Both for InvoiceDirect and InvoiceLink batches, the response will look the same
+```json
+{
+  "Accepted": [
+    {
+      "InvoiceNumber": "<original invoice number sent by the merchant>",
+      "InvoiceId": "66119129-aaf7-4ad0-a5b1-62382932b5c6"
+    },
+    {
+      "InvoiceNumber": "<original invoice number sent by the merchant>",
+      "InvoiceId": "5e3030a3-61ff-4143-a6bd-8457a09bcb0d"
+    },
+    // ...
+  ],
+  "Rejected": [
+    {
+      "InvoiceNumber": "<original invoice number sent by the merchant>",
+      "ErrorText": "<description of error>",
+      "ErrorCode": 10504
+    },
+    // ...
+  ]
+}
+```
+
+The success response for InvoiceDirect is not much different from the regular, non-batch response, but you will notice, that InvoiceLink responses don't contain the link itself. This is because we are processing batches asynchronously and so can not return an immediate result. The link URLs will be sent back to you via a callback, as soon as they're created.
+
+
+## <a name="callbacks" /> Callbacks
+In order to receive callbacks about [status](#invoice_status) changes for an invoice a callback URL must be specified first. But before setting your callback URL you must choose authentication method which we will use when calling your callback URL. Currently we support _Basic_ and _ApiKey_ authentication methods:  
+
+1) `PUT /api/v1/merchants/{merchantId}/auth/basic`
+```json 
+{
+  "username": "Username",
+  "password": "MySecretPswd",
+  "callback_url": "https://your.url/callbacks/invoice"
+}
+```
+
+2) `PUT /api/v1/merchants/{merchantId}/auth/apikey`
+```json
+{
+  "api_key": "SomeSecretApiKey123",
+  "callback_url": "https://your.url/callbacks/invoice"
+}
+```
+
+Example of our callback body:
+
+```json
+{
+  "Id": "3c440dfb-b271-4d21-ad1c-f973f2c4f448",
+  "Status": "Rejected"
+}
+```
