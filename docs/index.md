@@ -73,7 +73,8 @@ To get merchant **Invoice Issuers** use `GET /api/v1/merchants/{merchantId}/invo
 ```
 
 ### <a name="invoice_status"></a> Invoice status
-Use `POST api/v1/merchants/{merchantId}/invoices/{invoiceid}/status` to request the status of individual **Invoices**. The response contains two properties:
+#### Polling method
+Use `GET api/v1/merchants/{merchantId}/invoices/{invoiceid}/status` to request the status of individual **Invoice**. The response contains two properties:
 
 * **InvoiceId** - unique Invoice id.
 * **Status** - a string representing Invoice status.
@@ -81,6 +82,35 @@ Use `POST api/v1/merchants/{merchantId}/invoices/{invoiceid}/status` to request 
 ```json
 {
   "InvoiceId": "3c440dfb-b271-4d21-ad1c-f973f2c4f448",
+  "Status": "Rejected"
+}
+```
+
+#### Callback method
+In order to receive callbacks about status changes for an invoice a callback URL must be specified first. But before setting your callback URL you must choose authentication method which we will use when calling your callback URL. Currently we support two authentication methods _Basic_ and _ApiKey_:  
+
+1) `PUT /api/v1/merchants/{merchantId}/auth/basic`
+```json 
+{
+  "username": "Username",
+  "password": "MySecretPswd",
+  "callback_url": "https://your.url/callbacks/invoice"
+}
+```
+
+2) `PUT /api/v1/merchants/{merchantId}/auth/apikey`
+```json
+{
+  "api_key": "SomeSecretApiKey123",
+  "callback_url": "https://your.url/callbacks/invoice"
+}
+```
+
+Example of our callback body:
+
+```json
+{
+  "Id": "3c440dfb-b271-4d21-ad1c-f973f2c4f448",
   "Status": "Rejected"
 }
 ```
@@ -94,6 +124,7 @@ The table below shows possible status, status_text and status_code values depend
 |Paid       |_Invoice was paid_|
 |Rejected   |_User tapped the reject button during the signup_    |
 |Expired    |_User did not do anything during the invoice timeout period._      |
+
 
 ### <a name="invoice-flow"/> Invoice flow
 
@@ -200,6 +231,7 @@ A set of business rules apply for an **Invoice** before it gets created. If any 
 |*Limits*         |DK/FI            |*Invoice Issuer Daily Invoice Count < 5000*        |10314      |No more then 4999 Invoices can be created per Invoice Issuer per day|
 
 ## <a name="invoice-direct"/>  InvoiceDirect
+### Single invoice
 
 When the **Consent** between **Merchant** and the **Integrator** is established, use the `POST api/v1/merchants/{merchantId}/invoices` endpoint to en-queue **Invoice**.
 
@@ -306,7 +338,85 @@ The response body contains property:
 }
 ```
 
+### Multiple invoices
+The `POST /api/v1/merchants/{merchantId}/invoices/batch` can be used to create more than one invoice per single request.  
+```json
+[
+  {
+    "InvoiceIssuer": "efd08c19-24cf-4833-a4a4-bfa7bd58fbb2",
+    "ConsumerAlias": {
+      "Alias": "+4577007700",
+      "AliasType": "Phone"
+    },
+    "ConsumerName": "Consumer Name",
+    "TotalAmount": 360,
+    "TotalVATAmount": 72,
+    "CountryCode": "DK",
+    "CurrencyCode": "DKK",
+    "ConsumerAddressLines": [
+      "Paradisæblevej 13",
+      "CC-1234 Andeby", 
+      "WONDERLAND"
+    ],
+    "DeliveryAddressLines": [
+      "Østerbrogade 120",
+      "CC-1234 Andeby",
+      "WONDERLAND"
+    ],
+    "InvoiceNumber": "301",
+    "IssueDate": "2018-02-12",
+    "DueDate": "2018-03-12",
+    "OrderDate": "2018-02-05",
+    "DeliveryDate": "2018-02-10",
+    "Comment": "Any comment",
+    "MerchantContactName": "Snowboard gear shop",
+    "MerchantOrderNumber": "938",
+    "BuyerOrderNumber": "631",
+    "PaymentReference": "186",
+    "InvoiceArticles": [
+      {
+        "ArticleNumber": "1-123",
+
+  "ArticleDescription": "Process Flying V Snowboard",
+        "VATRate": 25,
+        "TotalVATAmount": 72,
+        "TotalPriceIncludingVat": 360,
+        "Unit": "1",
+        "Quantity": 1,
+        "PricePerUnit": 288,
+        "PriceReduction": 0,
+        "PriceDiscount": 0,
+
+  "Bonus": 5
+      }      
+    ]
+  },
+  ...
+]
+```
+
+##### Response body example
+```json
+{
+  "Accepted": [
+    {
+      "InvoiceNumber": "301",
+      "InvoiceId": "63679ab7-cc49-4f75-80a7-86217fc105ea"
+    }
+  ],
+  "Rejected": [
+    {
+      "InvoiceNumber": "302",
+      "ErrorText": "Country Code must match Consumer Country Code",
+      "ErrorCode": 10106
+    }
+  ]
+}
+```
+**Invoices** that passes basic validation are added to _Accepted_ field collection and those that fail are added to _Rejected_ field collection of the response. Further lifecycle of an invoice can be tracked using methods explained in the section [Invoice status](#invoice_status).
+
 ## <a name="invoice-link"/> InvoiceLink
+### Single InvoiceLink
 
 Merchant can create a **Link** to **Invoice** that is sent to **Customer** via email, allowing them to pay using **MobilePay**.
 Use the `POST api/v1/merchants/{merchantId}/invoices/link` endpoint to generate an **InvoiceLink**. This service accepts a JSON object of single **Invoice** to be processed asynchronously. Notice that the **Invoice** payload does not require a customer alias - **Invoice** can be paid by any **MobilePay** user.
