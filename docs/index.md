@@ -493,7 +493,7 @@ The success response for InvoiceDirect is not much different from the regular, n
 
 
 ## <a name="callbacks" /> Callbacks
-In order to receive callbacks about [status](#invoice_status) changes for an invoice a callback URL must be specified first. But before setting your callback URL you must choose authentication method which we will use when calling your callback URL. Currently we support _Basic_ and _ApiKey_ authentication methods:  
+In order to receive callbacks about [status](#invoice_status) changes for an invoice a callback URL must be specified first. But before setting your callback URL you must choose prefered authentication method which we will use for authenticating our requests when calling your callback URL. Currently we support _Basic_ and _ApiKey_ authentication methods:  
 
 1) `PUT /api/v1/merchants/{merchantId}/auth/basic`
 ```json 
