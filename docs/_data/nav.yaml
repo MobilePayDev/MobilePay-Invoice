@@ -14,3 +14,9 @@ docs :
 
 - title: InvoiceLink
   url: "#invoice-link"
+
+- title: Batching
+  url: "#batch-requests"
+
+- title: Callbacks
+  url: "#callbacks"

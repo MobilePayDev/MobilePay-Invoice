@@ -73,7 +73,7 @@ To get merchant **Invoice Issuers** use `GET /api/v1/merchants/{merchantId}/invo
 ```
 
 ### <a name="invoice_status"></a> Invoice status
-Use `POST api/v1/merchants/{merchantId}/invoices/{invoiceid}/status` to request the status of individual **Invoices**. The response contains two properties:
+Use `GET api/v1/merchants/{merchantId}/invoices/{invoiceid}/status` to request the status of individual **Invoice**. The response contains two properties:
 
 * **InvoiceId** - unique Invoice id.
 * **Status** - a string representing Invoice status.
@@ -90,10 +90,12 @@ The table below shows possible status, status_text and status_code values depend
 |New Status | Condition                               |
 |-----------|------------------------------------------|
 |Created    |_Merchant created the Invoice_            |
+|Invalid    |_Invoice validation failed_               |
 |Accepted   |_User swiped to accept the Invoice_       |
 |Paid       |_Invoice was paid_|
 |Rejected   |_User tapped the reject button during the signup_    |
 |Expired    |_User did not do anything during the invoice timeout period._      |
+
 
 ### <a name="invoice-flow"/> Invoice flow
 
@@ -200,6 +202,7 @@ A set of business rules apply for an **Invoice** before it gets created. If any 
 |*Limits*         |DK/FI            |*Invoice Issuer Daily Invoice Count < 5000*        |10314      |No more then 4999 Invoices can be created per Invoice Issuer per day|
 
 ## <a name="invoice-direct"/>  InvoiceDirect
+### Single invoice
 
 When the **Consent** between **Merchant** and the **Integrator** is established, use the `POST api/v1/merchants/{merchantId}/invoices` endpoint to en-queue **Invoice**.
 
@@ -427,3 +430,126 @@ The **Invoice link** can be used in two ways:
 
 If consumer opens **Invoice link** on phone flow is simplified.
  [![](assets/images/lp/s_flow.png)](assets/images/lp/s_flow.png)
+ 
+## <a name="batch-requests"/> Creating multiple invoices in one batch
+We now provide an API to create multiple invoices in a single batch
+ 
+#### <a name="batch-invoice-direct" /> InvoiceDirect
+ 
+You can `POST api/v1/merchants/{merchantId}/invoices/batch` with an array of [InvoiceDirect requests](#request_parameters) to create multiple InvoiceDirect invoices.
+```json
+[
+  {
+     InvoiceDirect input
+  },
+  {
+     InvoiceDirect input
+  },
+  ...
+]
+```
+
+#### <a name="batch-invoice-link" /> InvoiceLink
+
+You can `POST api/v1/merchants/{merchantId}/invoices/link/batch` with an array of [InvoiceLink requests](#invoice-link-request-parameter) to create multiple InvoiceLink invoices.
+```json
+[
+  {
+    InvoiceLink input,
+  },
+  {
+    InvoiceLink input,
+  },
+  ...
+]
+```
+
+#### Batch response
+Both for InvoiceDirect and InvoiceLink batches, the response will look the same
+```json
+{
+  "Accepted": [
+    {
+      "InvoiceNumber": "<original invoice number sent by the merchant>",
+      "InvoiceId": "66119129-aaf7-4ad0-a5b1-62382932b5c6"
+    },
+    {
+      "InvoiceNumber": "<original invoice number sent by the merchant>",
+      "InvoiceId": "5e3030a3-61ff-4143-a6bd-8457a09bcb0d"
+    },
+    ...
+  ],
+  "Rejected": [
+    {
+      "InvoiceNumber": "<original invoice number sent by the merchant>",
+      "ErrorText": "<description of error>",
+      "ErrorCode": 10504
+    },
+    ...
+  ]
+}
+```
+
+The success response for InvoiceDirect is not much different from the regular, non-batch response, but you will notice, that InvoiceLink responses don't contain the link itself. This is because we are processing batches asynchronously and so can not return an immediate result. The link URLs will be sent back to you via a callback, as soon as they're created.
+
+
+## <a name="callbacks" /> Callbacks
+In order to receive callbacks about [status](#invoice_status) changes for an invoice a callback URL must be specified first. But before setting your callback URL you must choose prefered authentication method which we will use for authenticating our requests when calling your callback URL. Currently we support [Basic](https://tools.ietf.org/html/rfc7617) and _ApiKey_ authentication methods:  
+
+1) `PUT /api/v1/merchants/{merchantId}/auth/basic`
+```json 
+{
+  "username": "Username",
+  "password": "MySecretPswd",
+  "callback_url": "https://your.url/callbacks/invoice"
+}
+```
+
+2) `PUT /api/v1/merchants/{merchantId}/auth/apikey` 
+```json
+{
+  "api_key": "SomeSecretApiKey123",
+  "callback_url": "https://your.url/callbacks/invoice"
+}
+```
+Using _ApiKey_ authentication method your provided ApiKey will be simply added to **_Authorization_** header.
+
+Example of our callback body:
+
+```json
+[
+  {
+    "InvoiceId": "3c440dfb-b271-4d21-ad1c-f973f2c4f448",
+    "Status": "Rejected"
+  },
+  {
+    "InvoiceId": "3c440dfb-b271-4d21-ad1c-f973f2c4f449",
+    "Status": "Invalid",
+    "ErrorCode": 10106,
+    "ErrorMessage": "<description of error>"
+  },
+  ...
+]
+```
+
+---
+**NOTE:** When status of an invoice is **Invalid** two additional fields will be added: _ErrorCode_ and _ErrorMessage_. All possible validation errors can be found in [Validation](#validation) section.
+
+---
+
+A callbacks about created **InvoiceLinks** which were created asynchronously using [batch endpoint](#batch-invoice-link) will contain additional field **_Links_** with **Rel="user-redirect"** and **Href** to the page where MobilePay users can accept an invoice, e.g.:
+```json
+[
+  {
+    "InvoiceId": "3c440dfb-b271-4d21-ad1c-f973f2c4f448",
+    "Status": "Created",
+    "Links": [
+      {
+        "Rel": "user-redirect",
+        "Href": "<url-for-accepting-invoice>"
+      }
+    ]
+  },
+  ...
+]
+```
