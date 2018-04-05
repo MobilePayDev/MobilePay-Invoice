@@ -533,9 +533,7 @@ Example of our callback body:
 ```
 
 ---
-**NOTE**
-
-When status of an invoice is **Invalid** two additional fields will be added: _ErrorCode_ and _ErrorMessage_. All possible validation errors can be found in [Validation](#validation) section.
+**NOTE:** When status of an invoice is **Invalid** two additional fields will be added: _ErrorCode_ and _ErrorMessage_. All possible validation errors can be found in [Validation](#validation) section.
 
 ---
 
