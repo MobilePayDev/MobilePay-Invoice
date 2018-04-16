@@ -427,3 +427,6 @@ The **Invoice link** can be used in two ways:
 
 If consumer opens **Invoice link** on phone flow is simplified.
  [![](assets/images/lp/s_flow.png)](assets/images/lp/s_flow.png)
+
+### <a name="credit_invoice"></a> Crediting an unpaid invoice
+Use `PUT api/v1/merchants/{merchantId}/invoices/{invoiceId}/credit` to credit an invoice which has not yet been paid, rejected and has not expired. There is no response body, in case the operation is successful, you'll get HTTP 204 NoContent response back, otherwise you'll get a standard error response.
