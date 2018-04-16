@@ -72,18 +72,19 @@ To get merchant **Invoice Issuers** use `GET /api/v1/merchants/{merchantId}/invo
 }
 ```
 
-### <a name="invoice_status"></a> Invoice status
-Use `GET api/v1/merchants/{merchantId}/invoices/{invoiceid}/status` to request the status of individual **Invoice**. The response contains two properties:
+### <a name="merchant_id"></a> MerchantId
 
-* **InvoiceId** - unique Invoice id.
-* **Status** - a string representing Invoice status.
+**MerchantId** is a unique identifier used correctlly determine **Invoices** merchant. After **Access Token** retrieval from Open ID flow use `GET /api/v1/merchants/me` endpoint to retrieve **MerchantId** for a provided **Access Token**. Response contains single property:
+
+##### HTTP 200 Response body example
 
 ```json
 {
-  "InvoiceId": "3c440dfb-b271-4d21-ad1c-f973f2c4f448",
-  "Status": "Rejected"
+  "MerchantId": "00000000-0000-0000-0000-000000000000"
 }
 ```
+
+### <a name="invoice_status"></a> Invoice status
 
 The table below shows possible status, status_text and status_code values depending on the **Invoice** status changes.
 
@@ -553,3 +554,6 @@ A callbacks about created **InvoiceLinks** which were created asynchronously usi
   ...
 ]
 ```
+
+### <a name="credit_invoice"></a> Crediting an unpaid invoice
+Use `PUT api/v1/merchants/{merchantId}/invoices/{invoiceId}/credit` to credit an invoice which has not yet been paid, rejected and has not expired. There is no response body, in case the operation is successful, you'll get HTTP 204 NoContent response back, otherwise you'll get a standard error response.
