@@ -521,13 +521,15 @@ Example of our callback body:
 [
   {
     "InvoiceId": "3c440dfb-b271-4d21-ad1c-f973f2c4f448",
-    "Status": "Rejected"
+    "Status": "Rejected",
+    "Date":"2018-04-24T07:29:47.7500268+00:00"
   },
   {
     "InvoiceId": "3c440dfb-b271-4d21-ad1c-f973f2c4f449",
     "Status": "Invalid",
     "ErrorCode": 10106,
-    "ErrorMessage": "<description of error>"
+    "ErrorMessage": "<description of error>",
+    "Date":"2018-04-24T07:29:47.7500268+00:00"
   },
   ...
 ]
@@ -549,7 +551,8 @@ A callbacks about created **InvoiceLinks** which were created asynchronously usi
         "Rel": "user-redirect",
         "Href": "<url-for-accepting-invoice>"
       }
-    ]
+    ],
+    "Date":"2018-04-24T07:29:47.7500268+00:00"
   },
   ...
 ]
