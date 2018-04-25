@@ -42,7 +42,7 @@ Make sure that it is clear that the invoice product is wanted when requesting ac
 
 When the merchant is onboarded, he has a user in MobilePay that is able to manage which products the merchant wishes to use. Not all merchants have the technical capabilities to make integrations to MobilePay, instead they may need to go through applications whith these capabilities. In order for this to work, the merchant must grant consent to an application with these capabilities. This consent is granted through mechanism in the [OpenID Connect](http://openid.net/connect/) protocol suite.<br />
 
-The OpenID Connect protocol is a simple identity layer on top of the OAuth 2.0 protocol. Integrators are the same as clients in the OAuth 2.0 protocol. The first thing that must be done as a client is to go and register [here]( https://www.mobilepay.dk/da-dk/Erhverv/Pages/MobilePay-integrator.aspx). Once this is done the client must initiate the [hybrid flow](http://openid.net/specs/openid-connect-core-1_0.html#HybridFlowAuth) specified in OpenID connect. For invoices the client must request consent from the merchant using the 'invoice' scope. The authorization server in sandbox is located  https://api.sandbox.mobilepay.dk/merchant-authentication-openidconnect <br />
+The OpenID Connect protocol is a simple identity layer on top of the OAuth 2.0 protocol. Integrators are the same as clients in the OAuth 2.0 protocol. The first thing that must be done as a client is to go and register [here]( https://www.mobilepay.dk/da-dk/Erhverv/Pages/MobilePay-integrator.aspx). Once this is done the client must initiate the [hybrid flow](http://openid.net/specs/openid-connect-core-1_0.html#HybridFlowAuth) specified in OpenID connect. For invoices the client must request consent from the merchant using the 'invoice' scope. The authorization server in sandbox is located  https://sandprod-admin.mobilepay.dk/account/connect/authorize <br />
 
 If the merchant grants consent, an authorization code is returned which the client must exchange for an id token, an access token and a refresh token. The refresh token is used to refresh ended sessions without asking for merchant consent again. This means that if the client receives an answer from the api gateway saying that the access token is invalid, the refresh token is exchanged for a new access token and refresh token.
 
@@ -50,6 +50,14 @@ An example of how to use OpenID connect in C# can be found [here](https://github
 
 ### <a name="openid-flow"></a> OpenID flow
 [![](assets/images/openid_flow_0.png)](assets/images/openid_flow_0.png)
+
+### <a name="supported-endpoints"></a> Supported Endpoints 
+Find the supported endpoints in the links below 
+
+|Environment | Links                               |
+|-----------|------------------------------------------|
+|Sandbox    |https://api.sandbox.mobilepay.dk/merchant-authentication-openidconnect/.well-known/openid-configuration        |
+|Production   |https://api.mobilepay.dk/merchant-authentication-openidconnect/.well-known/openid-configuration      |
 
 
 ## <a name="general-notes"/> General notes
