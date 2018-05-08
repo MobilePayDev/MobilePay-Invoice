@@ -380,7 +380,7 @@ Use the `POST api/v1/merchants/{merchantId}/invoices/link` endpoint to generate 
 |**ConsumerAlias**     |                     | object     |          |*Mobile alias of the MobilePay user to be invoiced*| |
 |                      | **Alias**           |string      | required |*Alias value of the MobilePay user*| e.g. 004512345678, 12345678, +4512345678|
 |                      | **AliasType**       |string      | required |*Alias type of the MobilePay user*| Phone |
-|**ConsumerName**       |   | string | required  |*Full name of the MobilePay user*| Free text e.g. Contact Name|
+|**ConsumerName**       |   | string |   |*Full name of the MobilePay user*| Free text e.g. Contact Name|
 |**TotalAmount**        |   | decimal | required |*The requested amount to be paid.*|>= 0.00, decimals separated with a dot.|
 |**TotalVATAmount**     |   | decimal | required |*VAT amount*| >= 0.00, decimals separated with a dot. |
 |**CountryCode**        |   | string | required |*Country code*| DK, FI |
