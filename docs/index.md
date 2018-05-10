@@ -134,54 +134,6 @@ All dates and time-stamps use the ISO 8601 format: date format - `YYYY-MM-DD` , 
 
 Amounts are enquoted with double quotation marks using `0.00` format, decimals separated with a dot.
 
-### <a name="errors"></a> Errors
-Possible error responses contain these five properties:
-
-* **correlation_id** - a unique id used for logging and debugging purposes.
-* **error** - a string specifying error type. Possible values: `DomainError`, `InputError` & `ServerError`
-* **error_code** - integer specifying error unique code.
-* **error_description** - a string indetifying human friendlly error description.
-* **error_context** - a string indetifying context in which error has occured.
-
-
-1. `HTTP 400` , if request input is invalid
->
-  ```json
-  {
-      "correlation_id": "54ccc98b-7d9f-40ea-8c1a-249d57126c39",
-      "error": "InputError",
-      "error_code": null,
-      "error_description": "input.TotalAmount : Invalid input\r\n",
-      "error_context": "Invoices"
-
-}
-  ```
-
-2. `HTTP 409` , request is not compatible with a current state
->
-  ```json
-  {
-      "correlation_id": "8c153279-98f1-4e33-b053-3c6e3555adff",
-      "error": "DomainError",
-      "error_code": "10504",
-      "error_description": "Invoice has already been paid",
-      "error_context": "Invoices"
-  }
-  ```
-
-3. `HTTP 500` , server error
->
-  ```json
-  {
-      "correlation_id": "56db684c-7845-4abf-9f19-5632a625a47b",
-      "error": "ServerError",
-      "error_code": null,
-      "error_description": "The given key was not present in the dictionary.",
-      "error_context": "Invoices"
-  }
-  ```
-
-
 ### <a name="payment-screens"></a> Payment Screens
 [![](assets/images/pay_invoice_1.png)](assets/images/pay_invoice_1.png)
 
@@ -439,6 +391,96 @@ The **Invoice link** can be used in two ways:
 
 If consumer opens **Invoice link** on phone flow is simplified.
  [![](assets/images/lp/s_flow.png)](assets/images/lp/s_flow.png)
+
+## <a name="error-codes"/> Error Codes
+
+Possible error responses contain these five properties:
+
+* **correlation_id** - a unique id used for logging and debugging purposes.
+* **error** - a string specifying error type. Possible values: `DomainError`, `InputError` & `ServerError`
+* **error_code** - integer specifying error unique code.
+* **error_description** - a string indetifying human friendlly error description.
+* **error_context** - a string indetifying context in which error has occured.
+
+
+1. `HTTP 400` , if request input is invalid
+>
+  ```json
+  {
+      "correlation_id": "54ccc98b-7d9f-40ea-8c1a-249d57126c39",
+      "error": "InputError",
+      "error_code": null,
+      "error_description": "input.TotalAmount : Invalid input\r\n",
+      "error_context": "Invoices"
+  }
+  ```
+
+2. `HTTP 409` , request is not compatible with a current state
+>
+  ```json
+  {
+      "correlation_id": "8c153279-98f1-4e33-b053-3c6e3555adff",
+      "error": "DomainError",
+      "error_code": "10504",
+      "error_description": "Invoice has already been paid",
+      "error_context": "Invoices"
+  }
+  ```
+
+3. `HTTP 500` , server error
+>
+  ```json
+  {
+      "correlation_id": "56db684c-7845-4abf-9f19-5632a625a47b",
+      "error": "ServerError",
+      "error_code": null,
+      "error_description": "The given key was not present in the dictionary.",
+      "error_context": "Invoices"
+  }
+  ```
+
+While creating **InvoiceDirect** or an **InvoiceLink** these **Error Codes** are possible
+
+|   |Error Code | Description                                                                   |
+|:--|:----------|:------------------------------------------------------------------------------|
+|   |10001      |*Invoice Issuer required*                                                      |
+|   |10002      |*Consumer Alias required*                                                      |
+|   |10003      |*Invalid currency code*                                                        |
+|   |10004      |*Invalid country code*                                                         |
+|   |10005      |*AliasType is required. Allowed values are "Phone"*                            |
+|   |10006      |*Invalid phone number*                                                         |
+|   |10007      |*Consumer name is required*                                                    |
+|   |10008      |*Total invoice amount required*                                                |
+|   |10009      |*Total VAT amount required*                                                    |
+|   |10010      |*Country code required*                                                        |
+|   |10011      |*Currency code required*                                                       |
+|   |10012      |*Consumer address lines required*                                              |
+|   |10013      |*Unique invoice number required*                                               |
+|   |10014      |*Issue Date require*                                                           |
+|   |10015      |*Due Date required*                                                            |
+|   |10016      |*Order Date required*                                                          |
+|   |10017      |*At least one element is required*                                             |
+|   |10101      |*MobilePay User not found*                                                     |
+|   |10102      |*MobilePay user not available*                                                 |
+|   |10103      |*MobilePay User not found*                                                     |
+|   |10104      |*Invoice already exists*                                                       |
+|   |10105      |*Technical error - please contact MobilePay*                                   |
+|   |10201      |*Technical error - please contact MobilePay*                                   |
+|   |10202      |*Invoice Issuer not found*                                                     |
+|   |10203      |*Account validation error*                                                     |
+|   |10204      |*Account validation error*                                                     |
+|   |10205      |*Technical error - please contact MobilePay*                                   |
+|   |10301      |*Invoice already exists*                                                       |
+|   |10302      |*Merchant not found*                                                           |
+|   |10303      |*Invoice Issuer not found*                                                     |
+|   |10304      |*MobilePay User not found*                                                     |
+|   |10305      |*MobilePay User not found*                                                     |
+|   |10306      |*MobilePay User not found*                                                     |
+|   |10310      |*DueDate must be no later than 400 days from today*                            |
+|   |10311      |*DueDate must be today or later*                                               |
+|   |10312      |*IssueDate must be no later than today*                                        |
+|   |10313      |*Your daily limit has been reached*                                            |
+|   |10314      |*Technical error - please contact MobilePay*                                   |
  
 ## <a name="batch-requests"/> Creating multiple invoices in one batch
 We now provide an API to create multiple invoices in a single batch
