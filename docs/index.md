@@ -42,14 +42,22 @@ Make sure that it is clear that the invoice product is wanted when requesting ac
 
 When the merchant is onboarded, he has a user in MobilePay that is able to manage which products the merchant wishes to use. Not all merchants have the technical capabilities to make integrations to MobilePay, instead they may need to go through applications whith these capabilities. In order for this to work, the merchant must grant consent to an application with these capabilities. This consent is granted through mechanism in the [OpenID Connect](http://openid.net/connect/) protocol suite.<br />
 
-The OpenID Connect protocol is a simple identity layer on top of the OAuth 2.0 protocol. Integrators are the same as clients in the OAuth 2.0 protocol. The first thing that must be done as a client is to go and register [here]( https://www.mobilepay.dk/da-dk/Erhverv/Pages/MobilePay-integrator.aspx). Once this is done the client must initiate the [hybrid flow](http://openid.net/specs/openid-connect-core-1_0.html#HybridFlowAuth) specified in OpenID connect. For invoices the client must request consent from the merchant using the 'invoice' scope. The authorization server in sandbox is located  https://api.sandbox.mobilepay.dk/merchant-authentication-openidconnect <br />
+The OpenID Connect protocol is a simple identity layer on top of the OAuth 2.0 protocol. Integrators are the same as clients in the OAuth 2.0 protocol. The first thing that must be done as a client is to go and register [here]( https://www.mobilepay.dk/da-dk/Erhverv/Pages/MobilePay-integrator.aspx). Once this is done the client must initiate the [hybrid flow](http://openid.net/specs/openid-connect-core-1_0.html#HybridFlowAuth) specified in OpenID connect. For invoices the client must request consent from the merchant using the 'invoice' scope. The authorization server in sandbox is located  https://sandprod-admin.mobilepay.dk/account/connect/authorize <br />
 
 If the merchant grants consent, an authorization code is returned which the client must exchange for an id token, an access token and a refresh token. The refresh token is used to refresh ended sessions without asking for merchant consent again. This means that if the client receives an answer from the api gateway saying that the access token is invalid, the refresh token is exchanged for a new access token and refresh token.
 
 An example of how to use OpenID connect in C# can be found [here](https://github.com/MobilePayDev/MobilePay-Invoice/tree/master/ClientExamples).
 
 ### <a name="openid-flow"></a> OpenID flow
-[![](assets/images/Invoice_diagram_straight.png)](assets/images/Invoice_diagram_straight.png)
+[![](assets/images/openid_flow_0.png)](assets/images/openid_flow_0.png)
+
+### <a name="supported-endpoints"></a> Supported Endpoints 
+Find the supported endpoints in the links below 
+
+|Environment | Links                               |
+|-----------|------------------------------------------|
+|Sandbox    |https://api.sandbox.mobilepay.dk/merchant-authentication-openidconnect/.well-known/openid-configuration        |
+|Production   |https://api.mobilepay.dk/merchant-authentication-openidconnect/.well-known/openid-configuration      |
 
 
 ## <a name="general-notes"/> General notes
@@ -74,7 +82,7 @@ To get merchant **Invoice Issuers** use `GET /api/v1/merchants/{merchantId}/invo
 
 ### <a name="merchant_id"></a> MerchantId
 
-**MerchantId** is a unique identifier used correctlly determine **Invoices** merchant. After **Access Token** retrievel from Open ID flow use `GET /api/v1/merchants/me` endpoint to retrieve **MerchantId** for a provided **Access Token**. Response contains single property:
+**MerchantId** is a unique identifier used correctlly determine **Invoices** merchant. After **Access Token** retrieval from Open ID flow use `GET /api/v1/merchants/me` endpoint to retrieve **MerchantId** for a provided **Access Token**. Response contains single property:
 
 ##### HTTP 200 Response body example
 
@@ -91,10 +99,12 @@ The table below shows possible status, status_text and status_code values depend
 |New Status | Condition                               |
 |-----------|------------------------------------------|
 |Created    |_Merchant created the Invoice_            |
+|Invalid    |_Invoice validation failed_               |
 |Accepted   |_User swiped to accept the Invoice_       |
 |Paid       |_Invoice was paid_|
 |Rejected   |_User tapped the reject button during the signup_    |
 |Expired    |_User did not do anything during the invoice timeout period._      |
+
 
 ### <a name="invoice-flow"/> Invoice flow
 
@@ -201,6 +211,7 @@ A set of business rules apply for an **Invoice** before it gets created. If any 
 |*Limits*         |DK/FI            |*Invoice Issuer Daily Invoice Count < 5000*        |10314      |No more then 4999 Invoices can be created per Invoice Issuer per day|
 
 ## <a name="invoice-direct"/>  InvoiceDirect
+### Single invoice
 
 When the **Consent** between **Merchant** and the **Integrator** is established, use the `POST api/v1/merchants/{merchantId}/invoices` endpoint to en-queue **Invoice**.
 
@@ -233,13 +244,14 @@ When the **Consent** between **Merchant** and the **Integrator** is established,
   "DeliveryDate": "2018-02-10",
   "Comment": "Any comment",
   "MerchantContactName": "Snowboard gear shop",
-r  "MerchantOrderNumber": "938",
+  "MerchantOrderNumber": "938",
   "BuyerOrderNumber": "631",
   "PaymentReference": "186",
   "InvoiceArticles": [
     {
       "ArticleNumber": "1-123",
-      "ArticleDescription": "Process Flying V Snowboard",
+
+"ArticleDescription": "Process Flying V Snowboard",
       "VATRate": 25,
       "TotalVATAmount": 72,
       "TotalPriceIncludingVat": 360,
@@ -248,7 +260,8 @@ r  "MerchantOrderNumber": "938",
       "PricePerUnit": 288,
       "PriceReduction": 0,
       "PriceDiscount": 0,
-      "Bonus": 5
+
+"Bonus": 5
     }      
   ]
 }
@@ -276,7 +289,8 @@ The *Created* **Invoice**, if not accepted, will expire 30 days after due date.
 |**OrderDate**         |              |date        | required |*Order date of invoice*|ISO date format: YYYY-MM-DD|
 |**DeliveryDate**      |              |date        | required |*Delivery date of invoice*|ISO date format: YYYY-MM-DD|
 |**Comment**           |              |string      |          |*Free text of additional information to the consumer*|Free text|
-|**MerchantContactName**|             |string      |          |*Contact name for the individual who issued the invoice*|Free text, Name||**MerchantOrderNumber**|             |string      |          |*The merchant order number for the invoice used internally by the merchant*|Free text e.g. 123456798ABCD|
+|**MerchantContactName**|             |string      |          |*Contact name for the individual who issued the invoice*|Free text, Name|
+|**MerchantOrderNumber**|             |string      |          |*The merchant order number for the invoice used internally by the merchant*|Free text e.g. 123456798ABCD|
 |**BuyerOrderNumber**|              |string      |          |*The buyer order number for the invoice used externally by the merchant*|Free text e.g. 123456798ABCD|
 |**PaymentReference**  |              |string(60)  |          |*Reference used on the payment to do reconciliation. If not filled, invoice number will be used as reference*|Free text e.g. 123456798ABCD|
 |**InvoiceArticles** |              |  list          | required |*At least one invoice article is required*||
@@ -285,7 +299,8 @@ The *Created* **Invoice**, if not accepted, will expire 30 days after due date.
 |    |**VATRate**                     |number(0.00)|          |*VAT Rate of article*|>= 0.00, decimals separated with a dot.|
 |    |**TotalVATAmount**              |number(0.00)|          |*Total VAT amount of article*|>= 0.00, decimals separated with a dot.|
 |    |**TotalPriceIncludingVat**      |number(0.00)|          |*Total price of article including VAT*|>= 0.00, decimals separated with a dot.|
-|    |**Unit**                        |string      |          |*Unit*|e.g. Pcs, Coli||    |**Quantity**                    |number(0.00)|          |*Quantity of article*|>= 0.00, decimals separated with a dot.|
+|    |**Unit**                        |string      |          |*Unit*|e.g. Pcs, Coli|
+|    |**Quantity**                    |number(0.00)|          |*Quantity of article*|>= 0.00, decimals separated with a dot.|
 |    |**PricePerUnit**                |number(0.00)|          |*Price per unit*|>= 0.00, decimals separated with a dot.|
 |    |**PriceReduction**              |number(0.00)|          |*Price reduction*|>= 0.00, decimals separated with a dot.|
 |    |**PriceDiscount**               |number(0.00)|          |*Price discount*|>= 0.00, decimals separated with a dot.|
@@ -365,7 +380,7 @@ Use the `POST api/v1/merchants/{merchantId}/invoices/link` endpoint to generate 
 |**ConsumerAlias**     |                     | object     |          |*Mobile alias of the MobilePay user to be invoiced*| |
 |                      | **Alias**           |string      | required |*Alias value of the MobilePay user*| e.g. 004512345678, 12345678, +4512345678|
 |                      | **AliasType**       |string      | required |*Alias type of the MobilePay user*| Phone |
-|**ConsumerName**       |   | string | required  |*Full name of the MobilePay user*| Free text e.g. Contact Name|
+|**ConsumerName**       |   | string |   |*Full name of the MobilePay user*| Free text e.g. Contact Name|
 |**TotalAmount**        |   | decimal | required |*The requested amount to be paid.*|>= 0.00, decimals separated with a dot.|
 |**TotalVATAmount**     |   | decimal | required |*VAT amount*| >= 0.00, decimals separated with a dot. |
 |**CountryCode**        |   | string | required |*Country code*| DK, FI |
@@ -424,3 +439,132 @@ The **Invoice link** can be used in two ways:
 
 If consumer opens **Invoice link** on phone flow is simplified.
  [![](assets/images/lp/s_flow.png)](assets/images/lp/s_flow.png)
+ 
+## <a name="batch-requests"/> Creating multiple invoices in one batch
+We now provide an API to create multiple invoices in a single batch
+ 
+#### <a name="batch-invoice-direct" /> InvoiceDirect
+ 
+You can `POST api/v1/merchants/{merchantId}/invoices/batch` with an array of [InvoiceDirect requests](#request_parameters) to create multiple InvoiceDirect invoices.
+```json
+[
+  {
+     InvoiceDirect input
+  },
+  {
+     InvoiceDirect input
+  },
+  ...
+]
+```
+
+#### <a name="batch-invoice-link" /> InvoiceLink
+
+You can `POST api/v1/merchants/{merchantId}/invoices/link/batch` with an array of [InvoiceLink requests](#invoice-link-request-parameter) to create multiple InvoiceLink invoices.
+```json
+[
+  {
+    InvoiceLink input,
+  },
+  {
+    InvoiceLink input,
+  },
+  ...
+]
+```
+
+#### Batch response
+Both for InvoiceDirect and InvoiceLink batches, the response will look the same
+```json
+{
+  "Accepted": [
+    {
+      "InvoiceNumber": "<original invoice number sent by the merchant>",
+      "InvoiceId": "66119129-aaf7-4ad0-a5b1-62382932b5c6"
+    },
+    {
+      "InvoiceNumber": "<original invoice number sent by the merchant>",
+      "InvoiceId": "5e3030a3-61ff-4143-a6bd-8457a09bcb0d"
+    },
+    ...
+  ],
+  "Rejected": [
+    {
+      "InvoiceNumber": "<original invoice number sent by the merchant>",
+      "ErrorText": "<description of error>",
+      "ErrorCode": 10504
+    },
+    ...
+  ]
+}
+```
+
+The success response for InvoiceDirect is not much different from the regular, non-batch response, but you will notice, that InvoiceLink responses don't contain the link itself. This is because we are processing batches asynchronously and so can not return an immediate result. The link URLs will be sent back to you via a callback, as soon as they're created.
+
+
+## <a name="callbacks" /> Callbacks
+In order to receive callbacks about [status](#invoice_status) changes for an invoice a callback URL must be specified first. But before setting your callback URL you must choose prefered authentication method which we will use for authenticating our requests when calling your callback URL. Currently we support [Basic](https://tools.ietf.org/html/rfc7617) and _ApiKey_ authentication methods:  
+
+1) `PUT /api/v1/merchants/{merchantId}/auth/basic`
+```json 
+{
+  "username": "Username",
+  "password": "MySecretPswd",
+  "callback_url": "https://your.url/callbacks/invoice"
+}
+```
+
+2) `PUT /api/v1/merchants/{merchantId}/auth/apikey` 
+```json
+{
+  "api_key": "SomeSecretApiKey123",
+  "callback_url": "https://your.url/callbacks/invoice"
+}
+```
+Using _ApiKey_ authentication method your provided ApiKey will be simply added to **_Authorization_** header.
+
+Example of our callback body:
+
+```json
+[
+  {
+    "InvoiceId": "3c440dfb-b271-4d21-ad1c-f973f2c4f448",
+    "Status": "Rejected",
+    "Date":"2018-04-24T07:29:47.7500268+00:00"
+  },
+  {
+    "InvoiceId": "3c440dfb-b271-4d21-ad1c-f973f2c4f449",
+    "Status": "Invalid",
+    "ErrorCode": 10106,
+    "ErrorMessage": "<description of error>",
+    "Date":"2018-04-24T07:29:47.7500268+00:00"
+  },
+  ...
+]
+```
+
+---
+**NOTE:** When status of an invoice is **Invalid** two additional fields will be added: _ErrorCode_ and _ErrorMessage_. All possible validation errors can be found in [Validation](#validation) section.
+
+---
+
+A callbacks about created **InvoiceLinks** which were created asynchronously using [batch endpoint](#batch-invoice-link) will contain additional field **_Links_** with **Rel="user-redirect"** and **Href** to the page where MobilePay users can accept an invoice, e.g.:
+```json
+[
+  {
+    "InvoiceId": "3c440dfb-b271-4d21-ad1c-f973f2c4f448",
+    "Status": "Created",
+    "Links": [
+      {
+        "Rel": "user-redirect",
+        "Href": "<url-for-accepting-invoice>"
+      }
+    ],
+    "Date":"2018-04-24T07:29:47.7500268+00:00"
+  },
+  ...
+]
+```
+
+### <a name="credit_invoice"></a> Crediting an unpaid invoice _(Coming Soon)_
+Use `PUT api/v1/merchants/{merchantId}/invoices/{invoiceId}/credit` to credit an invoice which has not yet been paid, rejected and has not expired. There is no response body, in case the operation is successful, you'll get HTTP 204 NoContent response back, otherwise you'll get a standard error response.
