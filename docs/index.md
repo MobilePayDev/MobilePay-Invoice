@@ -229,8 +229,8 @@ The *Created* **Invoice**, if not accepted, will expire 30 days after due date.
 |    | **Alias**  |string      | required |*Alias value of the MobilePay user*|e.g. +4512345678 or +35812345678|
 |    | **AliasType**  |string      | required |*Alias type of the MobilePay user*|Phone|
 |**ConsumerName**      |              |string      | required |*Full name of the MobilePay user*|Free text, Contact Name|
-|**TotalAmount**       |              |number(0.00)| required |*The requested amount to be paid.*|>= 0.00, decimals separated with a dot.|
-|**TotalVatAmount**    |              |number(0.00)| required |*VAT amount*|>= 0.00, decimals separated with a dot.|
+|**TotalAmount**       |              |decimal     | required |*The requested amount to be paid.*|>= 0.00, decimals separated with a dot.|
+|**TotalVatAmount**    |              |decimal     | required |*VAT amount*|>= 0.00, decimals separated with a dot.|
 |**CountryCode**       |              |string(2)   | required |*Country code*| DK |
 |**CurrencyCode**      |              |string(3)   | required |*Currency code*|DKK |
 |**ConsumerAddressLines**|            |string      | required |*Address of consumer receiving the invoice*|Free text|
@@ -248,15 +248,15 @@ The *Created* **Invoice**, if not accepted, will expire 30 days after due date.
 |**InvoiceArticles** |              |  list          | required |*At least one invoice article is required*||
 |    |**ArticleNumber**               |string      |          |*Article Number*|e.g. 123456ABC|
 |    |**ArticleDescription**          |string      |          |*Article Description*|Free text|
-|    |**VATRate**                     |number(0.00)|          |*VAT Rate of article*|>= 0.00, decimals separated with a dot.|
-|    |**TotalVATAmount**              |number(0.00)|          |*Total VAT amount of article*|>= 0.00, decimals separated with a dot.|
-|    |**TotalPriceIncludingVat**      |number(0.00)|          |*Total price of article including VAT*|>= 0.00, decimals separated with a dot.|
+|    |**VATRate**                     |decimal     |          |*VAT Rate of article*|>= 0.00, decimals separated with a dot.|
+|    |**TotalVATAmount**              |decimal     |          |*Total VAT amount of article*|>= 0.00, decimals separated with a dot.|
+|    |**TotalPriceIncludingVat**      |decimal     |          |*Total price of article including VAT*|>= 0.00, decimals separated with a dot.|
 |    |**Unit**                        |string      |          |*Unit*|e.g. Pcs, Coli|
-|    |**Quantity**                    |number(0.00)|          |*Quantity of article*|>= 0.00, decimals separated with a dot.|
-|    |**PricePerUnit**                |number(0.00)|          |*Price per unit*|>= 0.00, decimals separated with a dot.|
-|    |**PriceReduction**              |number(0.00)|          |*Price reduction*|>= 0.00, decimals separated with a dot.|
-|    |**PriceDiscount**               |number(0.00)|          |*Price discount*|>= 0.00, decimals separated with a dot.|
-|    |**Bonus**                       |number(0.00)|          |*Bonus of article*|>= 0.00, decimals separated with a dot.|
+|    |**Quantity**                    |decimal     |          |*Quantity of article*|>= 0.00, decimals separated with a dot.|
+|    |**PricePerUnit**                |decimal     |          |*Price per unit*|>= 0.00, decimals separated with a dot.|
+|    |**PriceReduction**              |decimal     |          |*Price reduction*|>= 0.00, decimals separated with a dot.|
+|    |**PriceDiscount**               |decimal     |          |*Price discount*|>= 0.00, decimals separated with a dot.|
+|    |**Bonus**                       |decimal     |          |*Bonus of article*|>= 0.00, decimals separated with a dot.|
 
 The `POST api/v1/merchants/{merchantId}/invoices` service returns HTTP 202 - Accepted response if **Invoice** with at least one article is provided in the request payload.
 
