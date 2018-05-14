@@ -355,7 +355,7 @@ Use the `POST api/v1/merchants/{merchantId}/invoices/link` endpoint to generate 
 |               | **VATRate** | decimal |  |*VAT Rate of article*| >= 0.00, decimals separated with a dot. |
 |               | **TotalVATAmount** | decimal |  |*Total VAT amount of article*| >= 0.00, decimals separated with a dot. |
 |               | **TotalPriceIncludingVat**  | decimal |  |*Total price of article including VAT*| >= 0.00, decimals separated with a dot. |
-|               | **Unit**  | decimal |  |*Unit*| e.g. Pcs, Coli |
+|               | **Unit**  | string |  |*Unit*| e.g. Pcs, Coli |
 |               | **Quantity**  | decimal |  |*Quantity of article*| >= 0.00, decimals separated with a dot. |
 |               | **PricePerUnit**  | decimal |  |*Price per unit*| >= 0.00, decimals separated with a dot. |
 |               | **PriceReduction**  | decimal |  |*Price reduction*| >= 0.00, decimals separated with a dot. |
