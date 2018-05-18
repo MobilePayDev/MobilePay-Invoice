@@ -608,5 +608,5 @@ A callbacks about created **InvoiceLinks** which were created asynchronously usi
 ]
 ```
 
-### <a name="credit_invoice"></a> Crediting an unpaid invoice
+### <a name="credit_invoice" /> Crediting an unpaid invoice
 Use `PUT api/v1/merchants/{merchantId}/invoices/{invoiceId}/credit` to credit an invoice which has not yet been paid, rejected and has not expired. There is no response body, in case the operation is successful, you'll get HTTP 204 NoContent response back, otherwise you'll get a standard error response.
