@@ -135,7 +135,7 @@ All dates and time-stamps use the ISO 8601 format: date format - `YYYY-MM-DD` , 
 Amounts are enquoted with double quotation marks using `0.00` format, decimals separated with a dot.
 
 ### <a name="payment-screens"></a> Payment Screens
-[![](assets/images/pay_invoice_1.png)](assets/images/pay_flow_50)
+[![](assets/images/pay_invoice_1.png)](assets/images/pay_flow_50.png)
 
 ### <a name="review-invoice"></a> Review Invoice
 [![](assets/images/review_invoice_1.png)](assets/images/review_invoice_1.png)
