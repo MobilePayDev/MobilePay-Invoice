@@ -138,7 +138,7 @@ Amounts are enquoted with double quotation marks using `0.00` format, decimals s
 [![](assets/images/pay_flow_50.png)](assets/images/pay_flow_50.png)
 
 ### <a name="review-invoice"></a> Review Invoice
-[![](assets/images/review_invoice_1.png)](assets/images/review_invoice_1.png)
+[![](assets/images/activity_list_50.png)](assets/images/activity_list_50.png)
 
 ### <a name="pdf"></a> PDF
 
