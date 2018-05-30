@@ -442,6 +442,9 @@ Possible error responses contain these five properties:
       "error_context": "Invoices"
   }
   ```
+##### <a name="InvoiceLink_Public.png"></a>Invoice Link Diagram
+
+[![](assets/images/InvoiceLink_Public.png)](assets/images/InvoiceLink_Public.png)
 
 While creating **InvoiceDirect** or an **InvoiceLink** these **Error Codes** are possible
 
