@@ -269,6 +269,10 @@ The response body contains property:
     "InvoiceId" : "63679ab7-cc49-4f75-80a7-86217fc105ea"
 }
 ```
+##### <a name="invoice_direct_public"></a>Invoice Direct Diagram
+
+[![](assets/images/InvoiceDirect_Public.png)](assets/images/InvoiceDirect_Public.png)
+
 
 ## <a name="invoice-link"/> InvoiceLink
 
