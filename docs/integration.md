@@ -2,31 +2,20 @@
 layout: default
 ---
 
-## Overview
+## <a name="integration"/> Integration     
+Integrating to *MobilePay Invoice* is a multistep process which involves subscribing to the [invoice product](https://developer.mobilepay.dk/node/1302), developing a client application and using it to call endpoints of our API.<br />
 
-Billing your customers with [*MobilePay Invoice*](https://developer.mobilepay.dk/invoice-main) is easy using our API, which you can find [here](https://developer.mobilepay.dk/product).<br />
-Here we will explain how to make a technical integration to the *MobilePay Invoice* product. The audience for this document is either technical integrators acting on behalf of merchants or merchants creating their own integrations.
+In the sections below, the following steps will be explained.
+1. Merchant onboarding  
+2. Subscribing to the Invoice product through the API gateway
+3. Using OpenID Connect enabling integrators to call the invoice API on-behalf of merchants
+4. How does the Invoice API look like and how is it called.
 
-### <a name="where-available"/> Where is it available ?
+### <a name="merchant_onboarding"/> Merchant Onboarding
+As a merchant wanting to send invoices via MobilePay, you enroll to the product via [MobilePay.dk](http://www.MobilePay.dk) or the MobilePay Business Administration portal. Here you will find information about our products as well as an easy way of enrolling. As an integrator or 3rd party service provider acting on behalf of a merchant, you need your customer to enroll to the product prior to doing the integration.<br />
+During the first product enrollment, you, as a merchant, will be requested details about your company such as company size, type etc. You will also be asked to confirm the account(s) you wish to use. These informations are required in order for us to verify your company information to be able to transfer the money to you securely. <br />
 
-- Denmark
-- Finland
-
-### <a name="merchant-onboarding"/> Merchant onboarding
-
-As a merchant wanting to send invoices via MobilePay, you enrol to the product in MobilePay Portal [Denmark](https://admin.mobilepay.dk) or [Finland](https://admin.mobilepay.fi). Here you will find information about our products as well as an easy way of enrolling. As an integrator or 3rd party service provider acting on behalf of a merchant, you need your customer to enrol to the product prior to doing the integration. During the first product enrolment, you, as a merchant, will be requested details about your company such as company size, type etc. You will also be asked to confirm the account(s) you wish to use. This information is required in order for us to verify your company information to be able to transfer the money to you securely.
-
-During the enrolment you will also be given the option to define parameters such as name, logo, address, etc. for how your MobilePay Invoice Issuer should reflect your company in MobilePay. You can have more than one Invoice issuer to represent your company structure.
-
-### <a name="integration-steps"/> Integration steps
-
-Integrating to MobilePay Invoice is a multistep process which involves subscribing to the [invoice product](https://developer.mobilepay.dk/node/1302), developing a client application and using it to call endpoints of our API. To start integration you need to be onboarded first (read previous section).
-
-In the sections below, the following steps of integration will be explained:
-
-1.	Subscribing to the Invoice product through the API gateway.
-2.	Using OpenID Connect enabling integrators to call the invoice API on-behalf of merchants.
-3.	How does the Invoice API look like and how is it called.
+During the enrollment you will also be given the option to define parameters such as name, logo, address, etc. for how your MobilePay Invoice Issuer should reflect your company in MobilePay.
 
 <a name="apigateway"/>  
 
@@ -55,6 +44,6 @@ An example of how to use OpenID connect in C# can be found [here](https://github
 Find the supported endpoints in the links below 
 
 |Environment | Links                               |
-|-----------|------------------------------------------|
-|Sandbox    | <a href="https://api.sandbox.mobilepay.dk/merchant-authentication-openidconnect/.well-known/openid-configuration">https://api.sandbox.mobilepay.dk/merchant-authentication-openidconnect/.well-known/openid-configuration</a> |
-|Production   | <a href="https://api.mobilepay.dk/merchant-authentication-openidconnect/.well-known/openid-configuration">https://api.mobilepay.dk/merchant-authentication-openidconnect/.well-known/openid-configuration</a>      |
+|------------|-------------------------------------|
+|Sandbox     |<https://api.sandbox.mobilepay.dk/merchant-authentication-openidconnect/.well-known/openid-configuration>|
+|Production  |<https://api.mobilepay.dk/merchant-authentication-openidconnect/.well-known/openid-configuration>        |
