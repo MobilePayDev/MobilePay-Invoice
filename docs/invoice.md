@@ -444,12 +444,12 @@ While creating **InvoiceDirect** or an **InvoiceLink** these **Error Codes** are
 |   |10102      |*MobilePay user not available*                                                 |
 |   |10103      |*MobilePay User not found*                                                     |
 |   |10104      |*Invoice already exists*                                                       |
-|   |10105      |*Technical error - please contact MobilePay*                                   |
-|   |10201      |*Technical error - please contact MobilePay*                                   |
+|   |10105      |*Technical error - please contact MobilePay developer support  developer@mobilepay.dk* |
+|   |10201      |*Total invoice amount is exceeded*                                             |
 |   |10202      |*Invoice Issuer not found*                                                     |
 |   |10203      |*Account validation error*                                                     |
 |   |10204      |*Account validation error*                                                     |
-|   |10205      |*Technical error - please contact MobilePay*                                   |
+|   |10205      |*Technical error - please contact MobilePay developer support  developer@mobilepay.dk* |
 |   |10301      |*Invoice already exists*                                                       |
 |   |10302      |*Merchant not found*                                                           |
 |   |10303      |*Invoice Issuer not found*                                                     |
@@ -459,8 +459,8 @@ While creating **InvoiceDirect** or an **InvoiceLink** these **Error Codes** are
 |   |10310      |*DueDate must be no later than 400 days from today*                            |
 |   |10311      |*DueDate must be today or later*                                               |
 |   |10312      |*IssueDate must be no later than today*                                        |
-|   |10313      |*Your daily limit has been reached*                                            |
-|   |10314      |*Technical error - please contact MobilePay*                                   |
+|   |10313      |*Your daily limit has been reached. No more than 5000 Invoices can be created per Invoice Issuer per day*     |
+|   |10314      |*Your daily limit has been reached. No more than 3 Invoices can be created per Consumer per Merchant per day* |
 
 ### <a name="validations"/> Validations
 
