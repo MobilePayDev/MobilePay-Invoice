@@ -423,23 +423,6 @@ While creating **InvoiceDirect** or an **InvoiceLink** these **Error Codes** are
 
 |   |Error Code | Description                                                                   |
 |:--|:----------|:------------------------------------------------------------------------------|
-|   |10001      |*Invoice Issuer required*                                                      |
-|   |10002      |*Consumer Alias required*                                                      |
-|   |10003      |*Invalid currency code*                                                        |
-|   |10004      |*Invalid country code*                                                         |
-|   |10005      |*AliasType is required. Allowed values are "Phone"*                            |
-|   |10006      |*Invalid phone number*                                                         |
-|   |10007      |*Consumer name is required*                                                    |
-|   |10008      |*Total invoice amount required*                                                |
-|   |10009      |*Total VAT amount required*                                                    |
-|   |10010      |*Country code required*                                                        |
-|   |10011      |*Currency code required*                                                       |
-|   |10012      |*Consumer address lines required*                                              |
-|   |10013      |*Unique invoice number required*                                               |
-|   |10014      |*Issue Date require*                                                           |
-|   |10015      |*Due Date required*                                                            |
-|   |10016      |*Order Date required*                                                          |
-|   |10017      |*At least one element is required*                                             |
 |   |10101      |*MobilePay User not found*                                                     |
 |   |10102      |*MobilePay user not available*                                                 |
 |   |10103      |*MobilePay User not found*                                                     |
