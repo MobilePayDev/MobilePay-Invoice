@@ -1,28 +1,43 @@
-docs :
+overview :
+- title: Where is it available?
+  url: "index#where-available"
 
-- title: Overview
-  url: "#overview"
+- title: Merchant onboarding
+  url: "index#merchant-onboarding"
 
-- title: Integration
-  url: "#integration"
+- title: Integration steps
+  url: "index#integration-steps"
 
-- title: General Notes
-  url: "#general-notes"
-
+invoice :
 - title: InvoiceDirect
-  url: "#invoice-direct"
+  url: "invoice#direct"
 
 - title: InvoiceLink
-  url: "#invoice-link"
+  url: "invoice#link"
 
-- title: Error Codes
-  url: "#error-codes"
+- title: Get invoice status
+  url: "invoice#get-status"
 
-- title: Batching
-  url: "#batch-requests"
+- title: Crediting an invoice
+  url: "invoice#crediting"
 
-- title: Callbacks
-  url: "#callbacks"
+- title: Error codes
+  url: "invoice#error-codes"
 
-- title: Crediting
-  url: "#credit_invoice"
+- title: Validations
+  url: "invoice#validations"
+
+overview_title : Overview
+overview_url : "index"
+
+invoice_issuers_title: Invoice issuers
+invoice_issuers_url: "invoice_issuers"
+
+invoice_title: Invoice
+invoice_url: "invoice"
+
+callbacks_title: Callbacks
+callbacks_url: "callbacks"
+
+invoiceinapp_title: Visual examples
+invoiceinapp_url: "visual_examples"

@@ -3,7 +3,7 @@
 
 @import "{{ site.theme }}";
 
-p>code, li>code {
+p>code, li>code, td>code {
     border-radius: 3px;
     border: 1px solid #ccc;
     background-color: #f9f9f9;
