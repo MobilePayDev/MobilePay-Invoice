@@ -3,9 +3,13 @@ layout: default
 ---
 
 ## Callbacks
-In order to receive callbacks about status changes for an invoice a callback URL must be specified first. But before setting your callback URL you must choose prefered authentication method which we will use for authenticating our requests when calling your callback URL. Currently we support [`Basic`](https://tools.ietf.org/html/rfc7617) and `ApiKey` authentication methods:  
+In order to receive callbacks about status changes for an invoice a callback URL must be specified first. But before setting your callback URL you must choose prefered authentication method which we will use for authenticating our requests when calling your callback URL. Currently we support <code><a href="https://tools.ietf.org/html/rfc7617">Basic</a></code> and `ApiKey` authentication methods:  
 
-1) `PUT /api/v1/merchants/{merchantId}/auth/basic`
+##### Basic
+```
+PUT /api/v1/merchants/{merchantId}/auth/basic
+```
+
 ```json 
 {
   "username": "Username",
@@ -14,14 +18,17 @@ In order to receive callbacks about status changes for an invoice a callback URL
 }
 ```
 
-2) `PUT /api/v1/merchants/{merchantId}/auth/apikey` 
+##### ApiKey
+```
+PUT /api/v1/merchants/{merchantId}/auth/apikey
+```
 ```json
 {
   "api_key": "SomeSecretApiKey123",
   "callback_url": "https://your.url/callbacks/invoice"
 }
 ```
-Using _ApiKey_ authentication method your provided ApiKey will be simply added to **_Authorization_** header.
+Using `ApiKey` authentication method your provided API key will be simply added to `Authorization` header.
 
 Example of our callback body:
 
@@ -43,12 +50,11 @@ Example of our callback body:
 ]
 ```
 
----
-**NOTE:** When status of an invoice is **invalid** two additional fields will be added: `ErrorCode` and `ErrorMessage`. All possible validation errors can be found in [Validation](#validation) section.
+<div class="note">
+<strong>Note:</strong> When status of an invoice is <code>invalid</code> two additional fields will be added: <code>ErrorCode</code> and <code>ErrorMessage</code>. All possible validation errors can be found in <a href="api_reference#validations">validations</a> section.
+</div>
 
----
-
-A callbacks about created **InvoiceLinks** which were created asynchronously using [batch endpoint](#batch-invoice-link) will contain additional field **_Links_** with **Rel="user-redirect"** and **Href** to the page where MobilePay users can accept an invoice, e.g.:
+Callbacks about created `InvoiceLinks` which were created asynchronously using [batch endpoint](api_reference#create_multiple_invoice_links) will contain additional field `Links` with `Rel="user-redirect"` and `Href` to the page where MobilePay users can accept an invoice, e.g.:
 ```json
 [
   {

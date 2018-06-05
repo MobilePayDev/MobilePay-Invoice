@@ -1,31 +1,21 @@
-overview :
-- title: Where is it available?
-  url: "index#where-available"
-
-- title: Merchant onboarding
-  url: "index#merchant-onboarding"
-
-- title: Integration steps
-  url: "index#integration-steps"
-
-invoice :
+api_reference :
 - title: InvoiceDirect
-  url: "invoice#direct"
+  url: "api_reference#direct"
 
 - title: InvoiceLink
-  url: "invoice#link"
+  url: "api_reference#link"
+
+- title: Credit invoice
+  url: "api_reference#crediting"
 
 - title: Get invoice status
-  url: "invoice#get-status"
-
-- title: Crediting an invoice
-  url: "invoice#crediting"
+  url: "api_reference#get-status"
 
 - title: Error codes
-  url: "invoice#error-codes"
+  url: "api_reference#error-codes"
 
 - title: Validations
-  url: "invoice#validations"
+  url: "api_reference#validations"
 
 overview_title : Overview
 overview_url : "index"
@@ -33,8 +23,8 @@ overview_url : "index"
 invoice_issuers_title: Invoice issuers
 invoice_issuers_url: "invoice_issuers"
 
-invoice_title: Invoice
-invoice_url: "invoice"
+api_reference_title: API endpoint reference
+api_reference_url: "api_reference"
 
 callbacks_title: Callbacks
 callbacks_url: "callbacks"

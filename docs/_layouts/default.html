@@ -15,14 +15,10 @@
     <div class="wrapper">
       <header>
         <h1>{{ site.title | default: site.github.repository_name }}</h1>
-        <h3 class="mt20"><a href="/">{{ site.data.nav.overview_title }}</a></h3>
-          {% for item in site.data.nav.overview %}
-              <p class="view"><a href="{{ item.url }}">{{ item.title }}</a></p>
-          {% endfor %}
-
+        <h3 class="mt20"><a href="{{ site.data.nav.overview_url }}">{{ site.data.nav.overview_title }}</a></h3>
         <h3 class="mt20"><a href="{{ site.data.nav.invoice_issuers_url }}">{{ site.data.nav.invoice_issuers_title }}</a></h3>
-        <h3 class="mt20"><a href="{{ site.data.nav.invoice_url }}">{{ site.data.nav.invoice_title }}</a></h3>
-          {% for item in site.data.nav.invoice %}
+        <h3 class="mt20"><a href="{{ site.data.nav.api_reference_url }}">{{ site.data.nav.api_reference_title }}</a></h3>
+          {% for item in site.data.nav.api_reference %}
             <p class="view"><a href="{{ item.url }}">{{ item.title }}</a></p>
           {% endfor %}
 
