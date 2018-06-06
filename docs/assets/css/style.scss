@@ -3,12 +3,20 @@
 
 @import "{{ site.theme }}";
 
-p>code, li>code {
+p>code, li>code, td>code {
     border-radius: 3px;
     border: 1px solid #ccc;
     background-color: #f9f9f9;
     display: inline-block;
     padding: 1px 5px 1px 5px;
+}
+
+div>code {
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    display: inline-block;
+    padding: 0 5px 0 5px;
 }
 
 blockquote div.highlighter-rouge code {
@@ -35,4 +43,15 @@ header p.view {
 }
 header .mt20 {
     margin-top:20px;
+}
+
+.note {
+    color: #264c72;
+    border: 1px solid #97c1da;
+    background-color: #d8ebf8;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 3px;
+    font-weight: 400;
+    font-size: 12px;
 }

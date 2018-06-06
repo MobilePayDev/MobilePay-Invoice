@@ -1,28 +1,33 @@
-docs :
-
-- title: Overview
-  url: "#overview"
-
-- title: Integration
-  url: "#integration"
-
-- title: General Notes
-  url: "#general-notes"
-
+api_reference :
 - title: InvoiceDirect
-  url: "#invoice-direct"
+  url: "api_reference#direct"
 
 - title: InvoiceLink
-  url: "#invoice-link"
+  url: "api_reference#link"
 
-- title: Error Codes
-  url: "#error-codes"
+- title: Credit invoice
+  url: "api_reference#crediting"
 
-- title: Batching
-  url: "#batch-requests"
+- title: Get invoice status
+  url: "api_reference#get-status"
 
-- title: Callbacks
-  url: "#callbacks"
+- title: Error codes
+  url: "api_reference#error-codes"
 
-- title: Crediting
-  url: "#credit_invoice"
+- title: Validations
+  url: "api_reference#validations"
+
+overview_title : Overview
+overview_url : "index"
+
+invoice_issuers_title: Invoice issuers
+invoice_issuers_url: "invoice_issuers"
+
+api_reference_title: API endpoint reference
+api_reference_url: "api_reference"
+
+callbacks_title: Callbacks
+callbacks_url: "callbacks"
+
+invoiceinapp_title: Visual examples
+invoiceinapp_url: "visual_examples"
