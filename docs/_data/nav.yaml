@@ -5,8 +5,8 @@ api_reference :
 - title: InvoiceLink
   url: "api_reference#link"
 
-- title: Credit invoice
-  url: "api_reference#crediting"
+- title: Cancel invoice
+  url: "api_reference#canceling"
 
 - title: Get invoice status
   url: "api_reference#get-status"
