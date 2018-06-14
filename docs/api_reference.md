@@ -342,10 +342,10 @@ Note: The success response is not much different from the regular, non-batch res
 it doesn't contain the link itself. This is because we are processing batches asynchronously and can't return an immediate result. The <code>InvoiceLink</code> URLs will be sent back to you via a <a href="callbacks">callback</a>, as soon as they're created.
 </div>
 
-### <a name="crediting"/> Credit invoice
-You can credit an invoice which has not yet been paid, rejected and has not expired.
+### <a name="canceling"/> Cancel invoice
+You can cancel an invoice which has not yet been paid, rejected and has not expired.
 ```
-PUT api/v1/merchants/{merchantId}/invoices/{invoiceId}/credit
+PUT api/v1/merchants/{merchantId}/invoices/{invoiceId}/cancel
 ```
 
 ##### Response
@@ -380,7 +380,7 @@ The table below shows all possible statuses.
 |`Paid`       |_Invoice was paid_                                           | Final        |
 |`Rejected`   |_User tapped the reject button during the signup_            | Final        |
 |`Expired`    |_User did not do anything during the invoice timeout period._| Final        |
-|`Credited`   |_You credited this invoice._                                 | Final        |
+|`Canceled`   |_You canceled this invoice._                                 | Final        |
 
 Invoice status flow can be visualized by the following diagram.
 
