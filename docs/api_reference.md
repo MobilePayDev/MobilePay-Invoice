@@ -6,6 +6,10 @@ layout: default
 
 ### <a name="direct"/> InvoiceDirect
 
+High level Invoice Direct flow diagram
+
+[![](assets/images/Invoice_direct_high_level_flow_diagram.png)](Invoice_direct_high_level_flow_diagram.png)
+
 #### Create InvoiceDirect
 
 You can create an invoice directly to MobilePay app. Notice that request require a customer mobile phone number, name and surname. Check how invoice looks in the app [here](visual_examples).
@@ -171,6 +175,10 @@ HTTP 202 Accepted
 </div>
 
 ### <a name="link"/> InvoiceLink
+
+High level Invoice Link flow diagram
+
+[![](assets/images/Invoice_link_high_level_flow_diagram.png)](Invoice_link_high_level_flow_diagram.png)
 
 #### Create InvoiceLink
 
