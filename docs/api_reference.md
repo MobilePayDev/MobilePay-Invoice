@@ -6,7 +6,7 @@ layout: default
 
 ### <a name="direct"/> InvoiceDirect
 
-High level Invoice Direct flow diagram
+High level `InvoiceDirect` flow diagram
 
 [![](assets/images/Invoice_direct_high_level_flow_diagram.png)](Invoice_direct_high_level_flow_diagram.png)
 
@@ -176,7 +176,7 @@ HTTP 202 Accepted
 
 ### <a name="link"/> InvoiceLink
 
-High level Invoice Link flow diagram
+High level `InvoiceLink` flow diagram
 
 [![](assets/images/Invoice_link_high_level_flow_diagram.png)](Invoice_link_high_level_flow_diagram.png)
 
