@@ -23,17 +23,35 @@ HTTP 200 OK
     {
       "Id": "6a33d969-fa86-44af-a23b-731da0e4d50d",
       "Name": "MyAwesomeStore",
-      "AccountType": "Account"
+      "AccountType": "Account",
+      "Status": "Enabled",
+      "Address": "Paradisæblevej 13",
+      "City": "Andeby",
+      "ZipCode": "1234"
     }
   ]
 }
 ```
 
-| Property | Type | Description |
-|----------|------|-------------|
-|`Id`| `guid` | Id of an invoice issuer associated with your `merchantId`.|
-|`Name`| `string` | Your invoice issuer's name.|
+| Property    | Type     | Description                                                                                          |
+|-------------|----------|------------------------------------------------------------------------------------------------------|
+|`Id`         | `guid`   | Id of an invoice issuer associated with your `merchantId`.                                           |
+|`Name`       | `string` | Your invoice issuer's name.                                                                          |
 |`AccountType`| `string` | The type of account associated with an invoice issuer. At the moment there's only one type `Account`.|
+|`Status`     | `string` | Issuer status.                                                                                       |
+|`Address`    | `string` | Issuer address line.                                                                                 |
+|`City`       | `string` | Issuer city.                                                                                         |
+|`ZipCode`    | `string` | Issuer Zip code.                                                                                     |
+
+#### Invoice issuer statuses
+
+There are three invoice issuer `Status` values that can be explained in following order: 
+
+| Status     | Explanation                                       |
+|------------|---------------------------------------------------|
+| `Pending`  | Issuer was created and is pending for an approval.|
+| `Enabled`  | Issuer is active & ready to be used.              |
+| `Disabled` | Merchant has disabled invoice issuer.             |
 
 ### Get your merchant id
 
