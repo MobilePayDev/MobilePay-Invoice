@@ -374,21 +374,21 @@ HTTP 200 OK
 ```json
 {
     "InvoiceId" : "5e1210f9-4153-4fc3-83ec-2a8fc4843ea6",
-    "Status" : "Created"
+    "Status" : "created"
 }
 ```
 
 The table below shows all possible statuses.
 
-|Status     | Explanation                                                 | Type         |
-|-----------|-------------------------------------------------------------|--------------|
-|`Created`    |_Merchant created the Invoice_                               | Intermediate |
-|`Invalid`    |_Invoice validation failed_                                  | Intermediate |
-|`Accepted`   |_User swiped to accept the Invoice_                          | Intermediate |
-|`Paid`       |_Invoice was paid_                                           | Final        |
-|`Rejected`   |_User tapped the reject button during the signup_            | Final        |
-|`Expired`    |_User did not do anything during the invoice timeout period._| Final        |
-|`Canceled`   |_You canceled this invoice._                                 | Final        |
+|Status       | Explanation                                                 | Type         |
+|-------------|-------------------------------------------------------------|--------------|
+|`created`    |_Merchant created the Invoice_                               | Intermediate |
+|`invalid`    |_Invoice validation failed_                                  | Intermediate |
+|`accepted`   |_User swiped to accept the Invoice_                          | Intermediate |
+|`paid`       |_Invoice was paid_                                           | Final        |
+|`rejected`   |_User tapped the reject button during the signup_            | Final        |
+|`expired`    |_User did not do anything during the invoice timeout period._| Final        |
+|`canceled`   |_You canceled this invoice._                                 | Final        |
 
 Invoice status flow can be visualized by the following diagram.
 

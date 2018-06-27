@@ -24,7 +24,7 @@ HTTP 200 OK
       "Id": "6a33d969-fa86-44af-a23b-731da0e4d50d",
       "Name": "MyAwesomeStore",
       "AccountType": "Account",
-      "Status": "Enabled",
+      "Status": "enabled",
       "Address": "Paradisæblevej 13",
       "City": "Andeby",
       "ZipCode": "1234"
@@ -49,9 +49,9 @@ There are three invoice issuer `Status` values that can be explained in followin
 
 | Status     | Explanation                                       |
 |------------|---------------------------------------------------|
-| `Pending`  | Issuer was created and is pending for an approval.|
-| `Enabled`  | Issuer is active & ready to be used.              |
-| `Disabled` | Merchant has disabled invoice issuer.             |
+| `pending`  | Issuer was created and is pending for an approval.|
+| `enabled`  | Issuer is active & ready to be used.              |
+| `disabled` | Merchant has disabled invoice issuer.             |
 
 ### Get your merchant id
 
