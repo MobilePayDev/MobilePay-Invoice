@@ -8,6 +8,9 @@ api_reference :
 - title: Cancel invoice
   url: "api_reference#canceling"
 
+- title: Get invoice details
+  url: "api_reference#get-details"
+
 - title: Get invoice status
   url: "api_reference#get-status"
 
