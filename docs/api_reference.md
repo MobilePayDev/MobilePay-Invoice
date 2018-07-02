@@ -361,6 +361,54 @@ PUT api/v1/merchants/{merchantId}/invoices/{invoiceId}/cancel
 HTTP 204 No Content
 ```
 
+### <a name="get-details"/> Get invoice details
+
+```
+GET api/v1/merchants/{merchantId}/invoices/{invoiceId}
+```
+##### Response
+
+```
+HTTP 200 OK
+```
+```json
+{
+    "InvoiceId": "578a9f10-4e81-4265-bbae-2e8fa33cb83b",
+    "InvoiceNumber": "301",
+    "IssueDate": "2018-07-02",
+    "DueDate": "2018-08-02",
+    "Comment": "Sample Invoice",
+    "InvoiceArticles": [
+        {
+          "ArticleNumber": "1-123",
+          "ArticleDescription": "Process Flying V Snowboard",
+          "TotalPriceIncludingVat": 360,
+          "Quantity": 1,
+          "PricePerUnit": 288,
+        }
+    ],
+    "CurrencyCode": "DKK",
+    "TotalAmount": 360,
+    "InvoiceVatTotals": [
+        {
+            "VatRate": 25,
+            "TotalVatAmount": 72
+        }
+    ],
+    "TotalVatAmount": 72,
+    "TotalAmountExcludingVat": 288,
+    "MerchantId": "f3dd9011-d930-4063-901d-2a47621e5b76",
+    "InvoiceIssuerId": "238fe387-f4a4-40e7-ae8a-4c107da2c0ad",
+    "InvoiceIssuerName": "Invoice Issuer 1",
+    "InvoiceIssuerAddress": "Edwin Rahrs Vej 2-12",
+    "InvoiceIssuerZipcode": "8220",
+    "InvoiceIssuerCity": "Brabrand",
+    "MerchantIsoCountryCode": "DK",
+    "LogoUrl": "https://api.qa.mobilepay.dk/invoice-restapi/api/v1/invoiceissuers/238fe387-f4a4-40e7-ae8a-4c107da2c0ad/logo",
+    "Status": "created"
+}
+```
+
 ### <a name="get-status"/> Get invoice status
 
 ```
