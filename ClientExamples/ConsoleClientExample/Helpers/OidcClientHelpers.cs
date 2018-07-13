@@ -12,9 +12,9 @@ namespace ConsoleClientExample.Helpers
             return new OidcClientOptions
             {
                 Authority = "https://api.sandbox.mobilepay.dk/merchant-authentication-openidconnect", // Sandbox oidc url
-                ClientId = "subscriptions.prod", // TODO: Replace the ClientId with your specific ClientId
-                ClientSecret = "FqXG3jJ4v6NOVUeL34ema3D1ai3dG+uTBjVDEOl/TGI=", // TODO: Replace the ClientSecret with your specific ClientSecret
-                Scope = "openid subscriptions",
+                ClientId = "<replace with your client id>", // TODO: Replace the ClientId with your specific ClientId
+                ClientSecret = "<replace with your client secret>", // TODO: Replace the ClientSecret with your specific ClientSecret
+                Scope = "openid invoice",
                 RedirectUri = redirectUri,
                 Policy = policy,
                 LoadProfile = false,
