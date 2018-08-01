@@ -126,7 +126,7 @@ HTTP 202 Accepted
 Note: If not accepted, invoice will expire 30 days after due date.
 </div>
 
-#### Create multiple invoices
+#### Create multiple invoices <a name="create_multiple_invoicedirect"/>
 ```
 POST api/v1/merchants/{merchantId}/invoices/batch
 ```
