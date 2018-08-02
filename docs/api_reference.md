@@ -434,8 +434,8 @@ The table below shows all possible statuses.
 |`invalid`    |_Invoice validation failed_                                  | Intermediate |
 |`accepted`   |_User swiped to accept the Invoice_                          | Intermediate |
 |`paid`       |_Invoice was paid_                                           | Final        |
-|`rejected`   |_User tapped the reject button during the signup_            | Final        |
-|`expired`    |_User did not do anything during the invoice timeout period._| Final        |
+|`rejected`   |_User rejected the Invoice_                                  | Final        |
+|`expired`    |_User did not do do anything until Invoice DueDate + 30 days_| Final        |
 |`canceled`   |_You canceled this invoice._                                 | Final        |
 
 Invoice status flow can be visualized by the following diagram.
