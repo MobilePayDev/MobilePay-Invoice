@@ -43,6 +43,7 @@ POST api/v1/merchants/{merchantId}/invoices
 |`MerchantOrderNumber`|             |`string`      |The merchant order number for the invoice used internally by the merchant.              |
 |`BuyerOrderNumber`|                |`string`        |The buyer order number for the invoice used externally by the merchant.               |
 |`PaymentReference`  |              |`string(60)`  |Reference used on the payment to do reconciliation. If not filled, invoice number will be used as reference.|
+|`InvoiceUrl`  |              |`string`  |URL to the Invoice PDF provided by merchant.|
 |`InvoiceArticles` |            |`array`      |**At least one is required.**                                                                |
 |    |`ArticleNumber`           |`string`     |**Required.** Article Number, e.g. 123456ABC                                                 |
 |    |`ArticleDescription`      |`string`     |**Required.** Article Description.                                                           |
@@ -217,6 +218,7 @@ POST api/v1/merchants/{merchantId}/invoices/link
 |`MerchantOrderNumber`|             |`string`      |The merchant order number for the invoice used internally by the merchant.              |
 |`BuyerOrderNumber`|                |`string`      |The buyer order number for the invoice used externally by the merchant.               |
 |`PaymentReference`  |              |`string(60)`  |Reference used on the payment to do reconciliation. If not filled, invoice number will be used as reference.|
+|`InvoiceUrl`  |              |`string`  |URL to the Invoice PDF provided by merchant.|
 |`InvoiceArticles` |            |`array`      |**At least one is required.**                                                                |
 |    |`ArticleNumber`           |`string`     |**Required.** Article Number, e.g. 123456ABC                                                 |
 |    |`ArticleDescription`      |`string`     |**Required.** Article Description.                                                           |
@@ -405,7 +407,8 @@ HTTP 200 OK
     "InvoiceIssuerCity": "Brabrand",
     "MerchantIsoCountryCode": "DK",
     "LogoUrl": "https://api.qa.mobilepay.dk/invoice-restapi/api/v1/invoiceissuers/238fe387-f4a4-40e7-ae8a-4c107da2c0ad/logo",
-    "Status": "created"
+    "Status": "created",
+    "InvoiceUrl":"https://api.merchant.dk/invoice/578a9f10-4e81-4265-bbae-2e8fa33cb83b/pdf"
 }
 ```
 
