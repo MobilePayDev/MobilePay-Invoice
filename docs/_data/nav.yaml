@@ -37,6 +37,6 @@ invoiceinapp_url: "visual_examples"
 
 release_notes_title: Release Notes
 release_notes:
-- title: Invoice Consumer 1.1
+- title: Invoice 1.4
   comment: (In progress. Available in Sandbox)
   url: "release_notes"

@@ -2,11 +2,11 @@
 layout: default
 ---
 
-## In Progress: Invoice Consumer 1.1 Release Notes
+## In Progress: Invoice 1.4 Release Notes
  <div class='post-date'>24 August 2018</div>
 
 ### <a name="Merchant-PDF"></a> Provide your own PDF for invoice
-Currenlty, PDF file of the invoice is generated internally by MobilePay. After release of **Invoice Consumer 1.1** merchants will have a possibility to provide the URL to their own PDF file. Feature is already available in [Sandbox](https://sandbox-developer.mobilepay.dk/). 
+Currenlty, PDF file of the invoice is generated internally by MobilePay. After release of **Invoice 1.4** merchants will have a possibility to provide the URL to their own PDF file. Feature is already available in [Sandbox](https://sandbox-developer.mobilepay.dk/). 
 
 ETA: September 2018.
 
