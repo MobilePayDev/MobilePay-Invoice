@@ -34,3 +34,9 @@ callbacks_url: "callbacks"
 
 invoiceinapp_title: Visual examples
 invoiceinapp_url: "visual_examples"
+
+release_notes_title: Release Notes
+release_notes:
+- title: Invoice Consumer 1.1
+  comment: (In progress. Available in Sandbox)
+  url: "release_notes"
