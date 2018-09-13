@@ -533,7 +533,7 @@ A set of business rules apply for an `invoice` before it gets created. If any of
 |`CountryCode`  |DK/FI     |CountryCode == Consumer CountryCode              |10106      |`CountryCode` must match consumer's `CountryCode`.                  | 
 |`CurrencyCode` |DK        |CurrencyCode == DKK                              |10107      |Only `DKK` is supported for DK invoices.                            |
 |               |FI        |CurrencyCode == EUR                              |10107      |Only `EUR` is supported for FI invoices.                            |
-|`TotalAmount`  |DK        |TotalAmount <= 10000 DKK                         |10201      |`TotalAmount` is limited to 10000 DKK.                              |
+|`TotalAmount`  |DK        |TotalAmount <= 15000 DKK                         |10201      |`TotalAmount` is limited to 15000 DKK.                              |
 |               |FI        |TotalAmount <= 500 EUR                           |10201      |`TotalAmount` is limited to 500 EUR.                                |
 
 ##### Limits
