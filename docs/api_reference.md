@@ -441,9 +441,10 @@ The table below shows all possible statuses.
 |`expired`    |_User did not do do anything until Invoice DueDate + 30 days_| Final        |
 |`canceled`   |_You canceled this invoice._                                 | Final        |
 
-there are two validation steps :  
+There are two validation steps :  
 1. Merchant validation: If all is good, then we create the invoice, send the callback `created` to the merchant, and push message to the user.
 2. User validation: Card validation, user status.. etc. The invoice is delivered to the user, when the merchant received callback about `created` invoice.  
+The first state is either `created` or `invalid`
 
 Invoice status flow can be visualized by the following diagram.
 
