@@ -131,6 +131,9 @@ Note: If not accepted, invoice will expire 30 days after due date.
 ```
 POST api/v1/merchants/{merchantId}/invoices/batch
 ```
+
+You can create up to 2000 invoices per single batch.
+
 ##### Input (an array of <a href="#single_invoice_object">objects</a> used to create single invoice)
 ```json
 [
@@ -305,6 +308,8 @@ HTTP 202 Accepted
 ```
 POST api/v1/merchants/{merchantId}/invoices/link/batch
 ```
+
+You can create up to 2000 invoice links per single batch.
 
 ##### Input (an array of <a href="single_invoicelink_object">objects</a> used to create single invoice link)
 ```json
