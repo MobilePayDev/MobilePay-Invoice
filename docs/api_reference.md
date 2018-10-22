@@ -548,4 +548,4 @@ A set of business rules apply for an `invoice` before it gets created. If any of
 
 ##### Limits
 * Consumer daily invoice count <= 3. No more then 3 invoices can be created per consumer from single merchant.
-* Invoice issuer daily InvoiceDirect count <= 5000. No more then 5000 invoices can be created per invoice issuer per day.
+* Invoice issuer daily `InvoiceDirect` count <= 5000. No more than 5000 `InvoiceDirects` can be created per invoice issuer per day.
