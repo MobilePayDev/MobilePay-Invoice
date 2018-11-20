@@ -24,6 +24,16 @@ This document explains how to make a technical integration to the **MobilePay In
 ### OpenID flow
 [![](assets/images/openid_flow_0.png)](assets/images/openid_flow_0.png)
 
+When user clicks on this button, merchant must do back-end call to   
+[`"/authorize"`](https://developer.mobilepay.dk/products/openid/authorizeo) endpoint for initiating  authentication flow. You need to wait for the response by listening on the redirect URI and get the Authorization Code. Our system will re-direct the merchant back to your system also using the redirect URL. 
+ 
+In short - The flow is described in the following 4 steps:
+
+Step 1: Call /connect/authorize to initiate user login and consent
+Step 2: Wait for the response by listening on the redirect URI and get the authorization code 
+Step 3: Exchange the authorization code for tokens using /connect/token
+Step 4: Keep the session alive by using the refresh token
+
 ### OpenID configuration endpoints 
 Find the configuration links below:
 
