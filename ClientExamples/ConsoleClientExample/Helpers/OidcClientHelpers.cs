@@ -14,7 +14,7 @@ namespace ConsoleClientExample.Helpers
                 Authority = "https://api.sandbox.mobilepay.dk/merchant-authentication-openidconnect", // Sandbox oidc url
                 ClientId = "<replace with your client id>", // TODO: Replace the ClientId with your specific ClientId
                 ClientSecret = "<replace with your client secret>", // TODO: Replace the ClientSecret with your specific ClientSecret
-                Scope = "openid invoice",
+                Scope = "openid invoice subscriptions",
                 RedirectUri = redirectUri,
                 Policy = policy,
                 LoadProfile = false,
