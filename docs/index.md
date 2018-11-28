@@ -40,7 +40,7 @@ Step 4: Keep the session alive by using the refresh token
 ### OpenID configuration endpoints 
 Find the configuration links below:
 
-|Environment | Links                               |
-|-----------|------------------------------------------|
-|Sandbox    | <a href="https://api.sandbox.mobilepay.dk/merchant-authentication-openidconnect/.well-known/openid-configuration">https://api.sandbox.mobilepay.dk/merchant-authentication-openidconnect/.well-known/openid-configuration</a> |
-|Production   | <a href="https://api.mobilepay.dk/merchant-authentication-openidconnect/.well-known/openid-configuration">https://api.mobilepay.dk/merchant-authentication-openidconnect/.well-known/openid-configuration</a>      |
+|Environment | Links |
+|------------|-------|
+|Sandbox    | Denmark <a href="https://sandprod-admin.mobilepay.dk/account/.well-known/openid-configuration">https://sandprod-admin.mobilepay.dk/account/.well-known/openid-configuration</a> <br> Finland <a href="https://sandprod-admin.mobilepay.fi/account/.well-known/openid-configuration">https://sandprod-admin.mobilepay.fi/account/.well-known/openid-configuration</a> |
+|Production  | Denmark <a href="https://admin.mobilepay.dk/account/.well-known/openid-configuration">https://admin.mobilepay.dk/account/.well-known/openid-configuration</a> <br> Finland <a href="https://admin.mobilepay.fi/account/.well-known/openid-configuration">https://admin.mobilepay.fi/account/.well-known/openid-configuration</a>|
