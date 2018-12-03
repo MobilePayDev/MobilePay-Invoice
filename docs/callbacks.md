@@ -3,6 +3,9 @@ layout: default
 ---
 
 ## Callbacks
+
+Invoice callbacks are sent using batches. The job starts every 30 seconds. There is a Date property into callbacks, so you can compare the callbacks and execute, only if it is newer than last received.  
+
 In order to receive callbacks about status changes for an invoice a callback URL must be specified first. But before setting your callback URL you must choose prefered authentication method which we will use for authenticating our requests when calling your callback URL. Currently we support <code><a href="https://tools.ietf.org/html/rfc7617">Basic</a></code> and `ApiKey` authentication methods:  
 
 ##### Basic
