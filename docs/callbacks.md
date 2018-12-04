@@ -5,6 +5,8 @@ layout: default
 ## Callbacks
 
 ##### How merchants and integrators should handle invoice callbacks 
+Make sure to not rely on whitelisting MobilePay’s sending IP addresses, as these IP addresses are subject to change without notice. 
+
 Invoice callbacks are sent using batches. The job starts every 30 seconds. In the event that the callbacks are received in incorrect order, please check the date property. There is a Date property in the callbacks, so you can compare the callbacks and execute, only if it is newer than last received.  
 
 ##### Set callback URL 
