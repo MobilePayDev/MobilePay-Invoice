@@ -4,16 +4,39 @@ layout: default
 
 ## Callbacks
 
-##### How merchants and integrators should handle invoice callbacks 
+#### How merchants and integrators should handle invoice callbacks 
 Make sure to not rely on whitelisting MobilePay’s sending IP addresses, as these IP addresses are subject to change without notice. 
 
 Invoice callbacks are sent using batches. The job starts every 30 seconds. In the event that the callbacks are received in incorrect order, please check the date property. There is a Date property in the callbacks, so you can compare the callbacks and execute, only if it is newer than last received.  
 
-##### Set callback URL 
+##### REST callback retries
+
+In case the REST callback failed, 8 retries will be made
+
+* 1st retry after 5 seconds
+* 2nd retry 19 minutes after 1st failed retry
+* 3rd retry 39 minutes after 2nd failed retry
+* 4th retry 1 hour and 19 minutes after 3rd failed retry
+* 5th retry 2 hours and 39 minutes after 4th failed retry
+* 6th retry 5 hours and 19 minutes after 5th failed retry
+* 7th retry 10 hours and 39 minutes after 6th failed retry
+* 8th retry 21 hours and 19 minutes after 7th failed retry
+
+ 
+* * *
+
+ 
+#### REST callback authentication
+
 
 In order to receive callbacks about status changes for an invoice a callback URL must be specified first. But before setting your callback URL you must choose prefered authentication method which we will use for authenticating our requests when calling your callback URL. Currently we support <code><a href="https://tools.ietf.org/html/rfc7617">Basic</a></code> and `ApiKey` authentication methods:  
 
 ##### Basic
+
+Using `basic` All the REST callbacks will be sent to `CallbackUrl` and contain basic credentials in `Authorization`  HTTP header: 
+
+`Authorization: Basic [Base64 encoded username:password]`
+
 ```
 PUT /api/v1/merchants/{merchantId}/auth/basic
 ```
