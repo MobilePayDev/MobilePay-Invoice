@@ -7,12 +7,6 @@ layout: default
 This document explains how to make a technical integration to the **MobilePay Invoice** product. The audience for this document is either technical integrators acting on behalf of merchants or merchants creating their own integrations.
 
 ### Related links:
-- You can read more about the product [here](https://developer.mobilepay.dk/invoice-main/productinfo).
-- Billing your customers with MobilePay Invoice is easy using our [API](https://developer.mobilepay.dk/product).
-
-### QuickStart: 
-
-- More information about integration steps are [here](https://developer.mobilepay.dk/invoice-getting-started)
 
 
 
@@ -41,6 +35,7 @@ Step 4: Keep the session alive by using the refresh token
 - An example of how to use OpenID connect in C# can be found [here](https://github.com/MobilePayDev/MobilePay-Invoice/tree/master/ClientExamples)
 - You can find links to the official Hybrid Flow [here](https://openid.net/specs/openid-connect-core-1_0.html#HybridFlowAuth).   
 - See the video tutorial here [here](https://developer.mobilepay.dk/products/openid/video)
+- You can read more about the product [here](https://developer.mobilepay.dk/invoice-main/productinfo).
 * * *
 
 ### OpenID configuration endpoints 
