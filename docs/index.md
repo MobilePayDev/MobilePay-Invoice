@@ -6,10 +6,6 @@ layout: default
 
 This document explains how to make a technical integration to the **MobilePay Invoice** product. The audience for this document is either technical integrators acting on behalf of merchants or merchants creating their own integrations.
 
-### Related links:
-
-
-
 ### OpenID flow
 [![](assets/images/openid_flow_0.png)](assets/images/openid_flow_0.png)
 
@@ -27,7 +23,6 @@ Step 3: Exchange the authorization code for tokens using /connect/token
 Step 4: Keep the session alive by using the refresh token
 
 ### Best Practice
-
 
 - Pick an OpenID Connect library: we recommend <a href="https://github.com/IdentityModel/IdentityModel.OidcClient2">Certified C#/NetStandard OpenID Connect Client Library for native mobile/desktop Applications</a> 
 - Read the FAQ's for OpenID Connect <a href="https://developer.mobilepay.dk/faq/integrator">here</a>
