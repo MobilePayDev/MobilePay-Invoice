@@ -6,6 +6,7 @@ layout: default
 
 This document explains how to make a technical integration to the **MobilePay Invoice** product. The audience for this document is either technical integrators acting on behalf of merchants or merchants creating their own integrations.
 
+
 ### OpenID flow
 [![](assets/images/openid_flow_0.png)](assets/images/openid_flow_0.png)
 
