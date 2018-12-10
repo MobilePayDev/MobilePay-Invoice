@@ -446,9 +446,15 @@ The table below shows all possible statuses.
 |`expired`    |_User did not do do anything until Invoice DueDate + 30 days_| Final        |
 |`canceled`   |_You canceled this invoice._                                 | Final        |
 
+User accepts then invoice and then pays it immediately or schedules a future payment.
+
 There are two validation steps :  
-1. Merchant validation: If all is good, then we create the invoice, send the callback `created` to the merchant, and push message to the user. The outcome of this validation is that the Invoice is `created` and delivered to the user, or the Invoice failed to be `created`, and is returned to the merchant. 
+1. Merchant validation: If all is good, then MobilePay create the invoice, send the callback `created` to the merchant, and push message to the user. The outcome of this validation is that the Invoice is `created` and delivered to the user, or the Invoice failed to be `created`, and is returned to the merchant. 
+
+
 2. User validation: Card validation, user status.. etc. The invoice is delivered to the user, when the merchant received callback about `created` invoice. The outcome of this validation is either that the Invoice is `paid` or an error message is returned in the app.   
+
+
 The first state is either `created` or `invalid`. If you received a callback with status `created` then the Invoice has been delivered to the user. 
 
 Invoice status flow can be visualized by the following diagram.
