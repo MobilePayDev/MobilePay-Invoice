@@ -5,11 +5,11 @@ layout: default
 ## Callbacks
 
 #### How merchants and integrators should handle invoice callbacks 
+It’s asynchronous messaging and we cannot ensure the right order of the events. That’s why we added a property  `Date`  to each status change, so that the merchant’s would know when particular events have happened 
+
+Invoice callbacks are sent using batches. The job starts every 30 seconds. In the event that the callbacks are received in incorrect order according to your timestamp, please check the property  `Date`. We added property  `Date`  so you can compare the callbacks to the status and the timestamp.
+
 Make sure to not rely on whitelisting MobilePay’s sending IP addresses, as these IP addresses are subject to change without notice. 
-
-Invoice callbacks are sent using batches. The job starts every 30 seconds. In the event that the callbacks are received in incorrect order, please check the date property. There is a Date property in the callbacks, so you can compare the callbacks and execute, only if it is newer than last received.  
-
-It’s asynchronous messaging and we cannot ensure the right order of the events. That’s why we added a property  “Date” to each status change, so that the merchant’s would know when particular events have happened 
 
 ##### REST callback retries
 
