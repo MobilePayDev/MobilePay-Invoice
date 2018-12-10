@@ -9,6 +9,8 @@ Make sure to not rely on whitelisting MobilePay’s sending IP addresses, as the
 
 Invoice callbacks are sent using batches. The job starts every 30 seconds. In the event that the callbacks are received in incorrect order, please check the date property. There is a Date property in the callbacks, so you can compare the callbacks and execute, only if it is newer than last received.  
 
+It’s asynchronous messaging and we cannot ensure the right order of the events. That’s why we added a property  “Date” to each status change, so that the merchant’s would know when particular events have happened 
+
 ##### REST callback retries
 
 In case the REST callback failed, 8 retries will be made
