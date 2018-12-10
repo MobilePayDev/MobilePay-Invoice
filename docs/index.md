@@ -25,14 +25,14 @@ Step 3: Exchange the authorization code for tokens using /connect/token
 Step 4: Keep the session alive by using the refresh token
 
 ### Best Practice
-
+- You can read more about the product [here](https://developer.mobilepay.dk/invoice-main/productinfo).
 - Pick an OpenID Connect library: we recommend <a href="https://github.com/IdentityModel/IdentityModel.OidcClient2">Certified C#/NetStandard OpenID Connect Client Library for native mobile/desktop Applications</a> 
 - Read the FAQ's for OpenID Connect <a href="https://developer.mobilepay.dk/faq/integrator">here</a>
 - Integration is based on common standard OpenID Connect. You can find more [here](https://developer.mobilepay.dk/products/openid). 
 - An example of how to use OpenID connect in C# can be found [here](https://github.com/MobilePayDev/MobilePay-Invoice/tree/master/ClientExamples)
 - You can find links to the official Hybrid Flow [here](https://openid.net/specs/openid-connect-core-1_0.html#HybridFlowAuth).   
 - See the video tutorial here [here](https://developer.mobilepay.dk/products/openid/video)
-- You can read more about the product [here](https://developer.mobilepay.dk/invoice-main/productinfo).
+
 * * *
 
 ### OpenID configuration endpoints 
