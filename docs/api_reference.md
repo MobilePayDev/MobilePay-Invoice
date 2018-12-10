@@ -446,7 +446,7 @@ The table below shows all possible statuses.
 |`expired`    |_User did not do do anything until Invoice DueDate + 30 days_| Final        |
 |`canceled`   |_You canceled this invoice._                                 | Final        |
 
-User accepts then invoice and then pays it immediately or schedules a future payment.
+User accepts the invoice and then pays it immediately or schedules a future payment. The user can change the date, for when the invoice should be paid in the MobilePay app, but nor more than 30 days from the DueDate. 
 
 There are two validation steps :  
 1. Merchant validation: If all is good, then MobilePay create the invoice, send the callback `created` to the merchant, and push message to the user. The outcome of this validation is that the Invoice is `created` and delivered to the user, or the Invoice failed to be `created`, and is returned to the merchant. 
