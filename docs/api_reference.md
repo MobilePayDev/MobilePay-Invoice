@@ -37,7 +37,7 @@ POST api/v1/merchants/{merchantId}/invoices
 |`IssueDate`         |              |`date`        |**Required.** Issue date of invoice. ISO date format: `YYYY-MM-DD`                      |
 |`DueDate`           |              |`date`        |**Required.** Payment due date. Must be between today and 400 days ahead, otherwise the request will be declined. ISO date format: `YYYY-MM-DD`|
 |`OrderDate`         |              |`date`        |**Required.** Order date of invoice. ISO date format: `YYYY-MM-DD`                      |
-|`DeliveryDate`      |              |`date`        |Delivery date of invoice. ISO date format: `YYYY-MM-DD`                   |
+|`DeliveryDate`      |              |`date`        |**Required.** Delivery date of invoice. ISO date format: `YYYY-MM-DD`                   |
 |`Comment`           |              |`string`      |Additional information to the consumer.                                                 |
 |`MerchantContactName`|             |`string`      |Contact name for the individual who issued the invoice.                                 |
 |`MerchantOrderNumber`|             |`string`      |The merchant order number for the invoice used internally by the merchant.              |
