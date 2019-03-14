@@ -449,7 +449,7 @@ The table below shows all possible statuses.
 User accepts the invoice and then pays it immediately or schedules a future payment. The user can change the date, for when the invoice should be paid in the MobilePay app, but nor more than 30 days from the DueDate. 
 
 There are two validation steps :  
-1. Merchant validation: If all is good, then MobilePay create the invoice, send the callback `created` to the merchant, and push message to the user. The outcome of this validation is that the Invoice is `created` and delivered to the user, or the Invoice failed to be `created`, and is returned to the merchant. 
+1. Merchant validation: If all is good, then MobilePay create the invoice, send the callback `created` to the merchant, and push message to the user. The outcome of this validation is that the Invoice is `created` and delivered to the user, or the Invoice failed to be `created`, and is returned to the merchant. If the validation fails, then MobilePay does not create invoice as an entity in MobilePay domain, so in a way it is kinda a final state. 
 
 
 2. User validation: Card validation, user status.. etc. The invoice is delivered to the user, when the merchant received callback about `created` invoice. The outcome of this validation is either that the Invoice is `paid` or an error message is returned in the app.   
