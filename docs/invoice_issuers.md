@@ -6,7 +6,7 @@ layout: default
 
 ### Get an invoice issuer
 
-Invoice issuer represents merchant's company information. Before using *MobilePay Invoices* merchant must have at least one invoice issuer which can be created via [MobilePay Portal Denmark](https://admin.mobilepay.dk) or [Finland](https://admin.mobilepay.fi). Each invoice issuer contains its own address information, account data and logo.
+Invoice Issuer represents merchant's company information. Before using *MobilePay Invoices* merchant must have at least one invoice issuer which can be created via [MobilePay Portal Denmark](https://admin.mobilepay.dk) or [Finland](https://admin.mobilepay.fi). Each invoice issuer contains its own address information, account data and logo. The merchant is the customer company and the Invoice Issuer is the actual service provider name under which they create invoices
 
 ```
 GET /api/v1/merchants/{merchantId}/invoiceissuer
