@@ -28,7 +28,7 @@ POST api/v1/merchants/{merchantId}/invoices
 ||`AliasType`|`string` | **Required.** Alias type of the MobilePay user. <br/> Only value allowed is `Phone`.                                                            |
 |`ConsumerName`      |              |`string`      |**Required.** Full name of the MobilePay user. We validate it using [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance) in order to ignore minor spelling mistakes.|
 |`TotalAmount`       |              |`decimal`     |**Required.** The requested amount to be paid. <br/> >0.00, decimals separated with a dot.|
-|`TotalVatAmount`    |              |`decimal`     |**Required.** VAT amount. >0.00, decimals separated with a dot.                         |
+|`TotalVatAmount`    |              |`decimal`     |**Required.** VAT amount. >=0.00, decimals separated with a dot.                         |
 |`CountryCode`       |              |`string(2)`   |**Required.** Country code. Either `DK` or `FI` is allowed.                             |
 |`CurrencyCode`      |              |`string(3)`   |**Required.** Currency code. If you set `CountryCode` as `DK` then it should be `DKK`. If you set `CountryCode` as `FI` then it should be `EUR`.|
 |`ConsumerAddressLines`|            |`string[]`      |**At least one is required.** Address of consumer receiving the invoice.                                |
@@ -53,12 +53,12 @@ POST api/v1/merchants/{merchantId}/invoices
 |    |`Unit`                    |`string`     |**Required.** Unit, e.g. Pcs, Coli.                                                          |
 |    |`Quantity`                |`decimal`    |**Required.** Quantity of article.                                                           |
 |    |`PricePerUnit`            |`decimal`    |**Required.** Price per unit.                                                                |
-|    |`PriceReduction`          |`decimal`    |Price reduction.                                                                             |
-|    |`PriceDiscount`           |`decimal`    |Price discount.                                                                              |
-|    |`Bonus`                   |`decimal`    |Bonus of article.                                                                            |
+|    |`PriceReduction`          |`decimal`    |**Required.** Price reduction.                                                                             |
+|    |`PriceDiscount`           |`decimal`    |**Required.** Price discount.                                                                              |
+|    |`Bonus`                   |`decimal`    |**Required.** Bonus of article.                                                                            |
 
 <div class="note">
-<strong>Note:</strong> All <code>decimal</code> values should be >0 and decimals (no more than 2 digits) should be separated with a dot.
+<strong>Note:</strong> All <code>decimal</code> values should be >=0 and decimals (no more than 2 digits) should be separated with a dot.
 </div>
 
 ##### Example
@@ -206,7 +206,7 @@ POST api/v1/merchants/{merchantId}/invoices/link
 ||`AliasType`|`string` |Alias type of the MobilePay user. This will be autofilled in the landing page if user opens the link not on the phone <br/> Only value allowed is `Phone`.                                                            |
 |`ConsumerName`      |              |`string`      |Full name of the MobilePay user. We validate it using [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance) to ignore spelling mistakes.|
 |`TotalAmount`       |              |`decimal`     |**Required.** The requested amount to be paid. <br/> >0.00, decimals separated with a dot.|
-|`TotalVatAmount`    |              |`decimal`     |**Required.** VAT amount. >0.00, decimals separated with a dot.                         |
+|`TotalVatAmount`    |              |`decimal`     |**Required.** VAT amount. >=0.00, decimals separated with a dot.                         |
 |`CountryCode`       |              |`string(2)`   |**Required.** Country code. Either `DK` or `FI` is allowed.                             |
 |`CurrencyCode`      |              |`string(3)`   |**Required.** Currency code. If you set `CountryCode` as `DK` then it should be `DKK`. If you set `CountryCode` as `FI` then it should be `EUR`.|
 |`ConsumerAddressLines`|            |`string[]`    |**At least one is required..** Address of consumer receiving the invoice.                                |
@@ -231,9 +231,13 @@ POST api/v1/merchants/{merchantId}/invoices/link
 |    |`Unit`                    |`string`     |**Required.** Unit, e.g. Pcs, Coli.                                                          |
 |    |`Quantity`                |`decimal`    |**Required.** Quantity of article.                                                           |
 |    |`PricePerUnit`            |`decimal`    |**Required.** Price per unit.                                                                |
-|    |`PriceReduction`          |`decimal`    |Price reduction.                                                                             |
-|    |`PriceDiscount`           |`decimal`    |Price discount.                                                                              |
-|    |`Bonus`                   |`decimal`    |Bonus of article.                                                                            |
+|    |`PriceReduction`          |`decimal`    |**Required.** Price reduction.                                                                             |
+|    |`PriceDiscount`           |`decimal`    |**Required.** Price discount.                                                                              |
+|    |`Bonus`                   |`decimal`    |**Required.** Bonus of article.                                                                            |
+
+<div class="note">
+<strong>Note:</strong> All <code>decimal</code> values should be >=0 and decimals (no more than 2 digits) should be separated with a dot.
+</div>
 
 ##### Example
 
