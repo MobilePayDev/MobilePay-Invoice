@@ -33,7 +33,7 @@ In short - The flow is described in the following 4 steps:
 - Integration is based on common standard OpenID Connect. You can find more [here](https://developer.mobilepay.dk/developersupport/openid/). 
 - An example of how to use OpenID connect in C# can be found [here](https://github.com/MobilePayDev/MobilePay-Invoice/tree/master/ClientExamples)
 - You can find links to the official Hybrid Flow [here](https://openid.net/specs/openid-connect-core-1_0.html#HybridFlowAuth).   
-- See the video tutorial here [here](https://developer.mobilepay.dk/developersupport/openid/tutorial)
+- See the video tutorial  [here](https://developer.mobilepay.dk/developersupport/openid/tutorial)
 
 * * *
 
