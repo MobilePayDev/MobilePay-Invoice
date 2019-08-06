@@ -533,6 +533,7 @@ When creating `InvoiceDirect` or `InvoiceLink` these values can be returned as `
 |10312      |IssueDate must be no later than today                                        |
 |10313      |Your daily limit has been reached. No more than 5000 invoices can be created per invoice issuer per day.     |
 |10314      |Your daily limit has been reached. No more than 3 invoices can be created per consumer per merchant per day. |
+|10502      |Invoice has not been visualized                                              | 
 
 ### <a name="validations"/> Validations
 
