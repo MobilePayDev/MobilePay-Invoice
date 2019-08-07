@@ -514,7 +514,7 @@ When creating `InvoiceDirect` or `InvoiceLink` these values can be returned as `
 |10103      |MobilePay user not found                                                     |
 |10104      |Invoice already exists                                                       |
 |10105      |Technical error - please contact MobilePay developer support  developer@mobilepay.dk |
-|10008      |Total amount for must be greater than 0                                      |
+|10008      |Total amount must be greater than 0                                          |
 |10106      |Invoice country does not match consumer country                              |
 |10107      |Specified currency does not match specified country                          |
 |10201      |Total invoice amount is exceeded                                             |
