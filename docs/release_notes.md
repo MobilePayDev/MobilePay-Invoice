@@ -3,14 +3,10 @@ layout: default
 ---
 
 ## Invoice 1.4 Release Notes
- <div class='post-date'>17 September 2018</div>
+ <div class='post-date'> </div>
 
 ### <a name="response_code"></a> 06 august - Response Code 
-The response from 
-```
-POST https://api.mobilepay.dk/invoice-restapi/api/v1/merchants/[merchant]/invoices 
-```
-has been changed from <code> 202 Accepted</code> to <code>200 OK </code>
+The response codes for invoices have been unified. Only batch requests return <code>202</code> , all others should now return <code>200</code> 
 
 ### <a name="Merchant-PDF"></a> Provide your own PDF for invoice
 Currenlty, PDF file of the invoice is generated internally by MobilePay. With release of **Invoice 1.4** merchants now have a possibility to provide the URL to their own PDF file.
