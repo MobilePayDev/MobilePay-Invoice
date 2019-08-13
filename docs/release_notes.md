@@ -6,7 +6,7 @@ layout: default
  <div class='post-date'> </div>
 
 ### <a name="response_code"></a> 06 august - Response Code 
-The response codes for invoices have been unified. Only batch requests return <code>202</code> , all others should now return <code>200</code> 
+The response codes for invoices have been unified. Batch requests now return <code>202</code> , all others should now return <code>200</code> If the merchant's logic examines the concrete response code, the merchant or integrator may have to change their logic in order to cope with the change in response code. We do not consider this a breaking chance, as most merchants only check if the call was a success, and do not depend on a concrete status code. 
 
 ### <a name="Merchant-PDF"></a> Provide your own PDF for invoice
 Currenlty, PDF file of the invoice is generated internally by MobilePay. With release of **Invoice 1.4** merchants now have a possibility to provide the URL to their own PDF file.
