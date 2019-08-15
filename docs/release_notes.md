@@ -20,6 +20,7 @@ We're excited to announce, that MobilePay's own QR code reader can now read a QR
 - If the scanned link is already expired, then the user will see an error message in the overlay screen
 - If the invoice is expired, then the endpoint will return a 404 status
 
+[![](assets/images/android_fi2.jpg)](assets/images/android_fi2.jpg)    
 
 ### <a name="Merchant-PDF"></a> Provide your own PDF for invoice
 Currenlty, PDF file of the invoice is generated internally by MobilePay. With release of **Invoice 1.4** merchants now have a possibility to provide the URL to their own PDF file.
