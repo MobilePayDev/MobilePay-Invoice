@@ -14,8 +14,7 @@ The response codes for invoices have been unified. Batch requests now return <co
 
 New feature: Scanning QR code with InvoiceLink will open MobilePay Invoice
 
-We're excited to announce, that MobilePay's own QR code reader can now read a QR code, that contains InvoiceLink
-
+We're excited to announce, that MobilePay's own QR code reader can now read a QR code, that contains InvoiceLink. Read more about InvoiceLink [here](https://github.com/MobilePayDev/MobilePay-Invoice/blob/master/docs/api_reference.md#-invoicelink) 
 - When you scan a QR with the MobilePay app, and the QR contains InvoiceLink, then the Invoice context screen is opened.
 - If the scanned link is already expired, then the user will see an error message in the overlay screen
 - If the invoice is expired, then the endpoint will return a 404 status
