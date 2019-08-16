@@ -7,7 +7,7 @@ layout: default
 
 
 ### <a name="response_code"></a> 06 august 2019 - Response Code 
-The response codes for invoices have been unified. Batch requests now return <code>202</code> , all others should now return <code>200</code> If the merchant's logic examines the concrete response code, the merchant or integrator may have to change their logic in order to cope with the change in response code. We do not consider this a breaking chance, as most merchants only check if the call was a success, and do not depend on a concrete status code. 
+The response codes for invoices have been unified. Batch requests now return <code>202</code> , all others should now return <code>200</code> If the merchant's logic examines the concrete response code and checks strict the status code, the merchant or integrator may have to change their logic in order to cope with the change in response code. We do not consider this a breaking chance, as most merchants only check if the call was a success, and do not depend on a concrete status code. 
 
 
 ### <a name="response_code"></a> 01 march 2019 - QR code
