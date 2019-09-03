@@ -197,7 +197,7 @@ POST api/v1/merchants/{merchantId}/invoices/link
 |Parameter             |Sub Parameter |Type        |Description |
 |----------------------|--------------|------------|------------|
 |`InvoiceIssuer`       ||`guid`| **Required.** The ID of the invoicing department/branch of the merchant.                                   |
-|`ConsumerAlias`       ||`object`|**Required.** Mobile alias of the MobilePay user to be invoiced.                                                 |
+|`ConsumerAlias`       ||`object`|Mobile alias of the MobilePay user to be invoiced.                                                 |
 ||`Alias`|`string`|**Required.** Mobile phone number of the MobilePay user. Should start with a '+' sign and country phone code. <br/> E.g. +4512345678 or +35812345678                          |
 ||`AliasType`|`string` |**Required.** Alias type of the MobilePay user. This will be autofilled in the landing page if user opens the link not on the phone <br/> Only value allowed is `Phone`.                                                            |
 |`ConsumerName`      |              |`string`      |**Required.** Full name of the MobilePay user. We validate it using [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance) to ignore spelling mistakes.|
