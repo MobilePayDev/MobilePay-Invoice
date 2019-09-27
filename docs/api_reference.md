@@ -442,7 +442,7 @@ The table below shows all possible statuses.
 |`expired`    |_User did not do do anything until Invoice DueDate + 30 days_| Final        |
 |`canceled`   |_You canceled this invoice._                                 | Final        |
 
-User accepts the invoice and then pays it immediately or schedules a future payment. The user can change the date, for when the invoice should be paid in the MobilePay app, but nor more than 30 days from the DueDate. 
+User accepts the invoice and then pays it immediately or schedules a future payment. The user can change the date, for when the invoice should be paid in the MobilePay app, but nor more than 30 days from the DueDate. For InvoiceLink to be in `rejected` state, the user needs to have first `accepted` the invoice and scheduled for a future payment. Afterwards, it is possible for the user to reject the invoice. 
 
 There are two validation steps :  
 1. Merchant validation: If all is good, then MobilePay create the invoice, send the callback `created` to the merchant, and push message to the user. The outcome of this validation is that the Invoice is `created` and delivered to the user, or the Invoice failed to be `created`, and is returned to the merchant. If the validation fails, then MobilePay does not create invoice as an entity in MobilePay domain, so in a way it is kinda a final state. 
