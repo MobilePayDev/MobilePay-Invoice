@@ -8,6 +8,7 @@ layout: default
 
 ### <a name="response_code"></a> 08 november 2019 - Removed consumer name validation
 <code>ConsumerName</code> validation (Levenshtein rule) was removed from InvoiceDirect validation rules.
+However, it is still used for displaying <code>ConsumerName</code> when generating invoice PDF.
 
 
 ### <a name="response_code"></a> 06 august 2019 - Response Code 
