@@ -6,6 +6,11 @@ layout: default
  <div class='post-date'> </div>
 
 
+### <a name="response_code"></a> 08 november 2019 - Removed consumer name validation
+<code>ConsumerName</code> validation (Levenshtein rule) was removed from InvoiceDirect validation rules.
+However, it is still used for displaying <code>ConsumerName</code> when generating invoice PDF.
+
+
 ### <a name="response_code"></a> 06 august 2019 - Response Code 
 The response codes for invoices have been unified. Batch requests now return <code>202</code> , all others should now return <code>200</code> 
 If your system logic examines the concrete response code and checks strict the status code, you may have to change the logic in order to cope with the change in response code. We do not consider this a breaking chance, as most merchants only check if the call was a success such as 2xx, and do not depend on a concrete status code. However, having the right HTTP status codes mapped also enables you to get more insight around the response received.
