@@ -33,7 +33,7 @@ POST api/v1/merchants/{merchantId}/invoices
 |`CurrencyCode`      |              |`string(3)`   |**Required.** Currency code. If you set `CountryCode` as `DK` then it should be `DKK`. If you set `CountryCode` as `FI` then it should be `EUR`.|
 |`ConsumerAddressLines`|            |`string[]`      |**At least one is required.** Address of consumer receiving the invoice.                                |
 |`DeliveryAddressLines`|            |`string[]`      |Delivery address.                                                                       |
-|`InvoiceNumber`     |              |`string`      |**Required.** Invoice number.                                                           |
+|`InvoiceNumber`     |              |`string`      |**Required.** Invoice number. It will be used if PaymentReference is not filled.                                                           |
 |`IssueDate`         |              |`date`        |**Required.** Issue date of invoice. ISO date format: `YYYY-MM-DD`                      |
 |`DueDate`           |              |`date`        |**Required.** Payment due date. Must be between today and 400 days ahead, otherwise the request will be declined. ISO date format: `YYYY-MM-DD`|
 |`OrderDate`         |              |`date`        |**Required.** Order date of invoice. ISO date format: `YYYY-MM-DD`                      |
@@ -42,7 +42,7 @@ POST api/v1/merchants/{merchantId}/invoices
 |`MerchantContactName`|             |`string`      |Contact name for the individual who issued the invoice.                                 |
 |`MerchantOrderNumber`|             |`string`      |The merchant order number for the invoice used internally by the merchant.              |
 |`BuyerOrderNumber`|                |`string`        |The buyer order number for the invoice used externally by the merchant.               |
-|`PaymentReference`  |              |`string(60)`  |Reference used on the payment to do reconciliation. If not filled, invoice number will be used as reference.|
+|`PaymentReference`  |              |`string(60)`  |Reference used on the payment to do reconciliation if merchant has chosen Instant Transfer method. If not filled, InvoiceNumber will be used as reference.|
 |`InvoiceUrl`  |              |`string`  |URL to the Invoice PDF provided by merchant.|
 |`InvoiceArticles` |            |`array`      |**At least one is required.**                                                                |
 |    |`ArticleNumber`           |`string`     |**Required.** Article Number, e.g. 123456ABC                                                 |
