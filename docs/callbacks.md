@@ -47,7 +47,7 @@ PUT /api/v1/merchants/{merchantId}/auth/basic
 {
   "username": "Username",
   "password": "MySecretPswd",
-  "callback_url": "https://your.url/callbacks/invoice"
+  "callbackurl": "https://your.url/callbacks/invoice"
 }
 ```
 
@@ -58,7 +58,7 @@ PUT /api/v1/merchants/{merchantId}/auth/apikey
 ```json
 {
   "api_key": "SomeSecretApiKey123",
-  "callback_url": "https://your.url/callbacks/invoice"
+  "callbackurl": "https://your.url/callbacks/invoice"
 }
 ```
 Using `ApiKey` authentication method your provided API key will be simply added to `Authorization` header.
