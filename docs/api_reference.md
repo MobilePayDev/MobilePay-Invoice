@@ -546,7 +546,7 @@ A set of business rules apply for an `invoice` before it gets created. If any of
 |`CurrencyCode` |DK        |CurrencyCode == DKK                              |10107      |Only `DKK` is supported for DK invoices.                            |
 |               |FI        |CurrencyCode == EUR                              |10107      |Only `EUR` is supported for FI invoices.                            |
 |`TotalAmount`  |DK        |TotalAmount <= 15000 DKK                         |10201      |`TotalAmount` is limited to 15000 DKK.                              |
-|               |FI        |TotalAmount <= 500 EUR                           |10201      |`TotalAmount` is limited to 500 EUR.                                |
+|               |FI        |TotalAmount <= 2000 EUR                           |10201      |`TotalAmount` is limited to 2000 EUR.                                |
 
 ##### Limits
 * Consumer daily invoice count <= 3. No more then 3 invoices can be created per consumer from single merchant.
