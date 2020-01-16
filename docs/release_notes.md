@@ -4,7 +4,9 @@ layout: default
 
 ## Invoice 1.4 Release Notes
  <div class='post-date'> </div>
-
+ 
+### <a name="response_code"></a> 16 january 2020 - Increased Invoice FI amount
+Invoice FI <code>Amount</code> validation was increased to 2000 EUR
 
 ### <a name="response_code"></a> 08 november 2019 - Removed consumer name validation
 <code>ConsumerName</code> validation (Levenshtein rule) was removed from InvoiceDirect validation rules.
