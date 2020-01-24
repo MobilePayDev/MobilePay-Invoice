@@ -2,6 +2,12 @@
 layout: default
 ---
 
+## Invoice API
+
+Businesses that need to send invoices to their customers commonly use MobilePay invoices. For example, a consulting business might send invoices for the time and resources that each consultation uses. Our MobilePay Invoice API enables you to send Invoice directly into the MobilePay app or use MobilePay as a payment method in an existing Invoice flow (self serve environments, e-mails and etc.)
+
+
+
 ## Invoice issuers
 
 ### Get an invoice issuer
