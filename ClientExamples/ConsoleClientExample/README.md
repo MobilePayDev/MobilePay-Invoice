@@ -13,12 +13,12 @@ When you have your prerequisite values ready, go to the OidcClientConfigurationF
 
 Fill out the OICDClientOptions (Below is an example from our SandBox environment)
 
-{
+    {
     Authority = "https://api.sandbox.mobilepay.dk/merchant-authentication-openidconnect", 
     ClientId = "<Your-Client-Id>",
     ClientSecret = "<Your-Client-Secret>",
     Scope = "openid offline_access invoice subscriptions transactionreporting", 
-}
+    }
 Then go to the Program.cs file. At the top you should paste the RedirectUri for your client. In this example we spawn a HTTPListener to listen fo the responses, and we have configured our client to allow our local address as a valid RedirectUri.
     private const string RedirectUri = "http://127.0.0.1:7890/"; 
 Now you should be able to run the program and go through the MobilePay consent flow
