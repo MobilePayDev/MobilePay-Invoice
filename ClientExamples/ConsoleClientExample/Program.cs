@@ -1,22 +1,18 @@
-﻿using System;
-using System.Diagnostics;
+using System;
 using System.Net;
-using ConsoleClientExample.Helpers;
+using ConnectClientExample.Configuration;
+using ConnectClientExample.Helpers;
 using IdentityModel.OidcClient;
 
-namespace ConsoleClientExample
+namespace ConnectClientExample
 {
-    class Program
+    public static class Program
     {
-        // create a redirect URI on the loopback address.
-        private static string RedirectUri { get; } = "http://127.0.0.1:7890/"; // TODO: Replace with predefined loopback address/port
+        private const string RedirectUri = "http://127.0.0.1:7890/";
 
-        static void Main(string[] args)
+        public static void Main()
         {
-            // Make sure that https is working correctly in the example
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 |
-                                                   SecurityProtocolType.Tls11 |
-                                                   SecurityProtocolType.Tls;
+            ConfigureSslProtocol();
 
             Console.WriteLine("+-----------------------+");
             Console.WriteLine("|  Sign in with OIDC    |");
@@ -27,39 +23,16 @@ namespace ConsoleClientExample
 
             HttpListenerHelpers.StartHttpListener(RedirectUri);
 
-            Program p = new Program();
-            p.SignIn();
-
+            var client = new OidcClient(OidcClientConfigurationFactory.CreateClientConfiguration(RedirectUri));
+            client.StartConsentFlow();
+            
             Console.ReadKey();
             HttpListenerHelpers.StopHttpListener();
         }
-
-        private async void SignIn()
+        
+        private static void ConfigureSslProtocol()
         {
-            // Create an oidc client and configure it according to your specific client
-            var client = new OidcClient(OidcClientHelpers.ConfigureOidcClient(RedirectUri));
-
-            // Prepare login
-            var state = await client.PrepareLoginAsync().ConfigureAwait(false);
-
-            // Open system browser to start authentication
-            Process.Start(state.StartUrl);
-
-            // wait for the authorization response.
-            var context = await HttpListenerHelpers.HttpListener.GetContextAsync();
-            var formData = HttpListenerHelpers.GetRequestPostData(context.Request);
-
-            // Brings the Console to Focus.
-            ConsoleHelpers.BringConsoleToFront();
-
-            // Update browser
-            await HttpListenerHelpers.SendHttpResponseToBrowser(context);
-
-            // Complete request for access token with authorization code
-            var result = await client.ProcessResponseAsync(formData, state).ConfigureAwait(false);
-
-            // Print login result information
-            OidcClientHelpers.PrintLoginInformation(result);
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
         }
     }
 }
