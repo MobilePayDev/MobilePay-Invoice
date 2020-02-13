@@ -532,7 +532,7 @@ When creating `InvoiceDirect` or `InvoiceLink` these values can be returned as `
 |10311      |DueDate must be today or later                                               |
 |10312      |IssueDate must be no later than today                                        |
 |10313      |Your daily limit has been reached. No more than 5000 invoices can be created per invoice issuer per day.     |
-|10314      |Your daily limit has been reached. No more than 3 invoices can be created per consumer per merchant per day. |
+|10314      |Your daily limit has been reached. No more than 10 invoices can be created per consumer per merchant per day. |
 
 ### <a name="validations"/> Validations
 
@@ -549,5 +549,5 @@ A set of business rules apply for an `invoice` before it gets created. If any of
 |               |FI        |TotalAmount <= 2000 EUR                           |10201      |`TotalAmount` is limited to 2000 EUR.                                |
 
 ##### Limits
-* Consumer daily invoice count <= 3. No more then 3 invoices can be created per consumer from single merchant.
+* Consumer daily invoice count <= 10. No more then 10 invoices can be created per consumer from single merchant.
 * Invoice issuer daily `InvoiceDirect` count <= 5000. No more than 5000 `InvoiceDirects` can be created per invoice issuer per day.
