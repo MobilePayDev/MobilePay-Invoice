@@ -47,8 +47,8 @@ POST api/v1/merchants/{merchantId}/invoices
 |`InvoiceArticles` |            |`array`      |**At least one is required.**                                                                |
 |    |`ArticleNumber`           |`string`     |**Required.** Article Number, e.g. 123456ABC                                                 |
 |    |`ArticleDescription`      |`string`     |**Required.** Article Description.                                                           |
-|    |`VATRate`                 |`decimal`    |**Required.** VAT Rate of article.                                                           |
-|    |`TotalVATAmount`          |`decimal`    |**Required.** Total VAT amount of article.                                                   |
+|    |`VATRate`                 |`decimal`    |**Required.** VAT Rate of article.                                                            |
+|    |`TotalVATAmount`          |`decimal`    |**Required.** Total VAT amount of article. Decimals separated with a dot.                                                    |
 |    |`TotalPriceIncludingVat`  |`decimal`    |**Required.** Total price of article including VAT.                                          |
 |    |`Unit`                    |`string`     |**Required.** Unit, e.g. Pcs, Coli.                                                          |
 |    |`Quantity`                |`decimal`    |**Required.** Quantity of article. Allowed to have more than two decimal digits.             |
