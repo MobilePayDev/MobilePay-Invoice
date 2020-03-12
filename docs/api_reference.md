@@ -547,5 +547,16 @@ A set of business rules apply for an `invoice` before it gets created. If any of
 |`TotalAmount`  |DK        |TotalAmount <= 15000 DKK                         |10201      |`TotalAmount` is limited to 15000 DKK.                              |
 |               |FI        |TotalAmount <= 2000 EUR                           |10201      |`TotalAmount` is limited to 2000 EUR.                                |
 
+## Push notifications 
+
+
+|Description|Action|EN| DK | FI  |Device|
+|----------|---------|---|-------------------|------------------------|----------------------|
+|Push notification when User gets Invoice.   |_Open context screen_        |[Invoice Issuer name] wants to send you a bill  |[Invoice Issuer name] har en regning til dig  |  [Invoice Issuer name] haluaa lähettää sinulle laskun|iOS & Android|
+|In app push when User gets Invoice    |_Open context screen_              |[Invoice Issuer name] wants to send you a bill  | [Invoice Issuer name] har en regning til dig|[Invoice Issuer name] haluaa lähettää sinulle laskun|(just for iOS)|
+| Push notification when User opens Invoice via web  | Open context screen       |Pay a bill  | Betal en regning|Maksa lasku|iOS & Android|
+|In app push when User opens Invoice via web   |Open context screen  | Pay a bill  | Betal en regning|Maksa lasku|(just for iOS)|
+ 
+
 ##### Limits
 * Consumer daily invoice count <= 10. No more then 10 invoices can be created per consumer from single merchant.
