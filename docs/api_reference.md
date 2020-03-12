@@ -558,5 +558,19 @@ A set of business rules apply for an `invoice` before it gets created. If any of
 |In app push when User opens Invoice via web   |Open context screen  | Pay a bill  | Betal en regning|Maksa lasku|(just for iOS)|
  
 
+## SMS
+ - **SMS to user before due date**
+
+SMS is sent for ignored (not accepted or rejected) invoices.
+
+ -   SMS is sent to the user one day prior the due date at 13.30 PM 
+ -   If the due date equals the current date and the invoice is received before 13:30 PM then the SMS is sent to the user on due date
+ -   If the due date equals the current date and the invoice is received after 13:30 PM then the the SMS is sent to the user one day after the due date
+ 
+ **SMS to user when payment fails**
+ -  If the future payment can't be processed (card action needed, raise limit action needed) SMS is sent Error time +8,5 h.
+ - If the future payment can't be processed (other action needed) SMS is sent 13:30.
+ 
+
 ##### Limits
 * Consumer daily invoice count <= 10. No more then 10 invoices can be created per consumer from single merchant.
