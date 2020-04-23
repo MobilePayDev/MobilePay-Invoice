@@ -4,6 +4,9 @@ layout: default
 
 ## Invoice 1.4 Release Notes
  <div class='post-date'> </div>
+ 
+### <a name="response_code"></a> 23 april 2020 - ConsumerName and ConsumerAddressLines now optional
+Removed **Required** validation for `ConsumerName` and `ConsumerAddressLines`
 
 ### <a name="response_code"></a> 17 february 2020 - Increased max number of invoices to one user
 Increased the max number of invoices per day merchants can send to one user. Now merchants can send up to 10 invoices to one user.
