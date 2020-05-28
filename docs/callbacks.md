@@ -86,6 +86,9 @@ Example of our callback body:
  All possible invoice statuses returned in callback body can be found in <a href="api_reference#get-status">Get invoice status</a> section.
 
 <div class="note">
+<strong>Note:</strong> When status of an invoice is <code>accepted</code> one additional field will be added: <code>PaymentDate</code>.
+</div>
+<div class="note">
 <strong>Note:</strong> When status of an invoice is <code>invalid</code> two additional fields will be added: <code>ErrorCode</code> and <code>ErrorMessage</code>. All possible validation errors can be found in <a href="api_reference#validations">validations</a> section.
 </div>
 

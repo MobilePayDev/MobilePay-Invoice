@@ -380,6 +380,7 @@ HTTP 200 OK
     "InvoiceNumber": "301",
     "IssueDate": "2018-07-02",
     "DueDate": "2018-08-02",
+    "PaymentDate": "2018-08-23",
     "Comment": "Sample Invoice",
     "InvoiceArticles": [
         {
@@ -387,7 +388,7 @@ HTTP 200 OK
           "ArticleDescription": "Process Flying V Snowboard",
           "TotalPriceIncludingVat": 360,
           "Quantity": 1,
-          "PricePerUnit": 288,
+          "PricePerUnit": 288
         }
     ],
     "CurrencyCode": "DKK",
