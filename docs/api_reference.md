@@ -540,7 +540,7 @@ A set of business rules apply for an `invoice` before it gets created. If any of
 
 |Field          |Country   |Validation                                         |Error Code |Description                                                       |
 |---------------|----------|---------------------------------------------------|-----------|------------------------------------------------------------------|
-|`DueDate`      |DK/FI     |CreatedDate < DueDate < CreatedDate + 400 days  |10310/10311|`DueDate` must be no more than 400 days in the future.               |
+|`DueDate`      |DK/FI     |CreatedDate <= DueDate < CreatedDate + 400 days  |10310/10311|`DueDate` must be no more than 400 days in the future.               |
 |`IssueDate`    |DK/FI     |IssueDate <= CreatedDate                         |10312      |`IssueDate` can not be later than invoice creation date.            | 
 |`CountryCode`  |DK/FI     |CountryCode == Consumer CountryCode              |10106      |`CountryCode` must match consumer's `CountryCode`.                  | 
 |`CurrencyCode` |DK        |CurrencyCode == DKK                              |10107      |Only `DKK` is supported for DK invoices.                            |
