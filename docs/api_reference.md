@@ -458,6 +458,133 @@ Invoice status flow can be visualized by the following diagram.
 
 [![](assets/images/invoice_flow.png)](assets/images/invoice_flow.png)
 
+### <a name="direct-invoice-consent"/> User consent for InvoiceDirect
+
+Goal of this functionality is for Invoice Issuer to ask users phone number and consent to receive Invoices directly to MobilePay (InvoiceDirect). 
+
+<div class="note">
+Note: Current release is just in Sandbox. Release in Production is planned for beginning of August. App version from which functionality can work for users - 4.24.0 (July).
+</div>
+
+#### Attach a request of consent to send direct invoices to a particular invoice
+
+You can request for consent to send `InvoiceDirect` to a payer with particular invoice. Consent window is displayed to the user after `InvoiceLink` is paid. If user has already granted consent to the invoice issuer, consent window will not be displayed to the user.
+
+```
+POST api/v1/directinvoiceconsents
+```
+##### <a name="request_direct_invoice_consent_object"/> Input
+
+|Parameter             |Type        |Description |
+|----------------------|------------|------------|
+|`InvoiceId`       |`guid`| **Required.** The ID of the invoice to which consent request will be attached.|
+
+##### Example
+
+```json
+{
+  "invoiceId": "c0b6e35d-9dfb-47d4-9c9c-1cdfd181e0a4"
+}
+```
+
+##### Response
+
+```
+HTTP 201 Created
+```
+```json
+{
+  "ConsentId": "e518e841-c058-422c-b8d9-d4d71bf671c4",
+  "InvoiceId": "c0b6e35d-9dfb-47d4-9c9c-1cdfd181e0a4",
+  "PhoneNumber": null,
+  "State": "Pending"
+}
+```
+
+#### Get all consents in specified state
+
+You will get full list of users who granted consent for specific invoice issuer. Users phone number will be provided too.
+
+```
+GET /api/v1/directinvoiceconsents
+```
+##### <a name="get_direct_invoice_consents_object"/> Input (query string parameters)
+
+|Parameter             |Type        |Description |
+|----------------------|------------|------------|
+|`InvoiceIssuerId`|`string(guid)`| **Required.** The ID of the invoicing department/branch of the merchant.|
+|`State`|`string`| **Required.** State of consents to return.|
+|`PagingState`|`string`|Optional.|
+
+The table below shows all possible consent statuses.
+
+|Status       | Explanation                                                 | Type         |
+|-------------|-------------------------------------------------------------|--------------|
+|`pending`    |_User has not made an action regarding this consent_| Intermediate |
+|`granted`    |_User has granted direct invoice consent_| Final |
+|`denied`   |_User has denied direct invoice consent_| Final |
+
+##### Example
+
+```
+GET /api/v1/directinvoiceconsents?invoiceIssuerId=6bb6aff1-b88b-455a-a0ad-c4d1fec2e5d7&state=granted
+```
+
+##### Response
+
+```
+HTTP 200 OK
+```
+```json
+{
+  "GrantedConsents": [
+    {
+      "ConsentId": "e518e841-c058-422c-b8d9-d4d71bf671c4",
+      "InvoiceId": "c0b6e35d-9dfb-47d4-9c9c-1cdfd181e0a4",
+      "PhoneNumber": "+4577007700",
+      "State": "Granted"
+    }
+  ],
+  "PagingState": null
+}
+```
+<div class="note">
+Note: Endpoint supports only granted status.
+</div>
+
+#### Get consent details
+
+You can check state of your specific request - if user granted/denied consent with that request or maybe request is still pending.
+
+```
+GET /api/v1/directinvoiceconsents/{consentId}
+```
+
+##### Example
+
+```
+GET /api/v1/directinvoiceconsents/e518e841-c058-422c-b8d9-d4d71bf671c4
+```
+
+##### Response
+
+```
+HTTP 200 OK
+```
+```json
+{
+  "ConsentId": "e518e841-c058-422c-b8d9-d4d71bf671c4",
+  "InvoiceId": "c0b6e35d-9dfb-47d4-9c9c-1cdfd181e0a4",
+  "PhoneNumber": "+4577007700",
+  "State": "Pending"
+}
+```
+
+`DirectInvoiceConsent` flow in application
+
+[![](assets/images/direct_invoice_consent_high_level_flow_diagram.png)](direct_invoice_consent_high_level_flow_diagram.png)
+
+
 ### <a name="error-codes"/> Error Codes
 
 All of the endpoints described above can return an error response of this structure:

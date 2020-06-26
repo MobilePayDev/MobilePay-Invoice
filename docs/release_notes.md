@@ -4,7 +4,12 @@ layout: default
 
 ## Invoice 1.4 Release Notes
  <div class='post-date'> </div>
- 
+
+### <a name="response_code"></a> 26 june 2020 - User consent for InvoiceDirect released in Sandbox
+New feature: User consent for InvoiceDirect
+
+Goal of this functionality is for invoice issuer to ask users phone number and consent to receive Invoices directly to MobilePay (InvoiceDirect). Current release is just in Sandbox. Release in Production is planned for beginning of August. App version from which functionality can work for users - 4.24.0 (July).
+
 ### <a name="response_code"></a> 23 april 2020 - ConsumerName and ConsumerAddressLines now optional
 Removed **Required** validation for `ConsumerName` and `ConsumerAddressLines`
 
