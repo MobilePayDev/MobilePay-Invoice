@@ -584,6 +584,8 @@ HTTP 200 OK
 
 [![](assets/images/direct_invoice_consent_high_level_flow_diagram.png)](assets/images/direct_invoice_consent_high_level_flow_diagram.png)
 
+`DirectInvoiceConsent` flow
+[![](assets/images/invoice_link_to_invoice_direct.png)](assets/images/invoice_link_to_invoice_direct.png)
 
 ### <a name="error-codes"/> Error Codes
 
