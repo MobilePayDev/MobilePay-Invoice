@@ -468,7 +468,7 @@ Note: Current release is just in Sandbox. Release in Production is planned for b
 
 #### Attach a request of consent to send direct invoices to a particular invoice
 
-You can request for consent to send direct invoices to a payer of particular invoice. Consent window is displayed to user after invoice link is paid. If user has already granted consent to the invoice issuer, consent window will not be displayed to user.
+You can request for consent to send `InvoiceDirect` to a payer with particular invoice. Consent window is displayed to the user after `InvoiceLink` is paid. If user has already granted consent to the invoice issuer, consent window will not be displayed to the user.
 
 ```
 POST api/v1/directinvoiceconsents
@@ -502,6 +502,8 @@ HTTP 201 Created
 ```
 
 #### Get all consents in specified state
+
+You will get full list of users who granted consent for specific invoice issuer. Users phone number will be provided too.
 
 ```
 GET /api/v1/directinvoiceconsents
@@ -552,6 +554,8 @@ Note: Endpoint supports only granted status.
 
 #### Get consent details
 
+You can check state of your specific request - if user granted/denied consent with that request or maybe request is still pending.
+
 ```
 GET /api/v1/directinvoiceconsents/{consentId}
 ```
@@ -575,6 +579,11 @@ HTTP 200 OK
   "State": "Pending"
 }
 ```
+
+`DirectInvoiceConsent` flow in application
+
+[![](assets/images/direct_invoice_consent_high_level_flow_diagram.png)](direct_invoice_consent_high_level_flow_diagram.png)
+
 
 ### <a name="error-codes"/> Error Codes
 
