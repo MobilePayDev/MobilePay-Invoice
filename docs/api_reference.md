@@ -582,7 +582,7 @@ HTTP 200 OK
 
 `DirectInvoiceConsent` flow in application
 
-[![](assets/images/direct_invoice_consent_high_level_flow_diagram.png)](direct_invoice_consent_high_level_flow_diagram.png)
+[![](assets/images/direct_invoice_consent_high_level_flow_diagram.png)](assets/images/direct_invoice_consent_high_level_flow_diagram.png)
 
 
 ### <a name="error-codes"/> Error Codes
