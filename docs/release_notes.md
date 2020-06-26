@@ -6,7 +6,7 @@ layout: default
  <div class='post-date'> </div>
 
 ### <a name="response_code"></a> 26 june 2020 - User consent for InvoiceDirect released in Sandbox
-New feature: User consent for InvoiceDirect
+New feature: User consent for InvoiceDirect. Read more about user consent for InvoiceDirect [here](https://mobilepaydev.github.io/MobilePay-Invoice/api_reference#direct-invoice-consent) 
 
 Goal of this functionality is for invoice issuer to ask users phone number and consent to receive Invoices directly to MobilePay (InvoiceDirect). Current release is just in Sandbox. Release in Production is planned for beginning of August. App version from which functionality can work for users - 4.24.0 (July).
 
