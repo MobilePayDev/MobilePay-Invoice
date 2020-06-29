@@ -592,7 +592,7 @@ HTTP 200 OK
 All of the endpoints described above can return an error response of this structure:
 
 |Name                |Type    | Description                                                               |
-|--------------------|------------------------------------------------------------------------------------|
+|--------------------|--------|---------------------------------------------------------------------------|
 |`correlation_id`    |`guid`  | Unique id used for logging and debugging purposes.                        |
 |`error`             |`string`| Error type. Possible values: `DomainError`, `InputError` & `ServerError`. |
 |`error_code`        |`string`| Unique error code.                                                        |
