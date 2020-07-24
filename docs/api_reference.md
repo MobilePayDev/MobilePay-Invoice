@@ -42,7 +42,7 @@ POST api/v1/merchants/{merchantId}/invoices
 |`MerchantContactName`|             |`string`      |Contact name for the individual who issued the invoice.                                 |
 |`MerchantOrderNumber`|             |`string`      |The merchant order number for the invoice used internally by the merchant.              |
 |`BuyerOrderNumber`|                |`string`        |The buyer order number for the invoice used externally by the merchant.               |
-|`PaymentReference`  |              |`string(60)`  |Reference used on the payment to do reconciliation. If not filled, invoice number will be used as reference.|
+|`PaymentReference`  |              |`string(30)`  |Reference used on the payment to do reconciliation. If not filled, invoice number will be used as reference. The string will be truncated to 30 symbols if it contains more. |
 |`InvoiceUrl`  |              |`string`  |URL to the Invoice PDF provided by merchant.|
 |`InvoiceArticles` |            |`array`      |**At least one is required.**                                                                |
 |    |`ArticleNumber`           |`string`     |**Required.** Article Number, e.g. 123456ABC                                                 |
@@ -216,7 +216,7 @@ POST api/v1/merchants/{merchantId}/invoices/link
 |`MerchantContactName`|             |`string`      |Contact name for the individual who issued the invoice.                                 |
 |`MerchantOrderNumber`|             |`string`      |The merchant order number for the invoice used internally by the merchant.              |
 |`BuyerOrderNumber`|                |`string`      |The buyer order number for the invoice used externally by the merchant.               |
-|`PaymentReference`  |              |`string(60)`  |Reference used on the payment to do reconciliation. If not filled, invoice number will be used as reference.|
+|`PaymentReference`  |              |`string(30)`  |Reference used on the payment to do reconciliation. If not filled, invoice number will be used as reference. The string will be truncated to 30 symbols if it contains more.|
 |`InvoiceUrl`  |              |`string`  |URL to the Invoice PDF provided by merchant.|
 |`InvoiceArticles` |            |`array`      |**At least one is required.**                                                                |
 |    |`ArticleNumber`           |`string`     |**Required.** Article Number, e.g. 123456ABC                                                 |
