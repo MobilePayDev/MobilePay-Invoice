@@ -2,6 +2,12 @@
 layout: default
 ---
 
+## Invoice API
+
+Businesses that need to send invoices to their customers commonly use MobilePay invoices. For example, a consulting business might send invoices for the time and resources that each consultation uses. Our MobilePay Invoice API enables you to send Invoice directly into the MobilePay app or use MobilePay as a payment method in an existing Invoice flow (self serve environments, e-mails and etc.)
+
+
+
 ## Invoice issuers
 
 ### Get an invoice issuer
@@ -9,7 +15,7 @@ layout: default
 Invoice Issuer represents merchant's company information. Before using *MobilePay Invoices* merchant must have at least one invoice issuer which can be created via [MobilePay Portal Denmark](https://admin.mobilepay.dk) or [Finland](https://admin.mobilepay.fi). Each invoice issuer contains its own address information, account data and logo. The merchant is the customer company and the Invoice Issuer is the actual service provider name under which they create invoices
 
 ```
-GET /api/v1/merchants/{merchantId}/invoiceissuer
+GET /api/v1/merchants/{merchantId}/invoiceissuers
 ```
 
 Response

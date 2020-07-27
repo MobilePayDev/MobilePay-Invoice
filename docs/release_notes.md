@@ -5,10 +5,34 @@ layout: default
 ## Invoice 1.4 Release Notes
  <div class='post-date'> </div>
 
+### <a name="response_code"></a> 26 june 2020 - User consent for InvoiceDirect released in Sandbox
+New feature: User consent for InvoiceDirect. Read more about user consent for InvoiceDirect [here](https://mobilepaydev.github.io/MobilePay-Invoice/api_reference#direct-invoice-consent) 
+
+Goal of this functionality is for invoice issuer to ask users phone number and consent to receive Invoices directly to MobilePay (InvoiceDirect). Current release is just in Sandbox. Release in Production is planned for beginning of August. App version from which functionality can work for users - 4.24.0 (July).
+
+### <a name="response_code"></a> 23 april 2020 - ConsumerName and ConsumerAddressLines now optional
+Removed **Required** validation for `ConsumerName` and `ConsumerAddressLines`
+
+### <a name="response_code"></a> 17 february 2020 - Increased max number of invoices to one user
+Increased the max number of invoices per day merchants can send to one user. Now merchants can send up to 10 invoices to one user.
+
+### <a name="response_code"></a> 17 february 2020 - Removed Merchant daily Invoice limit
+Daily invoice <code>Limit</code> for merchants was removed.
+
+### <a name="response_code"></a> 16 january 2020 - Increased Invoice FI amount
+Invoice FI <code>Amount</code> validation was increased to 2000 EUR
+
+### <a name="response_code"></a> 08 november 2019 - Removed consumer name validation
+<code>ConsumerName</code> validation (Levenshtein rule) was removed from InvoiceDirect validation rules.
+However, it is still used for displaying <code>ConsumerName</code> when generating invoice PDF.
+
 
 ### <a name="response_code"></a> 06 august 2019 - Response Code 
 The response codes for invoices have been unified. Batch requests now return <code>202</code> , all others should now return <code>200</code> 
 If your system logic examines the concrete response code and checks strict the status code, you may have to change the logic in order to cope with the change in response code. We do not consider this a breaking chance, as most merchants only check if the call was a success such as 2xx, and do not depend on a concrete status code. However, having the right HTTP status codes mapped also enables you to get more insight around the response received.
+
+### <a name="decimals"></a> 01 april 2019 - decimals
+<code>TotalVATAmount</code> can not have more than two decimals. 
 
 
 ### <a name="response_code"></a> 01 march 2019 - QR code
