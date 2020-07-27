@@ -42,7 +42,7 @@ POST api/v1/merchants/{merchantId}/invoices
 |`MerchantContactName`|             |`string`      |Contact name for the individual who issued the invoice.                                 |
 |`MerchantOrderNumber`|             |`string`      |The merchant order number for the invoice used internally by the merchant.              |
 |`BuyerOrderNumber`|                |`string`        |The buyer order number for the invoice used externally by the merchant.               |
-|`PaymentReference`  |              |`string(30)`  |Reference used on the payment to do reconciliation if merchant has chosen Instant Transfer method. If not filled, InvoiceNumber will be used as reference. The string will be truncated to 30 symbols if it contains more. |
+|`PaymentReference`  |              |`string(60)*`  |Reference used on the payment to do reconciliation if merchant has chosen Instant Transfer method. If not filled, InvoiceNumber will be used as reference.|
 |`InvoiceUrl`  |              |`string`  |URL to the Invoice PDF provided by merchant.|
 |`InvoiceArticles` |            |`array`      |**At least one is required.**                                                                |
 |    |`ArticleNumber`           |`string`     |**Required.** Article Number, e.g. 123456ABC                                                 |
@@ -56,6 +56,13 @@ POST api/v1/merchants/{merchantId}/invoices
 |    |`PriceReduction`          |`decimal`    |**Required.** Price reduction.                                                                             |
 |    |`PriceDiscount`           |`decimal`    |**Required.** Price discount.                                                                              |
 |    |`Bonus`                   |`decimal`    |**Required.** Bonus of article.                                                                            |
+
+<div class="note">
+    <strong>Note:</strong>
+    <p>
+        * Even though "PaymentReference" can contain up to 60 symbols the recommendation is to use up to 30 symbols. For instant transfers "PaymentReference" will be truncated up down to 30 symbols and included in bank statement.
+    </p>
+</div>
 
 ##### Example
 
@@ -216,7 +223,7 @@ POST api/v1/merchants/{merchantId}/invoices/link
 |`MerchantContactName`|             |`string`      |Contact name for the individual who issued the invoice.                                 |
 |`MerchantOrderNumber`|             |`string`      |The merchant order number for the invoice used internally by the merchant.              |
 |`BuyerOrderNumber`|                |`string`      |The buyer order number for the invoice used externally by the merchant.               |
-|`PaymentReference`  |              |`string(30)`  |Reference used on the payment to do reconciliation. If not filled, invoice number will be used as reference. The string will be truncated to 30 symbols if it contains more.|
+|`PaymentReference`  |              |`string(60)*`  |Reference used on the payment to do reconciliation. If not filled, invoice number will be used as reference.|
 |`InvoiceUrl`  |              |`string`  |URL to the Invoice PDF provided by merchant.|
 |`InvoiceArticles` |            |`array`      |**At least one is required.**                                                                |
 |    |`ArticleNumber`           |`string`     |**Required.** Article Number, e.g. 123456ABC                                                 |
@@ -230,6 +237,13 @@ POST api/v1/merchants/{merchantId}/invoices/link
 |    |`PriceReduction`          |`decimal`    |**Required.** Price reduction.                                                                             |
 |    |`PriceDiscount`           |`decimal`    |**Required.** Price discount.                                                                              |
 |    |`Bonus`                   |`decimal`    |**Required.** Bonus of article.                                                                            |
+
+<div class="note">
+    <strong>Note:</strong>
+    <p>
+        * Even though "PaymentReference" can contain up to 60 symbols the recommendation is to use up to 30 symbols. For instant transfers "PaymentReference" will be truncated up down to 30 symbols and included in bank statement.
+    </p>
+</div>
 
 ##### Example
 
