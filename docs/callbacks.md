@@ -47,7 +47,7 @@ PUT /api/v1/merchants/{merchantId}/auth/basic
 {
   "username": "Username",
   "password": "MySecretPswd",
-  "callback_url": "https://your.url/callbacks/invoice"
+  "callbackurl": "https://your.url/callbacks/invoice"
 }
 ```
 
@@ -58,7 +58,7 @@ PUT /api/v1/merchants/{merchantId}/auth/apikey
 ```json
 {
   "api_key": "SomeSecretApiKey123",
-  "callback_url": "https://your.url/callbacks/invoice"
+  "callbackurl": "https://your.url/callbacks/invoice"
 }
 ```
 Using `ApiKey` authentication method your provided API key will be simply added to `Authorization` header.
@@ -85,6 +85,9 @@ Example of our callback body:
 
  All possible invoice statuses returned in callback body can be found in <a href="api_reference#get-status">Get invoice status</a> section.
 
+<div class="note">
+<strong>Note:</strong> When status of an invoice is <code>accepted</code> one additional field will be added: <code>PaymentDate</code>.
+</div>
 <div class="note">
 <strong>Note:</strong> When status of an invoice is <code>invalid</code> two additional fields will be added: <code>ErrorCode</code> and <code>ErrorMessage</code>. All possible validation errors can be found in <a href="api_reference#validations">validations</a> section.
 </div>

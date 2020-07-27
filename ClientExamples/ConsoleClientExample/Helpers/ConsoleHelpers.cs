@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 using System.Runtime.InteropServices;
+using IdentityModel.OidcClient;
 
-namespace ConsoleClientExample.Helpers
+namespace ConnectClientExample.Helpers
 {
-    public class ConsoleHelpers
+    public static class ConsoleHelpers
     {
         // Hack to bring the Console window to front.
         // ref: http://stackoverflow.com/a/12066376
@@ -18,5 +19,30 @@ namespace ConsoleClientExample.Helpers
         {
             SetForegroundWindow(GetConsoleWindow());
         }
+        
+        public static void PrintLoginInformation(LoginResult result)
+        {
+            if (result.IsError)
+            {
+                Console.WriteLine("\n\nError:\n{0}", result.Error);    
+            }
+            else
+            {
+                Console.WriteLine("\n\nClaims:");
+                foreach (var claim in result.User.Claims)
+                {
+                    Console.WriteLine("{0}: {1}", claim.Type, claim.Value);
+                }
+
+                Console.WriteLine();
+                Console.WriteLine("Access token:\n{0}", result.AccessToken);
+
+                if (!string.IsNullOrWhiteSpace(result.RefreshToken))
+                {
+                    Console.WriteLine("Refresh token:\n{0}", result.RefreshToken);
+                }
+            }
+        }
     }
 }
+

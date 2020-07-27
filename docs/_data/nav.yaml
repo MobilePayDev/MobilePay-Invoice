@@ -13,6 +13,9 @@ api_reference :
 
 - title: Get invoice status
   url: "api_reference#get-status"
+  
+- title: User consent for InvoiceDirect
+  url: "api_reference#direct-invoice-consent"
 
 - title: Error codes
   url: "api_reference#error-codes"
