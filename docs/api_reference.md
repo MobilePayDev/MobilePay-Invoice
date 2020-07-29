@@ -18,7 +18,7 @@ You can create an invoice directly to MobilePay app. Notice that request require
 POST api/v1/merchants/{merchantId}/invoices
 ```
 
-##### <a name="single_invoice_object"/> Input
+##### <a id="single-invoice-request" name="single_invoice_object"/> Input
 
 |Parameter             |Sub Parameter |Type        |Description |
 |----------------------|--------------|------------|------------|
@@ -199,7 +199,7 @@ Note: Request does not require a <code>ConsumerAlias</code>. It's because Invoic
 POST api/v1/merchants/{merchantId}/invoices/link
 ```
 
-##### <a name="single_invoicelink_object"/> Input
+##### <a id="invoice-link-request" name="single_invoicelink_object"/> Input
 
 |Parameter             |Sub Parameter |Type        |Description |
 |----------------------|--------------|------------|------------|

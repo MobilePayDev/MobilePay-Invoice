@@ -3,7 +3,8 @@ layout: default
 ---
 
 ## Invoice 1.4 Release Notes
- <div class='post-date'> </div>
+<div class='post-date'>28 July 2020 - external_id</div> 
+Due to restrictions in external systems we added recommendation to keep `PaymentReference` up to 30 symbols for [direct invoice](api_reference#single-invoice-request) and [invoice link](api_reference#invoice-link-request) requests.
 
 ### <a name="response_code"></a> 26 june 2020 - User consent for InvoiceDirect released in Sandbox
 New feature: User consent for InvoiceDirect. Read more about user consent for InvoiceDirect [here](https://mobilepaydev.github.io/MobilePay-Invoice/api_reference#direct-invoice-consent) 
