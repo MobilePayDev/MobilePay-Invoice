@@ -57,7 +57,7 @@ PUT /api/v1/merchants/{merchantId}/auth/apikey
 ```
 ```json
 {
-  "api_key": "SomeSecretApiKey123",
+  "ApiKey": "SomeSecretApiKey123",
   "callbackurl": "https://your.url/callbacks/invoice"
 }
 ```
