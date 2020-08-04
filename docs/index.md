@@ -22,7 +22,7 @@ layout: default
 Now you are ready to move on to the authentication section below.  
 
 ## Overview of MobilePay Invoice integration 
-When the merchant is onboarded via  [Production MobilePay Portal](https://admin.mobilepay.dk/), and has ordered Subscriptions, then you can continue with OIDC. 
+When the merchant is onboarded via  [Production MobilePay Portal](https://admin.mobilepay.dk/), and has ordered MobilePay Invoice, then you can continue with OIDC. 
 
 Note: if you are still working on the integration in sandbox, you will use [Sandbox MobilePay Portal](https://sandprod-admin.mobilepay.dk/) from step 5 in part 1.    
 
@@ -43,7 +43,7 @@ In short - The flow is described in the following 5 steps:
 There are many OpenID Connect certified libraries, so you have to chose the one, that suits you best [from this list](http://openid.net/developers/certified/#RPLibs). we recommend <a href="https://github.com/IdentityModel/IdentityModel.OidcClient2">Certified C#/NetStandard OpenID Connect Client Library </a> 
 The flow is described in the following 5 steps:
 
-1. **Call /connect/authorize to initiate user login and consent**  The Merchant must grant consent through mechanism in the OpenID Connect protocol suite. The Hybrid Flow should be initiated. For Subscriptions product the Client must request consent from the merchant using the `subscriptions` scope. You also need to specify `offline_access` scope, in order to get the refresh token. When user clicks on this button, merchant must do back-end call to  `"/authorize"` endpoint for initiating  authentication flow. 
+1. **Call /connect/authorize to initiate user login and consent**  The Merchant must grant consent through mechanism in the OpenID Connect protocol suite. The Hybrid Flow should be initiated. For Invoice product the Client must request consent from the merchant using the `invoice` scope. You also need to specify `offline_access` scope, in order to get the refresh token. When user clicks on this button, merchant must do back-end call to  `"/authorize"` endpoint for initiating  authentication flow. 
 **Docs** [here](https://developer.mobilepay.dk/developersupport/openid/authorize/) 
 
 2. **Wait for the response by listening on the redirect URI and get the authorization code** You need to wait for the response by listening on the `redirect_url` and get the `authorization_code`. Our system will re-direct the merchant back to your system also using the `redirect_url`. 
@@ -59,14 +59,14 @@ The flow is described in the following 5 steps:
 **Docs** [here](https://developer.mobilepay.dk/developersupport/openid/bestpractice/) 
 
 # <a name="authenticationapi"></a> Authentication of API requests 
-The MobilePay API Gateway is ensuring the authentication of all Subscriptions API requests. All API requests must be made over HTTPS. Calls made over plain HTTP will fail. API requests without authentication will also fail.
+The MobilePay API Gateway is ensuring the authentication of all MobilePay Invoice API requests. All API requests must be made over HTTPS. Calls made over plain HTTP will fail. API requests without authentication will also fail.
 
 To be able to use and connect to the API there are few requirements. In order to authenticate to the API, all requests to the API must contain at least three authentication headers:
 1. `x-ibm-client-id`
 2. `x-ibm-client-secret`  
 3. `Authorization` 
 
-Creating an app in MobilePay Developer Portal will create a `x-ibm-client-id` and `x-ibm-client-secret` that should be used in all calls to the MobilePay Subscriptions API  
+Creating an app in MobilePay Developer Portal will create a `x-ibm-client-id` and `x-ibm-client-secret` that should be used in all calls to the MobilePay Invoice API  
 
 ```console
 $ curl --header "Authorization: Bearer <token>" --header 'x-ibm-client-id: client-id' --header 'x-ibm-client-secret: client-secret' --url https://<mobile-pay-root>/api/merchants/me/resource
