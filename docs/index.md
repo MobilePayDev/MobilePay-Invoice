@@ -2,7 +2,7 @@
 layout: default
 ---
 
-# <a name="invoiceclient_onboarding"></a>**Part 1 : Onboarding a Subscriptions client**
+# <a name="invoiceclient_onboarding"></a>**Part 1 : Onboarding a Invoice client**
 
 1. **Read API documentation.** You will find it in the  [APIs menu](https://sandbox-developer.mobilepay.dk/product).  
 
