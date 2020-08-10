@@ -2,6 +2,10 @@
 layout: default
 ---
 
+## Invoice 1.5 Release Notes
+### <a name="response_code"></a> 10 august 2020 - User consent for InvoiceDirect released
+Read more about user consent for InvoiceDirect [here](https://mobilepaydev.github.io/MobilePay-Invoice/api_reference#direct-invoice-consent) 
+
 ## Invoice 1.4 Release Notes
 ### <a name="response_code"></a> 28 july 2020 - PaymentReference
 Due to restrictions in external systems we added recommendation to keep `PaymentReference` up to 30 symbols for [direct invoice](api_reference#single-invoice-request) and [invoice link](api_reference#invoice-link-request) requests.
