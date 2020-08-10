@@ -475,11 +475,7 @@ Invoice status flow can be visualized by the following diagram.
 
 ### <a name="direct-invoice-consent"/> User consent for InvoiceDirect
 
-Goal of this functionality is for Invoice Issuer to ask users phone number and consent to receive Invoices directly to MobilePay (InvoiceDirect). 
-
-<div class="note">
-Note: Current release is just in Sandbox. Release in Production is planned for beginning of August. App version from which functionality can work for users - 4.24.0 (July).
-</div>
+Goal of this functionality is for Invoice Issuer to ask users phone number and consent to receive Invoices directly to MobilePay (InvoiceDirect).
 
 #### Attach a request of consent to send direct invoices to a particular invoice
 
