@@ -708,8 +708,7 @@ SMS is sent for ignored (not accepted or rejected) invoices.
  -   If the due date equals the current date and the invoice is received after 13:30 PM then the the SMS is sent to the user one day after the due date
  
  **SMS to user when payment fails**
- -  If the future payment can't be processed (card action needed, raise limit action needed) SMS is sent Error time +8,5 h.
- - If the future payment can't be processed (other action needed) SMS is sent 13:30.
+ -  If the future payment can't be processed SMS is sent 10:00, but only if user haven't completed payment manually until this time.
  
 
 ##### Limits
