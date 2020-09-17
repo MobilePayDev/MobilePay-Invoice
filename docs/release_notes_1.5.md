@@ -3,6 +3,9 @@ layout: default
 ---
 
 ## Invoice 1.5 Release Notes
+### <a name="response_code"></a> 17 september 2020 - Sms notification time updates, for when future payment can't be processed
+[Sms notification](https://mobilepaydev.github.io/MobilePay-Invoice/api_reference#validations) time is updated from 10:00 UTC to 07:00 UTC (09:00 DK time or 10:00 FI time)
+
 ### <a name="response_code"></a> 03 september 2020 - Sms notification sending updates, for when future payment can't be processed
 [Sms notification](https://mobilepaydev.github.io/MobilePay-Invoice/api_reference#validations) to user is sent at 10:00, after two attempts to make payment. If user completes payment manually after second attempt, but before he gets the notification, sms is not sent. 
 
