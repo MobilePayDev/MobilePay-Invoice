@@ -5,7 +5,8 @@ layout: default
 ## Callbacks
 
 #### How merchants and integrators should handle invoice callbacks 
-It’s asynchronous messaging and we cannot ensure the right order of the events. That’s why we added a property  `Date`  to each status change, so that the merchant’s would know when particular events have happened 
+It’s asynchronous messaging and we cannot ensure the right order of the events. That’s why we added a property  `Date`  to each status change, so that the integrator’s would know when particular events have happened. 
+For example: If the invoice never gets from `accepted` to `paid` due to insufficient funds, then it will be `expired` at some point. If the user tries to pay invoice for at least one time, invoice itself gets `accepted` and the callback is sent to the integrator. So by that, integrator can know if the invoice expired just because user never acted on it, or it expired, but user tried to pay for it at some point.
 
 Invoice callbacks are sent using batches. The job starts every 30 seconds. In the event that the callbacks are received in incorrect order according to your timestamp, please check the property  `Date`. We added property  `Date`  so you can compare the callbacks to the status and the timestamp.
 
