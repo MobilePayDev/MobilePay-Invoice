@@ -5,6 +5,7 @@ layout: default
 ## Invoice 1.5 Release Notes
 ### <a name="response_code"></a> 20 january 2021 - Grant/Reject consent endpoint in UserSimulation API
 You can now test [InvoiceDirect user consent](https://mobilepaydev.github.io/MobilePay-Invoice/api_reference#direct-invoice-consent) functionality in [sandbox](https://sandbox-developer.mobilepay.dk/)
+
 Endpoint was added that can be used to imitate user granting or rejecting consent.
 
 ### <a name="response_code"></a> 17 september 2020 - Sms notification time updates, for when future payment can't be processed
