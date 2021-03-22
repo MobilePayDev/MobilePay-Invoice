@@ -710,13 +710,11 @@ SMS is sent for ignored (not accepted or rejected) invoices.
  -   If the due date equals the current date and the invoice is received after 13:30 then the the SMS is sent to the user one day after the due date
  
  **SMS to user when payment fails**
-
  -  If the future payment can't be processed SMS is sent at 07:00 UTC (09:00 DK time or 10:00 FI time), but only if user hasn't completed payment manually until this time.
 
 [![](assets/images/smsfail.PNG)](assets/images/smsfail.PNG)    
 
 
- 
 
 ##### Limits
 * Consumer daily invoice count <= 10. No more then 10 invoices can be created per consumer from single merchant.
