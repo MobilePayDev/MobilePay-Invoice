@@ -16,8 +16,6 @@ Scheme represents flow when users reviews invoices in app activity list.  Furthe
 Image explains what data of merchant/invoice issuer/invoice is used in the generated PDF and where.
 [![](assets/images/pdf.png)](assets/images/pdf.png)
 
-[PDF_generation.pdf](https://github.com/MobilePayDev/MobilePay-Invoice/blob/master/docs/assets/pdf/PDF_generation.pdf)
-
 ### <a name="link-flows"></a> InvoiceLink flows
 
 #### Dual device flow
