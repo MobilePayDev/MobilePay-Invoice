@@ -3,7 +3,6 @@ layout: default
 ---
 
 ## Invoice 1.5 Release Notes
-
 ### <a name="response_code"></a> 26 january 2020 - Visual design of Invoice PDF changed.
 More information in [Visual examples](https://mobilepaydev.github.io/MobilePay-Invoice/visual_examples)
 
