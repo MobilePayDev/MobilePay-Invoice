@@ -4,7 +4,7 @@ layout: default
 
 ## Invoice 1.5 Release Notes
 ### <a name="response_code"></a> 26 january 2020 - Visual design of Invoice PDF changed.
-More information in [Visual examples](https://mobilepaydev.github.io/MobilePay-Invoice/visual_examples);
+More information in [Visual examples](https://mobilepaydev.github.io/MobilePay-Invoice/visual_examples)
 
 ### <a name="response_code"></a> 03 september 2020 - Sms notification sending updates, for when future payment can't be processed
 [Sms notification](https://mobilepaydev.github.io/MobilePay-Invoice/api_reference#validations) to user is sent at 10:00, after two attempts to make payment. If user completes payment manually after second attempt, but before he gets the notification, sms is not sent. 
