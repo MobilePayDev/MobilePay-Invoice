@@ -12,7 +12,7 @@ High level `InvoiceDirect` flow diagram
 
 #### Create InvoiceDirect
 
-You can create an invoice directly to MobilePay app. Notice that request require a customer mobile phone number, name and surname. Check how invoice looks in the app [here](visual_examples).
+You can create an invoice directly to MobilePay app. Notice that request require a customer mobile phone number. Check how invoice looks in the app [here](visual_examples).
 
 ```
 POST api/v1/merchants/{merchantId}/invoices
@@ -460,6 +460,8 @@ The table below shows all possible statuses.
 
 User accepts the invoice and then pays it immediately or schedules a future payment. The user can change the date, for when the invoice should be paid in the MobilePay app, but nor more than 30 days from the DueDate. For InvoiceLink to be in `rejected` state, the user needs to have first `accepted` the invoice and scheduled for a future payment. Afterwards, it is possible for the user to reject the invoice. 
 
+An expired status can happen, if the user schedules payment for the future, then MobilePay tries to execute it, but an error happens (for example: card is expired) and the user does not change it and just ignores the payment. In the end that payment will expire.
+
 There are two validation steps :  
 1. Merchant validation: If all is good, then MobilePay create the invoice, send the callback `created` to the merchant, and push message to the user. The outcome of this validation is that the Invoice is `created` and delivered to the user, or the Invoice failed to be `created`, and is returned to the merchant. If the validation fails, then MobilePay does not create invoice as an entity in MobilePay domain, so in a way it is kinda a final state. 
 
@@ -699,16 +701,21 @@ A set of business rules apply for an `invoice` before it gets created. If any of
  
 
 ## SMS
- - **SMS to user before due date**
+ **SMS to user before due date**
 
 SMS is sent for ignored (not accepted or rejected) invoices.
 
- -   SMS is sent to the user one day prior the due date at 13.30 PM 
- -   If the due date equals the current date and the invoice is received before 13:30 PM then the SMS is sent to the user on due date
- -   If the due date equals the current date and the invoice is received after 13:30 PM then the the SMS is sent to the user one day after the due date
+ -   SMS is sent to the user one day prior the due date at 13:30
+ -   If the due date equals the current date and the invoice is received before 13:30 then the SMS is sent to the user on due date
+ -   If the due date equals the current date and the invoice is received after 13:30 then the the SMS is sent to the user one day after the due date
  
  **SMS to user when payment fails**
- -  If the future payment can't be processed SMS is sent at 10:00, but only if user hasn't completed payment manually until this time.
+
+ -  If the future payment can't be processed SMS is sent at 07:00 UTC (09:00 DK time or 10:00 FI time), but only if user hasn't completed payment manually until this time.
+
+[![](assets/images/smsfail.PNG)](assets/images/smsfail.PNG)    
+
+
  
 
 ##### Limits
