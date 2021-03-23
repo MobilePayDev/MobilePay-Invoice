@@ -42,15 +42,12 @@ invoiceinapp :
 - title: Payment screens
   url: "invoiceinapp#payment-screens"
 
-invoiceinapp :
 - title: Review invoice
   url: "invoiceinapp#review-invoice"
   
-invoiceinapp :
 - title: PDF example
   url: "invoiceinapp#pdf"
   
-invoiceinapp :
 - title: InvoiceLink flow
   url: "invoiceinapp#link-flows"
 
