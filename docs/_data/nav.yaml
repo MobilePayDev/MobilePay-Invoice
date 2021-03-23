@@ -40,16 +40,16 @@ invoiceinapp_url: "visual_examples"
 
 invoiceinapp :
 - title: Payment screens
-  url: "invoiceinapp#payment-screens"
+  url: "visual_examples#payment-screens"
 
 - title: Review invoice
-  url: "invoiceinapp#review-invoice"
+  url: "visual_examples#review-invoice"
   
 - title: PDF example
-  url: "invoiceinapp#pdf"
+  url: "visual_examples#pdf"
   
 - title: InvoiceLink flow
-  url: "invoiceinapp#link-flows"
+  url: "visual_examples#link-flows"
 
 release_notes_title: Release Notes
 release_notes:
