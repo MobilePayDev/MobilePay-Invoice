@@ -3,6 +3,9 @@ layout: default
 ---
 
 ## Invoice 1.5 Release Notes
+### <a name="response_code"></a> 26 january 2020 - Visual design of Invoice PDF changed.
+More information in [Visual examples](https://mobilepaydev.github.io/MobilePay-Invoice/visual_examples)
+
 ### <a name="response_code"></a> 20 january 2021 - Grant/Reject consent endpoint in UserSimulation API
 You can now test [InvoiceDirect user consent](https://mobilepaydev.github.io/MobilePay-Invoice/api_reference#direct-invoice-consent) functionality in [sandbox](https://sandbox-developer.mobilepay.dk/)
 

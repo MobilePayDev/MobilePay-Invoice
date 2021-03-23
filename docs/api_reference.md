@@ -714,7 +714,7 @@ SMS is sent for ignored (not accepted or rejected) invoices.
 
 [![](assets/images/smsfail.PNG)](assets/images/smsfail.PNG)    
 
- 
+
 
 ##### Limits
 * Consumer daily invoice count <= 10. No more then 10 invoices can be created per consumer from single merchant.
