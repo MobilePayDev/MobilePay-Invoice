@@ -38,6 +38,19 @@ callbacks_url: "callbacks"
 invoiceinapp_title: Visual examples
 invoiceinapp_url: "visual_examples"
 
+invoiceinapp :
+- title: Payment screens
+  url: "invoiceinapp#payment-screens"
+
+- title: Review invoice
+  url: "invoiceinapp#review-invoice"
+  
+- title: PDF example
+  url: "invoiceinapp#pdf"
+  
+- title: InvoiceLink flow
+  url: "invoiceinapp#link-flows"
+
 release_notes_title: Release Notes
 release_notes:
 - title: Invoice 1.5
