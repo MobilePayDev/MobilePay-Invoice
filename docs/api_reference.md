@@ -245,13 +245,6 @@ POST api/v1/merchants/{merchantId}/invoices/link
     </p>
 </div>
 
-<div class="note">
-    <strong>Note:</strong>
-    <p>
-        If not accepted, invoice link will expire 30 days after due date. After expiration invoice link data is deleted.
-    </p>
-</div>
-
 ##### Example
 
 ```json
@@ -319,6 +312,13 @@ HTTP 202 Accepted
     ]
 }
 ```
+
+<div class="note">
+    <strong>Note:</strong>
+    <p>
+        If not accepted, invoice link will expire 30 days after due date. After expiration invoice link data is deleted.
+    </p>
+</div>
 
 #### <a name="create_multiple_invoice_links"/> Create multiple invoice links
 
