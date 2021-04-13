@@ -316,7 +316,7 @@ HTTP 202 Accepted
 <div class="note">
     <strong>Note:</strong>
     <p>
-        If not accepted, invoice link will expire 30 days after due date. After expiration invoice link data is deleted.
+        If not accepted, invoice link will expire 30 days after due date. After expiration invoice link data and PDF will be deleted.
     </p>
 </div>
 
