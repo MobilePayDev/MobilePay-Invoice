@@ -3,7 +3,10 @@ layout: default
 ---
 
 ## Invoice 1.5 Release Notes
-### <a name="response_code"></a> 26 january 2020 - Visual design of Invoice PDF changed.
+### <a name="response_code"></a> 1 april 2021 - Invoice link is deleted after expiration
+Invoice link data is deleted once it expires.
+
+### <a name="response_code"></a> 26 january 2021 - Visual design of Invoice PDF changed.
 More information in [Visual examples](https://mobilepaydev.github.io/MobilePay-Invoice/visual_examples)
 
 ### <a name="response_code"></a> 20 january 2021 - Grant/Reject consent endpoint in UserSimulation API
