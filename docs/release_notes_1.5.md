@@ -3,7 +3,7 @@ layout: default
 ---
 
 ## Invoice 1.5 Release Notes
-### <a name="response_code"></a> 30 april 2021 - Added Sequence number to the callbacks
+### <a name="response_code"></a> 6 may 2021 - Added Sequence number to the callbacks
 [Sequence](callbacks#sequence_note) number can be used to determine the real order of the invoice events.
 
 ### <a name="response_code"></a> 1 april 2021 - Invoice link is deleted after expiration
