@@ -71,14 +71,16 @@ Example of our callback body:
   {
     "InvoiceId": "3c440dfb-b271-4d21-ad1c-f973f2c4f448",
     "Status": "Rejected",
-    "Date":"2018-04-24T07:29:47.7500268+00:00"
+    "Date": "2018-04-24T07:29:47.7500268+00:00",
+    "Sequence": 2
   },
   {
     "InvoiceId": "3c440dfb-b271-4d21-ad1c-f973f2c4f449",
     "Status": "Invalid",
     "ErrorCode": 10106,
     "ErrorMessage": "<description of error>",
-    "Date":"2018-04-24T07:29:47.7500268+00:00"
+    "Date": "2018-04-24T07:29:47.7500268+00:00",
+    "Sequence": 1
   },
   ...
 ]
@@ -93,6 +95,10 @@ Example of our callback body:
 <strong>Note:</strong> When status of an invoice is <code>invalid</code> two additional fields will be added: <code>ErrorCode</code> and <code>ErrorMessage</code>. All possible validation errors can be found in <a href="api_reference#validations">validations</a> section.
 </div>
 
+<div id="sequence_note" class="note">
+<strong>Note:</strong> Callbacks of the events that are fired one right after another might be sent out in wrong order. <code>Sequence</code> field can be used to find out the real order of the events. <code>Sequence</code> number starts from 0. There might be gaps between the sequence numbers because not all events are sent as a callbacks.
+</div>
+
 Callbacks about created `InvoiceLinks` which were created asynchronously using [batch endpoint](api_reference#create_multiple_invoice_links) will contain additional field `Links` with `Rel="user-redirect"` and `Href` to the page where MobilePay users can accept an invoice, e.g.:
 ```json
 [
@@ -105,7 +111,8 @@ Callbacks about created `InvoiceLinks` which were created asynchronously using [
         "Href": "<url-for-accepting-invoice>"
       }
     ],
-    "Date":"2018-04-24T07:29:47.7500268+00:00"
+    "Date":"2018-04-24T07:29:47.7500268+00:00",
+    "Sequence": 1
   },
   ...
 ]
