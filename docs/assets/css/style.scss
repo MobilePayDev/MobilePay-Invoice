@@ -3,6 +3,15 @@
 
 @import "{{ site.theme }}";
 
+body {
+    padding-top: 20px;
+}
+
+h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 p>code, li>code, td>code {
     border-radius: 3px;
     border: 1px solid #ccc;
