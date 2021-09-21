@@ -51,6 +51,9 @@ invoiceinapp :
 - title: InvoiceLink flow
   url: "visual_examples#link-flows"
 
+coming_soon_title: Coming soon
+coming_soon_url: "coming_soon"
+
 release_notes_title: Release Notes
 release_notes:
 - title: Invoice 1.5
