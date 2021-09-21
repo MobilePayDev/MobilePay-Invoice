@@ -27,6 +27,7 @@
           {% for item in site.data.nav.invoiceinapp %}
             <p class="view"><a href="{{ item.url }}">{{ item.title }}</a></p>
           {% endfor %}
+        <h3><a href="{{ site.data.nav.coming_soon_url }}"> 🤫 {{ site.data.nav.coming_soon_title }}</a></h3>
         <h3>{{ site.data.nav.release_notes_title }}</h3>
           {% for item in site.data.nav.release_notes %}
             <p class="view"><a href="{{ item.url }}">{{ item.title }}</a></p>
