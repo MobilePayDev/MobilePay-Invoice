@@ -28,34 +28,34 @@ POST api/v1/merchants/{merchantId}/invoices
 ||`AliasType`|`string` | **Required.** Alias type of the MobilePay user. <br/> Only value allowed is `Phone`.                                                            |
 |`ConsumerName`      |              |`string`      |Full name of the MobilePay user.|
 |`TotalAmount`       |              |`decimal`     |**Required.** The requested amount to be paid. <br/> >0.00, decimals separated with a dot.|
-|`TotalVatAmount`    |              |`decimal`     |**Required.** VAT amount. Decimals separated with a dot.                                  |
+|`TotalVatAmount`    |              |`decimal`     |VAT amount. Decimals separated with a dot.                                  |
 |`CountryCode`       |              |`string(2)`   |**Required.** Country code. Either `DK` or `FI` is allowed.                             |
 |`CurrencyCode`      |              |`string(3)`   |**Required.** Currency code. If you set `CountryCode` as `DK` then it should be `DKK`. If you set `CountryCode` as `FI` then it should be `EUR`.|
 |`ConsumerAddressLines`|            |`string[]`      |Address of consumer receiving the invoice.                                |
 |`DeliveryAddressLines`|            |`string[]`      |Delivery address.                                                                       |
-|`InvoiceNumber`     |              |`string`      |**Required.** Invoice number. It will be used if PaymentReference is not filled.                                                           |
-|`IssueDate`         |              |`date`        |**Required.** Issue date of invoice. ISO date format: `YYYY-MM-DD`                      |
+|`InvoiceNumber`     |              |`string`      |**At least one of the fields `InvoiceNumber` or `PaymentReference` is required.** Invoice number. It will be used if PaymentReference is not filled.                                                           |
+|`IssueDate`         |              |`date`        |Issue date of invoice. ISO date format: `YYYY-MM-DD`                      |
 |`DueDate`           |              |`date`        |**Required.** Payment due date. Must be between today and 400 days ahead, otherwise the request will be declined. ISO date format: `YYYY-MM-DD`|
-|`OrderDate`         |              |`date`        |**Required.** Order date of invoice. ISO date format: `YYYY-MM-DD`                      |
-|`DeliveryDate`      |              |`date`        |**Required.** Delivery date of invoice. ISO date format: `YYYY-MM-DD`                   |
+|`OrderDate`         |              |`date`        |Order date of invoice. ISO date format: `YYYY-MM-DD`                      |
+|`DeliveryDate`      |              |`date`        |Delivery date of invoice. ISO date format: `YYYY-MM-DD`                   |
 |`Comment`           |              |`string`      |Additional information to the consumer.                                                 |
 |`MerchantContactName`|             |`string`      |Contact name for the individual who issued the invoice.                                 |
 |`MerchantOrderNumber`|             |`string`      |The merchant order number for the invoice used internally by the merchant.              |
 |`BuyerOrderNumber`|                |`string`        |The buyer order number for the invoice used externally by the merchant.               |
-|`PaymentReference`  |              |`string(60)*`  |Reference used on the payment to do reconciliation if merchant has chosen Instant Transfer method. If not filled, InvoiceNumber will be used as reference.|
+|`PaymentReference`  |              |`string(60)*`  |**At least one of the fields `InvoiceNumber` or `PaymentReference` is required.** Reference used on the payment to do reconciliation if merchant has chosen Instant Transfer method. If not filled, InvoiceNumber will be used as reference.|
 |`InvoiceUrl`  |              |`string`  |URL to the Invoice PDF provided by merchant.|
 |`InvoiceArticles` |            |`array`      |**At least one is required.**                                                                |
-|    |`ArticleNumber`           |`string`     |**Required.** Article Number, e.g. 123456ABC                                                 |
+|    |`ArticleNumber`           |`string`     |Article Number, e.g. 123456ABC                                                 |
 |    |`ArticleDescription`      |`string`     |**Required.** Article Description.                                                           |
-|    |`VATRate`                 |`decimal`    |**Required.** VAT Rate of article.                                                            |
-|    |`TotalVATAmount`          |`decimal`    |**Required.** Total VAT amount of article. Decimals separated with a dot.                                                    |
-|    |`TotalPriceIncludingVat`  |`decimal`    |**Required.** Total price of article including VAT.                                          |
-|    |`Unit`                    |`string`     |**Required.** Unit, e.g. Pcs, Coli.                                                          |
+|    |`VATRate`                 |`decimal`    |VAT Rate of article.                                                            |
+|    |`TotalVATAmount`          |`decimal`    |Total VAT amount of article. Decimals separated with a dot.                                                    |
+|    |`TotalPriceIncludingVat`  |`decimal`    |Total price of article including VAT.                                          |
+|    |`Unit`                    |`string`     |Unit, e.g. Pcs, Coli.                                                          |
 |    |`Quantity`                |`decimal`    |**Required.** Quantity of article. Allowed to have more than two decimal digits.             |
-|    |`PricePerUnit`            |`decimal`    |**Required.** Price per unit. Allowed to have more than two decimal digits.                  |
-|    |`PriceReduction`          |`decimal`    |**Required.** Price reduction.                                                                             |
-|    |`PriceDiscount`           |`decimal`    |**Required.** Price discount.                                                                              |
-|    |`Bonus`                   |`decimal`    |**Required.** Bonus of article.                                                                            |
+|    |`PricePerUnit`            |`decimal`    |Price per unit. Allowed to have more than two decimal digits.                  |
+|    |`PriceReduction`          |`decimal`    |Price reduction.                                                                             |
+|    |`PriceDiscount`           |`decimal`    |Price discount.                                                                              |
+|    |`Bonus`                   |`decimal`    |Bonus of article.                                                                            |
 
 <div class="note">
     <strong>Note:</strong>
@@ -209,34 +209,34 @@ POST api/v1/merchants/{merchantId}/invoices/link
 ||`AliasType`|`string` |Alias type of the MobilePay user. This will be autofilled in the landing page if user opens the link not on the phone <br/> Only value allowed is `Phone`.                                                            |
 |`ConsumerName`      |              |`string`      |Full name of the MobilePay user.|
 |`TotalAmount`       |              |`decimal`     |**Required.** The requested amount to be paid. <br/> >0.00, decimals separated with a dot.|
-|`TotalVatAmount`    |              |`decimal`     |**Required.** VAT amount. Decimals separated with a dot.                                  |
+|`TotalVatAmount`    |              |`decimal`     |VAT amount. Decimals separated with a dot.                                  |
 |`CountryCode`       |              |`string(2)`   |**Required.** Country code. Either `DK` or `FI` is allowed.                             |
 |`CurrencyCode`      |              |`string(3)`   |**Required.** Currency code. If you set `CountryCode` as `DK` then it should be `DKK`. If you set `CountryCode` as `FI` then it should be `EUR`.|
 |`ConsumerAddressLines`|            |`string[]`    |Address of consumer receiving the invoice.                                |
 |`DeliveryAddressLines`|            |`string[]`    |Delivery address.                                                                       |
-|`InvoiceNumber`     |              |`string`      |**Required.** Invoice number.                                                           |
-|`IssueDate`         |              |`date`        |**Required.** Issue date of invoice. ISO date format: `YYYY-MM-DD`                      |
+|`InvoiceNumber`     |              |`string`      |**At least one of the fields `InvoiceNumber` or `PaymentReference` is required.**  Invoice number.                                                           |
+|`IssueDate`         |              |`date`        |Issue date of invoice. ISO date format: `YYYY-MM-DD`                      |
 |`DueDate`           |              |`date`        |**Required.** Payment due date. Must be between today and 400 days ahead, otherwise the request will be declined. ISO date format: `YYYY-MM-DD`|
-|`OrderDate`         |              |`date`        |**Required.** Order date of invoice. ISO date format: `YYYY-MM-DD`                      |
-|`DeliveryDate`      |              |`date`        |**Required.** Delivery date of invoice. ISO date format: `YYYY-MM-DD`                   |
+|`OrderDate`         |              |`date`        |Order date of invoice. ISO date format: `YYYY-MM-DD`                      |
+|`DeliveryDate`      |              |`date`        |Delivery date of invoice. ISO date format: `YYYY-MM-DD`                   |
 |`Comment`           |              |`string`      |Additional information to the consumer.                                                 |
 |`MerchantContactName`|             |`string`      |Contact name for the individual who issued the invoice.                                 |
 |`MerchantOrderNumber`|             |`string`      |The merchant order number for the invoice used internally by the merchant.              |
 |`BuyerOrderNumber`|                |`string`      |The buyer order number for the invoice used externally by the merchant.               |
-|`PaymentReference`  |              |`string(60)*`  |Reference used on the payment to do reconciliation. If not filled, invoice number will be used as reference.|
+|`PaymentReference`  |              |`string(60)*`  |**At least one of the fields `InvoiceNumber` or `PaymentReference` is required.** Reference used on the payment to do reconciliation. If not filled, invoice number will be used as reference.|
 |`InvoiceUrl`  |              |`string`  |URL to the Invoice PDF provided by merchant.|
 |`InvoiceArticles` |            |`array`      |**At least one is required.**                                                                |
-|    |`ArticleNumber`           |`string`     |**Required.** Article Number, e.g. 123456ABC                                                 |
+|    |`ArticleNumber`           |`string`     |Article Number, e.g. 123456ABC                                                 |
 |    |`ArticleDescription`      |`string`     |**Required.** Article Description.                                                           |
-|    |`VATRate`                 |`decimal`    |**Required.** VAT Rate of article.                                                           |
-|    |`TotalVATAmount`          |`decimal`    |**Required.** Total VAT amount of article. Decimals separated with a dot.                                                   |
-|    |`TotalPriceIncludingVat`  |`decimal`    |**Required.** Total price of article including VAT.                                          |
-|    |`Unit`                    |`string`     |**Required.** Unit, e.g. Pcs, Coli.                                                          |
+|    |`VATRate`                 |`decimal`    |VAT Rate of article.                                                           |
+|    |`TotalVATAmount`          |`decimal`    |Total VAT amount of article. Decimals separated with a dot.                                                   |
+|    |`TotalPriceIncludingVat`  |`decimal`    |Total price of article including VAT.                                          |
+|    |`Unit`                    |`string`     |Unit, e.g. Pcs, Coli.                                                          |
 |    |`Quantity`                |`decimal`    |**Required.** Quantity of article. Allowed to have more than two decimal digits.                                                           |
-|    |`PricePerUnit`            |`decimal`    |**Required.** Price per unit. Allowed to have more than two decimal digits.                                                                |
-|    |`PriceReduction`          |`decimal`    |**Required.** Price reduction.                                                                             |
-|    |`PriceDiscount`           |`decimal`    |**Required.** Price discount.                                                                              |
-|    |`Bonus`                   |`decimal`    |**Required.** Bonus of article.                                                                            |
+|    |`PricePerUnit`            |`decimal`    |Price per unit. Allowed to have more than two decimal digits.                                                                |
+|    |`PriceReduction`          |`decimal`    |Price reduction.                                                                             |
+|    |`PriceDiscount`           |`decimal`    |Price discount.                                                                              |
+|    |`Bonus`                   |`decimal`    |Bonus of article.                                                                            |
 
 <div class="note">
     <strong>Note:</strong>
