@@ -3,6 +3,27 @@ layout: default
 ---
 
 ## Invoice 1.5 Release Notes
+### <a name="response_code"></a> 10 november 2021 - Invoicing has become more flexible. These fields are optional:
+<ul>
+<li><code>TotalVatAmount</code></li>
+<li><code>InvoiceNumber</code></li>
+<li><code>IsueDate</code></li>
+<li><code>OrderDate</code></li>
+<li><code>DeliveryDate</code></li>
+<li><code>ArticleNumber</code></li>
+<li><code>VATRate</code></li>
+<li><code>TotalVatAmount</code></li>
+<li><code>Unit</code></li>
+<li><code>PricePerUnit</code></li>
+<li><code>PriceReduction</code></li>
+<li><code>PriceDiscount</code></li>
+<li><code>Bonus</code></li>
+</ul>
+
+Also only either <code>InvoiceNumber</code> or <code>PaymentReference</code> must be filled, because it is used in transaction reporting and reconciliation. Other one is optional.
+
+More information in [InvoiceDirect](https://mobilepaydev.github.io/MobilePay-Invoice/api_reference#direct) and [InvoiceLink](https://mobilepaydev.github.io/MobilePay-Invoice/api_reference#link).
+
 ### <a name="response_code"></a> 6 may 2021 - Added Sequence number to the callbacks
 [Sequence](callbacks#sequence_note) number can be used to determine the real order of the invoice events.
 
