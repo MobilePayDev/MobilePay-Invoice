@@ -3,6 +3,9 @@ layout: default
 ---
 
 ## Invoice 1.5 Release Notes
+### <a name="response_code"></a> 16 november 2021 - Added GrantedOn field to Invoice Direct user consent response
+[InvoiceDirect user consent](https://mobilepaydev.github.io/MobilePay-Invoice/api_reference#direct-invoice-consent) response now has GrantedOn field that shows exact time when the consent was granted.
+
 ### <a name="response_code"></a> 10 november 2021 - Invoicing has become more flexible. These fields are optional:
 <ul>
 <li><code>TotalVatAmount</code></li>
