@@ -598,7 +598,7 @@ HTTP 200 OK
   "InvoiceId": "c0b6e35d-9dfb-47d4-9c9c-1cdfd181e0a4",
   "PhoneNumber": "+4577007700",
   "State": "Pending",
-  "GrantedOn": "null"
+  "GrantedOn": null
 }
 ```
 
