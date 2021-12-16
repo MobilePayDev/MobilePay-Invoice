@@ -562,7 +562,8 @@ HTTP 200 OK
       "ConsentId": "e518e841-c058-422c-b8d9-d4d71bf671c4",
       "InvoiceId": "c0b6e35d-9dfb-47d4-9c9c-1cdfd181e0a4",
       "PhoneNumber": "+4577007700",
-      "State": "Granted"
+      "State": "Granted",
+      "GrantedOn": "2021-01-01T12:34:56+00:00"
     }
   ],
   "PagingState": null
@@ -596,7 +597,8 @@ HTTP 200 OK
   "ConsentId": "e518e841-c058-422c-b8d9-d4d71bf671c4",
   "InvoiceId": "c0b6e35d-9dfb-47d4-9c9c-1cdfd181e0a4",
   "PhoneNumber": "+4577007700",
-  "State": "Pending"
+  "State": "Pending",
+  "GrantedOn": null
 }
 ```
 
