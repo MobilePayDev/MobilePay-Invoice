@@ -94,7 +94,7 @@ Find the configuration links below:
 
  - [ ] 1. [ Create an new InvoiceDirect](https://mobilepaydev.github.io/MobilePay-Invoice/api_reference#direct)  
  - [ ] 2. [ Create multiple InvoiceDirect](https://mobilepaydev.github.io/MobilePay-Invoice/api_reference#direct-create-multiple-invoices)
- - [ ] 3. [Cancel an unpaid Invoice](https://mobilepaydev.github.io/MobilePay-Invoice/api_reference#direct#-cancel-invoice)  
+ - [ ] 3. [Cancel an unpaid Invoice](https://mobilepaydev.github.io/MobilePay-Invoice/api_reference#-cancel-invoice)  
  - [ ] 4. Create an Invoice Link 
  - [ ] 5. Create multiple InvoiceLink
  - [ ] 6. Test User Consent for Invoice Direct 
