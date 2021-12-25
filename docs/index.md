@@ -95,7 +95,7 @@ Find the configuration links below:
  - [ ] 1. [ Create an new InvoiceDirect](https://mobilepaydev.github.io/MobilePay-Invoice/api_reference#direct)  
  - [ ] 2. [ Create multiple InvoiceDirect](https://mobilepaydev.github.io/MobilePay-Invoice/api_reference#direct-create-multiple-invoices)
  - [ ] 3. [Cancel an unpaid Invoice](https://mobilepaydev.github.io/MobilePay-Invoice/api_reference#-cancel-invoice)  
- - [ ] 4. Create an Invoice Link 
+ - [ ] 4. [Create an Invoice Link](https://mobilepaydev.github.io/MobilePay-Invoice/api_reference#link)
  - [ ] 5. Create multiple InvoiceLink
  - [ ] 6. Test User Consent for Invoice Direct 
  - [ ] 7. Have you specified a callback URL and chosen a preferred authentication method?
@@ -107,7 +107,9 @@ Find the configuration links below:
 ### Step 4 - Avoid Integration pitfalls 
  - [ ]  10. The MobilePay branding must be according to the [MobilePay design guidelines](https://developer.mobilepay.dk/design)
  - [ ]  11. Implement all [callbacks](https://mobilepaydev.github.io/MobilePay-Invoice/callbacks) and handle all callbacks, both for successful and unsuccessful invoices. 
- - [ ]  12. Use the [Transaction Reporting API](https://mobilepaydev.github.io/MobilePay-TransactionReporting-API/) which contains GET calls containing specific transaction and transfer information, specifically the parameter `PaymentReference` as it directly is mapped to `merchant_reference`
+ - [ ]  12. You should implement [GET calls](https://github.com/MobilePayDev/MobilePay-Invoice/blob/master/docs/api_reference.md#-get-invoice-status) so you always know the status of the payment, in case you have issues with retrieving callbacks. 
+ - [ ]  13. Use the [Transaction Reporting API](https://mobilepaydev.github.io/MobilePay-TransactionReporting-API/) which contains GET calls containing specific transaction and transfer information, specifically the parameter `PaymentReference` as it directly is mapped to `merchant_reference`
+
 
 
 ----------
