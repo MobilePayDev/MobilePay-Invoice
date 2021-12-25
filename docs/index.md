@@ -14,7 +14,7 @@ layout: default
 -  Invoice
 -  Invoice User Simulation
  
-5. **Receive OAuth  Credentials via zip file.** The Credentials will be used when calling the token endpoint (described below) to generate an `access token`. The zip file will be sent via e-mail. The zip file is locked with a password. DeveloperSupport will provide the password via text message to ensure the password protected file and the password is not transmitted together. You will also receive a testuser to  [Sandbox MobilePay Portal](https://sandprod-admin.mobilepay.dk/)
+5. **Receive OAuth  Credentials via zip file.** The Credentials will be used when calling the token endpoint (described below) to generate an `access token`. The zip file will be sent via e-mail. The zip file is locked with a password. DeveloperSupport will provide the password via text message. You will also receive a testuser to  [Sandbox MobilePay Portal](https://sandprod-admin.mobilepay.dk/)
 
 
 6. **Send your redirect URI to developer@mobilepay.dk** The `redirect_uri` will be used once the user authenticates successfully. MobilePay will only redirect users to a registered `redirect_uri`, in order to prevent redirection attacks where an `authorization_code` or `access_token` can be obtained by an attacker. The `redirect_uri` must be an https endpoint to prevent tokens from being intercepted during the authorization process. You need to provide your own `redirect_uri` and send it to developer@mobilepay.dk so it can be whitelisted. We will whitelist is as soon as we process your email request and we will confirm via e-mail, once it has been whitelisted.
@@ -72,15 +72,10 @@ Creating an app in MobilePay Developer Portal will create a `x-ibm-client-id` an
 $ curl --header "Authorization: Bearer <token>" --header 'x-ibm-client-id: client-id' --header 'x-ibm-client-secret: client-secret' --url https://<mobile-pay-root>/api/merchants/me/resource
 ```
 
-### Best Practice
-- You can read more about the product [here](https://developer.mobilepay.dk/invoice-main/productinfo).
+### OpenID Connect - Best Practice
 - Pick an OpenID Connect library: we recommend <a href="https://github.com/IdentityModel/IdentityModel.OidcClient2">Certified C#/NetStandard OpenID Connect Client Library for native mobile/desktop Applications</a> 
 - Read the FAQ's for OpenID Connect <a href="https://developer.mobilepay.dk/faq/oidc">here</a>
 - Integration is based on common standard OpenID Connect. You can find more [here](https://developer.mobilepay.dk/developersupport/openid/). 
-- An example of how to use OpenID connect in C# can be found [here](https://github.com/MobilePayDev/MobilePay-Invoice/tree/master/ClientExamples)
-- You can find links to the official Hybrid Flow [here](https://openid.net/specs/openid-connect-core-1_0.html#HybridFlowAuth).   
-- See the video tutorial  [here](https://developer.mobilepay.dk/developersupport/openid/tutorial)
-
 
 * * *
 
@@ -91,3 +86,29 @@ Find the configuration links below:
 |------------|-------|
 |Sandbox    | Denmark <a href="https://sandprod-admin.mobilepay.dk/account/.well-known/openid-configuration">https://sandprod-admin.mobilepay.dk/account/.well-known/openid-configuration</a> <br> Finland <a href="https://sandprod-admin.mobilepay.fi/account/.well-known/openid-configuration">https://sandprod-admin.mobilepay.fi/account/.well-known/openid-configuration</a> |
 |Production  | Denmark <a href="https://admin.mobilepay.dk/account/.well-known/openid-configuration">https://admin.mobilepay.dk/account/.well-known/openid-configuration</a> <br> Finland <a href="https://admin.mobilepay.fi/account/.well-known/openid-configuration">https://admin.mobilepay.fi/account/.well-known/openid-configuration</a>|
+
+
+### Step 3 - Test
+
+----------
+
+ - [ ] 1. [ Create an new InvoiceDirect](https://mobilepaydev.github.io/MobilePay-Invoice/api_reference#direct)  
+ - [ ] 2.  Create multiple InvoiceDirect  
+ - [ ] 3.  [Cancel an unpaid Invoice](https://mobilepaydev.github.io/MobilePay-Subscriptions/payments#requests)  
+ - [ ] 4. Create an Invoice Link 
+ - [ ] 5. Create multiple InvoiceLink
+ - [ ] 6. Test User Consent for Invoice Direct 
+ - [ ] 7. Have you specified a callback URL and chosen a preferred authentication method?
+ - [ ] 8. Do you sort callbacks by the property `date`?
+ - [ ] 9. Do you ensure that the `PaymentReference` meets customer needs in terms of reconciliation?
+
+----------
+
+### Step 4 - Avoid Integration pitfalls 
+ - [ ]  10. The MobilePay branding must be according to the [MobilePay design guidelines](https://developer.mobilepay.dk/design)
+ - [ ]  11. Implement all [callbacks](https://mobilepaydev.github.io/MobilePay-Invoice/callbacks) and handle all callbacks, both for successful and unsuccessful invoices. 
+ - [ ]  12. Use the [Transaction Reporting API] (https://mobilepaydev.github.io/MobilePay-TransactionReporting-API/) which contains GET calls containing specific transaction and transfer information, specifically the parameter `PaymentReference` as it directly is mapped to merchant_reference
+
+
+----------
+
