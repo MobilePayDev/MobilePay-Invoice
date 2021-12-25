@@ -107,7 +107,7 @@ Find the configuration links below:
 ### Step 4 - Avoid Integration pitfalls 
  - [ ]  10. The MobilePay branding must be according to the [MobilePay design guidelines](https://developer.mobilepay.dk/design)
  - [ ]  11. Implement all [callbacks](https://mobilepaydev.github.io/MobilePay-Invoice/callbacks) and handle all callbacks, both for successful and unsuccessful invoices. 
- - [ ]  12. Use the [Transaction Reporting API] (https://mobilepaydev.github.io/MobilePay-TransactionReporting-API/) which contains GET calls containing specific transaction and transfer information, specifically the parameter `PaymentReference` as it directly is mapped to merchant_reference
+ - [ ]  12. Use the [Transaction Reporting API](https://mobilepaydev.github.io/MobilePay-TransactionReporting-API/) which contains GET calls containing specific transaction and transfer information, specifically the parameter `PaymentReference` as it directly is mapped to `merchant_reference`
 
 
 ----------
