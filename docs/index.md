@@ -5,18 +5,12 @@ layout: default
 # <a name="invoiceclient_onboarding"></a>**Part 1 : Onboarding a Invoice client**
 
 1. **Read API documentation.** You will find it in the  [APIs menu](https://sandbox-developer.mobilepay.dk/product).  
-
 2. **Log-in on the developer portal.** Go to [Sandbox developer portal](https://sandbox-developer.mobilepay.dk/) and log in with your credentials.
-
 3. **Create an app in the developer portal.** Go to My Apps > Create new App to register a new application. You need to supply the `x-ibm-client-id` when calling APIs. You should always store the `x-ibm-client-id` in a secure location, and never reveal it publicly.  More details about the usage of `x-ibm-client-id` below in the authentication section. 
-
 4. **Subscribe the app to APIs.**  Go to [APIs](https://sandbox-developer.mobilepay.dk/product) and subscribe to the following APIs:
 -  Invoice
 -  Invoice User Simulation
- 
 5. **Receive OAuth  Credentials via zip file.** The Credentials will be used when calling the token endpoint (described below) to generate an `access token`. The zip file will be sent via e-mail. The zip file is locked with a password. DeveloperSupport will provide the password via text message. You will also receive a testuser to  [Sandbox MobilePay Portal](https://sandprod-admin.mobilepay.dk/)
-
-
 6. **Send your redirect URI to developer@mobilepay.dk** The `redirect_uri` will be used once the user authenticates successfully. MobilePay will only redirect users to a registered `redirect_uri`, in order to prevent redirection attacks where an `authorization_code` or `access_token` can be obtained by an attacker. The `redirect_uri` must be an https endpoint to prevent tokens from being intercepted during the authorization process. You need to provide your own `redirect_uri` and send it to developer@mobilepay.dk so it can be whitelisted. We will whitelist is as soon as we process your email request and we will confirm via e-mail, once it has been whitelisted.
 
 Now you are ready to move on to the authentication section below.  
@@ -24,24 +18,17 @@ Now you are ready to move on to the authentication section below.
 ## Overview of MobilePay Invoice integration 
 When the merchant is onboarded via  [Production MobilePay Portal](https://admin.mobilepay.dk/), and has ordered MobilePay Invoice, then you can continue with OIDC. 
 
-Note: if you are still working on the integration in sandbox, you will use [Sandbox MobilePay Portal](https://sandprod-admin.mobilepay.dk/) from step 5 in part 1.    
-
-This document explains how to make a technical integration to the **MobilePay Invoice** product. The audience for this document is either technical integrators acting on behalf of merchants or merchants creating their own integrations.
-
+Note: if you are still working on the integration in sandbox, you will use [Sandbox MobilePay Portal](https://sandprod-admin.mobilepay.dk/) from step 5 in part 1.  
 
 ### OpenID flow
 [![](assets/images/OpenIdflowWithFIandAuthorize.png)](assets/images/OpenIdflowWithFIandAuthorize.png)    
-      
 
 When user clicks on this button, merchant must do back-end call to   
-[`"/authorize"`](https://developer.mobilepay.dk/products/openid/authorizeo) endpoint for initiating  authentication flow. You need to wait for the response by listening on the redirect URI and get the Authorization Code. Our system will re-direct the merchant back to your system also using the redirect URL. 
+[`"/authorize"`](https://developer.mobilepay.dk/products/openid/authorize) endpoint for initiating  authentication flow. You need to wait for the response by listening on the redirect URI and get the Authorization Code. Our system will re-direct the merchant back to your system also using the redirect URL. 
  
-In short - The flow is described in the following 5 steps:
-
 ## 5 steps to Implementing OpenID Connect 
 
 There are many OpenID Connect certified libraries, so you have to chose the one, that suits you best [from this list](http://openid.net/developers/certified/#RPLibs). we recommend <a href="https://github.com/IdentityModel/IdentityModel.OidcClient2">Certified C#/NetStandard OpenID Connect Client Library </a> 
-The flow is described in the following 5 steps:
 
 1. **Call /connect/authorize to initiate user login and consent**  The Merchant must grant consent through mechanism in the OpenID Connect protocol suite. The Hybrid Flow should be initiated. For Invoice product the Client must request consent from the merchant using the `invoice` scope. You also need to specify `offline_access` scope, in order to get the refresh token. When user clicks on this button, merchant must do back-end call to  `"/authorize"` endpoint for initiating  authentication flow. 
 **Docs** [here](https://developer.mobilepay.dk/developersupport/openid/authorize/) 
@@ -74,7 +61,6 @@ $ curl --header "Authorization: Bearer <token>" --header 'x-ibm-client-id: clien
 
 ### OpenID Connect - Best Practice
 - Pick an OpenID Connect library: we recommend <a href="https://github.com/IdentityModel/IdentityModel.OidcClient2">Certified C#/NetStandard OpenID Connect Client Library for native mobile/desktop Applications</a> 
-- Read the FAQ's for OpenID Connect <a href="https://developer.mobilepay.dk/faq/oidc">here</a>
 - Integration is based on common standard OpenID Connect. You can find more [here](https://developer.mobilepay.dk/developersupport/openid/). 
 
 * * *
@@ -105,12 +91,19 @@ Find the configuration links below:
 ----------
 
 ### Step 4 - Avoid Integration pitfalls 
- - [ ]  10. The MobilePay branding must be according to the [MobilePay design guidelines](https://developer.mobilepay.dk/design)
+
+----------
+ - [ ]  10. Implement the correct "Pay with MobilePay" buttons and the MobilePay branding must be according to the [MobilePay design guidelines](https://developer.mobilepay.dk/design)
  - [ ]  11. Implement all [callbacks](https://mobilepaydev.github.io/MobilePay-Invoice/callbacks) and handle all callbacks, both for successful and unsuccessful invoices. 
- - [ ]  12. You should implement [GET calls](https://github.com/MobilePayDev/MobilePay-Invoice/blob/master/docs/api_reference.md#-get-invoice-status) so you always know the status of the payment, in case you have issues with retrieving callbacks. 
- - [ ]  13. Use the [Transaction Reporting API](https://mobilepaydev.github.io/MobilePay-TransactionReporting-API/) which contains GET calls containing specific transaction and transfer information, specifically the parameter `PaymentReference` as it directly is mapped to `merchant_reference`
+ - [ ]  12. Implement [GET STATUS calls](https://github.com/MobilePayDev/MobilePay-Invoice/blob/master/docs/api_reference.md#-get-invoice-status) so you always know the status of the invoice, in case you have issues with retrieving callbacks. There is no admin panel to check API requests, so you need to implement GET calls. 
+ - [ ]  13. Decide how Merchant will use  `PaymentReference` and  `InvoiceNumber` parameters for accounting reasons. Merchant needs to figure out, the needed ID used to reconcile transactions with their bank.
+ - [ ]  13. Implement the [Transaction Reporting API](https://mobilepaydev.github.io/MobilePay-TransactionReporting-API/) for reconciliation purposes. With that api, you can  find all information associated with each of your payment, as it contains  transaction and transfer information. If you do not fill out  `PaymentReference`, then it would be the input from the parameter  `InvoiceNumber`,  that will be the reference on the payment. See more info below. 
 
-
-
+| TRANSFER METHOD | **Instant Transfer** | **Daily Transfer** |
+|--|--|--|
+|**TIME OF TRANSFER**  | MobilePay transfer instantly after the user pays the Invoice. | MobilePay does transfer once per day, at night. Payments payed on day X will be transferred on day X+1. |
+| **REFERENCE NUMBER** | `PaymentReference`  is used. If `PaymentReference` is not filled, `InvoiceNumber` will be used instead. | Generated by MobilePay |
+| **BANK STATEMENT** | `PaymentReference` or `InvoiceNumber` | Generated by MobilePay |
+ 
 ----------
 
