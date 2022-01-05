@@ -432,7 +432,8 @@ HTTP 200 OK
     "LogoUrl": "https://api.qa.mobilepay.dk/invoice-restapi/api/v1/invoiceissuers/238fe387-f4a4-40e7-ae8a-4c107da2c0ad/logo",
     "Status": "created",
     "InvoiceUrl":"https://api.merchant.dk/invoice/578a9f10-4e81-4265-bbae-2e8fa33cb83b/pdf",
-    "PaymentTransactionId": "d1da2195-01c1-4981-bdde-04eb82e362ab"
+    "PaymentTransactionId": "d1da2195-01c1-4981-bdde-04eb82e362ab",
+    "PaymentReference": "ABC-123"
 }
 ```
 

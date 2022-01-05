@@ -3,6 +3,9 @@ layout: default
 ---
 
 ## Invoice 1.5 Release Notes
+### <a name="response_code"></a> 05 january 2022 - Added PaymentReference field to GET invoice details response
+[Invoice details](https://mobilepaydev.github.io/MobilePay-Invoice/api_reference#get-details) GET response now has PaymentReference field.
+
 ### <a name="response_code"></a> 16 december 2021 - Added GrantedOn field to Invoice Direct user consent GET response
 [InvoiceDirect user consent](https://mobilepaydev.github.io/MobilePay-Invoice/api_reference#direct-invoice-consent) GET response now has GrantedOn field that shows exact time when the consent was granted.
 
