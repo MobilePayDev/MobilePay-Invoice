@@ -99,12 +99,12 @@ Find the configuration links below:
  - [ ]  13. Decide how Merchant will use  `PaymentReference` and  `InvoiceNumber` parameters used to reconcile transactions with their bank.
  - [ ]  14. Implement the [Transaction Reporting API](https://mobilepaydev.github.io/MobilePay-TransactionReporting-API/) for reconciliation purposes so you can  find all information on transactions and transfers.  
 
+
 | Transaction Reporting API | Invoice API | Description |Required |
 |--|--|--|--|
 | PaymentPointId | Invoice Issuer ID |   Represents merchant’s company information. Merchant must have at least one Invoice issuer which is  created via MobilePay Portal  | yes |
-|  |  `PaymentReference`|  | no |
-|  |  `InvoiceNumber`| It will be used if PaymentReference is not filled |yes  | 
-  
+|  |  `PaymentReference`| Reference used on the payment to do reconciliation if merchant has chosen Instant Transfer method. If not filled, InvoiceNumber will be used as reference. | no |
+|  |  `InvoiceNumber`| It will be used if PaymentReference is not filled |yes  |
 
 
 | TRANSFER METHOD | **Instant Transfer** | **Daily Transfer** |
