@@ -103,8 +103,8 @@ Find the configuration links below:
 | Transaction Reporting API | Invoice API | Description |Required |
 |--|--|--|--|
 | PaymentPointId | Invoice Issuer ID |   Represents merchant’s company information. Merchant must have at least one Invoice issuer which is  created via MobilePay Portal  | yes |
-|  |  `PaymentReference`| Reference used on the payment to do reconciliation if merchant has chosen Instant Transfer method. If not filled, InvoiceNumber will be used as reference. | no |
-|  |  `InvoiceNumber`| It will be used if PaymentReference is not filled |yes  |
+|  |  `PaymentReference`| Reference used on the payment to do reconciliation if merchant has chosen Instant Transfer method. If not filled, InvoiceNumber will be used as reference.  "PaymentReference" will be truncated up down to 30 symbols and included in the bank statement. | no |
+|  |  `InvoiceNumber`| Original invoice number sent by the Merchant. It will be used if PaymentReference is not filled.   |yes  |
 
 
 | TRANSFER METHOD | **Instant Transfer** | **Daily Transfer** |
