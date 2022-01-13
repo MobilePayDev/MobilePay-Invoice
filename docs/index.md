@@ -97,19 +97,14 @@ Find the configuration links below:
  - [ ]  11. Implement all [callbacks](https://mobilepaydev.github.io/MobilePay-Invoice/callbacks) and handle all callbacks, both for successful and unsuccessful invoices. 
  - [ ]  12. Implement [GET STATUS calls](https://github.com/MobilePayDev/MobilePay-Invoice/blob/master/docs/api_reference.md#-get-invoice-status) so you always know the status of the invoice, in case you have issues with retrieving callbacks.  
  - [ ]  13. Decide how Merchant will use  `PaymentReference` and  `InvoiceNumber` parameters used to reconcile transactions with their bank.
- - [ ]  13. Implement the [Transaction Reporting API](https://mobilepaydev.github.io/MobilePay-TransactionReporting-API/) for reconciliation purposes so you can  find all information on transactions and transfers.  
+ - [ ]  14. Implement the [Transaction Reporting API](https://mobilepaydev.github.io/MobilePay-TransactionReporting-API/) for reconciliation purposes so you can  find all information on transactions and transfers.  
 
-
-| Transaction Reporting API | Invoice API | Description |
-|--|--|--|
-| PaymentPointId | Invoice Issuer ID |  |
-|  |  PaymentReference|  |
-
- 
- | Parameter | type |Description  |
-|--|--|--|
-| `InvoiceNumber` | string | Required. It will be used if PaymentReference is not filled. |  
-
+| Transaction Reporting API | Invoice API | Description |Required |
+|--|--|--|--|
+| PaymentPointId | Invoice Issuer ID |   Represents merchant’s company information. Merchant must have at least one Invoice issuer which is  created via MobilePay Portal  | yes |
+|  |  `PaymentReference`|  | no |
+|  |  `InvoiceNumber`| It will be used if PaymentReference is not filled |yes  | 
+  
 
 
 | TRANSFER METHOD | **Instant Transfer** | **Daily Transfer** |
