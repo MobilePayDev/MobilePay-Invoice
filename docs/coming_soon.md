@@ -1,10 +1,11 @@
 # Coming soon
 
 <div>
-### <a name="response_code"></a> Redirect url for invoice link accepting and payment
-[Invoice link creation](https://github.com/ReisEdgar/MobilePay-Invoice/blob/master/docs/api_reference.md#create-invoicelink) You will be able to add optional "RedirectUrl" property when creating single or multiple Invoice links. User will be redirected to your provided url after accepting invoice link payment for the future, or paying for it with appropriate flags, i.e. if you have provided RedirectUrl value "http://YourProvidedUrl.com" in case of accepted payment user will be redireted to "http://YourProvidedUrl.com/Accepted" and in case of instant payment user will be redirected "http://YourProvidedUrl.com/Paid". This feature will support both webUrls and deeplinks. Same "/Accepted" or "/Paid" flags would be added for both webUrls and deeplinks. If you don't provide RedirectuRl property everything will work as it does now.
+    <b> Redirect url for invoice link accepting and payment </b>
     
-    ##### Example
+[Invoice link](https://mobilepaydev.github.io/MobilePay-Invoice/api_reference#link) will have new optional "RedirectUrl" property. You will be able to set it when creating single or multiple Invoice links. User will be redirected to your provided url after accepting invoice link payment for the future, or paying for it instantly. Redirect will happen with appropriate flags, i.e. if you have provided RedirectUrl value "http<span>://YourProvidedUrl.com</span>" </span> in case of accepted payment user will be redireted to "http<span>://YourProvidedUrl.com/Accepted</span>" and in case of instant payment user will be redirected "http<span>://YourProvidedUrl.com/Paid</span>". This feature will support both webUrls and deeplinks. Same "/Accepted" or "/Paid" flags would be added for both webUrls and deeplinks. If you don't provide RedirectUrl property everything will work as it does now.
+    
+  Example
 
 ```json
 {
