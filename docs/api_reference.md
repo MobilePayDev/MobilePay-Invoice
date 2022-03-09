@@ -29,8 +29,6 @@ POST api/v1/merchants/{merchantId}/invoices
 |`ConsumerName`      |              |`string`      |Full name of the MobilePay user.|
 |`TotalAmount`       |              |`decimal`     |**Required.** The requested amount to be paid. <br/> >0.00, decimals separated with a dot.|
 |`TotalVatAmount`    |              |`decimal`     |VAT amount. Decimals separated with a dot.                                  |
-|`CountryCode`       |              |`string(2)`   |**Required.** Country code. Either `DK` or `FI` is allowed.                             |
-|`CurrencyCode`      |              |`string(3)`   |**Required.** Currency code. If you set `CountryCode` as `DK` then it should be `DKK`. If you set `CountryCode` as `FI` then it should be `EUR`.|
 |`ConsumerAddressLines`|            |`string[]`      |Address of consumer receiving the invoice.                                |
 |`DeliveryAddressLines`|            |`string[]`      |Delivery address.                                                                       |
 |`InvoiceNumber`     |              |`string`      |**At least one of the fields `InvoiceNumber` or `PaymentReference` is required.** Invoice number. It will be used if PaymentReference is not filled.                                                           |
@@ -76,8 +74,6 @@ POST api/v1/merchants/{merchantId}/invoices
   "ConsumerName": "Consumer Name",
   "TotalAmount": 360,
   "TotalVATAmount": 72,
-  "CountryCode": "DK",
-  "CurrencyCode": "DKK",
   "ConsumerAddressLines": [
     "Paradisæblevej 13",
     "CC-1234 Andeby", 
@@ -210,8 +206,6 @@ POST api/v1/merchants/{merchantId}/invoices/link
 |`ConsumerName`      |              |`string`      |Full name of the MobilePay user.|
 |`TotalAmount`       |              |`decimal`     |**Required.** The requested amount to be paid. <br/> >0.00, decimals separated with a dot.|
 |`TotalVatAmount`    |              |`decimal`     |VAT amount. Decimals separated with a dot.                                  |
-|`CountryCode`       |              |`string(2)`   |**Required.** Country code. Either `DK` or `FI` is allowed.                             |
-|`CurrencyCode`      |              |`string(3)`   |**Required.** Currency code. If you set `CountryCode` as `DK` then it should be `DKK`. If you set `CountryCode` as `FI` then it should be `EUR`.|
 |`ConsumerAddressLines`|            |`string[]`    |Address of consumer receiving the invoice.                                |
 |`DeliveryAddressLines`|            |`string[]`    |Delivery address.                                                                       |
 |`InvoiceNumber`     |              |`string`      |**At least one of the fields `InvoiceNumber` or `PaymentReference` is required.**  Invoice number.                                                           |
@@ -257,8 +251,6 @@ POST api/v1/merchants/{merchantId}/invoices/link
   "ConsumerName": "Consumer Name",
   "TotalAmount": 360,
   "TotalVATAmount": 72,
-  "CountryCode": "DK",
-  "CurrencyCode": "DKK",
   "ConsumerAddressLines": [
     "Paradisæblevej 13",
     "CC-1234 Andeby", 
