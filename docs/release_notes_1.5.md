@@ -3,6 +3,9 @@ layout: default
 ---
 
 ## Invoice 1.5 Release Notes
+### <a name="response_code"></a> 08 march 2022 - Country code and Currency code are not required when creating invoice direct or invoice link
+If these parameters are passed with requrest, they will be ignored. Right now we automatically assign merchant's country and currency codes to invoice or invoice link.
+
 ### <a name="response_code"></a> 05 january 2022 - Added PaymentReference field to GET invoice details response
 [Invoice details](https://mobilepaydev.github.io/MobilePay-Invoice/api_reference#get-details) GET response now has PaymentReference field.
 
