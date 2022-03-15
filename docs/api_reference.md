@@ -29,8 +29,6 @@ POST api/v1/merchants/{merchantId}/invoices
 |`ConsumerName`      |              |`string`      |Full name of the MobilePay user.|
 |`TotalAmount`       |              |`decimal`     |**Required.** The requested amount to be paid. <br/> >0.00, decimals separated with a dot.|
 |`TotalVatAmount`    |              |`decimal`     |VAT amount. Decimals separated with a dot.                                  |
-|`CountryCode`       |              |`string(2)`   |**Required.** Country code. Either `DK` or `FI` is allowed.                             |
-|`CurrencyCode`      |              |`string(3)`   |**Required.** Currency code. If you set `CountryCode` as `DK` then it should be `DKK`. If you set `CountryCode` as `FI` then it should be `EUR`.|
 |`ConsumerAddressLines`|            |`string[]`      |Address of consumer receiving the invoice.                                |
 |`DeliveryAddressLines`|            |`string[]`      |Delivery address.                                                                       |
 |`InvoiceNumber`     |              |`string`      |**At least one of the fields `InvoiceNumber` or `PaymentReference` is required.** Invoice number. It will be used if PaymentReference is not filled.                                                           |
@@ -76,8 +74,6 @@ POST api/v1/merchants/{merchantId}/invoices
   "ConsumerName": "Consumer Name",
   "TotalAmount": 360,
   "TotalVATAmount": 72,
-  "CountryCode": "DK",
-  "CurrencyCode": "DKK",
   "ConsumerAddressLines": [
     "Paradisæblevej 13",
     "CC-1234 Andeby", 
@@ -210,8 +206,6 @@ POST api/v1/merchants/{merchantId}/invoices/link
 |`ConsumerName`      |              |`string`      |Full name of the MobilePay user.|
 |`TotalAmount`       |              |`decimal`     |**Required.** The requested amount to be paid. <br/> >0.00, decimals separated with a dot.|
 |`TotalVatAmount`    |              |`decimal`     |VAT amount. Decimals separated with a dot.                                  |
-|`CountryCode`       |              |`string(2)`   |**Required.** Country code. Either `DK` or `FI` is allowed.                             |
-|`CurrencyCode`      |              |`string(3)`   |**Required.** Currency code. If you set `CountryCode` as `DK` then it should be `DKK`. If you set `CountryCode` as `FI` then it should be `EUR`.|
 |`ConsumerAddressLines`|            |`string[]`    |Address of consumer receiving the invoice.                                |
 |`DeliveryAddressLines`|            |`string[]`    |Delivery address.                                                                       |
 |`InvoiceNumber`     |              |`string`      |**At least one of the fields `InvoiceNumber` or `PaymentReference` is required.**  Invoice number.                                                           |
@@ -257,8 +251,6 @@ POST api/v1/merchants/{merchantId}/invoices/link
   "ConsumerName": "Consumer Name",
   "TotalAmount": 360,
   "TotalVATAmount": 72,
-  "CountryCode": "DK",
-  "CurrencyCode": "DKK",
   "ConsumerAddressLines": [
     "Paradisæblevej 13",
     "CC-1234 Andeby", 
@@ -667,8 +659,6 @@ When creating `InvoiceDirect` or `InvoiceLink` these values can be returned as `
 |10104      |Invoice already exists                                                       |
 |10105      |Technical error - please contact MobilePay developer support  developer@mobilepay.dk |
 |10008      |Total amount must be greater than 0                                          |
-|10106      |Invoice country does not match consumer country                              |
-|10107      |Specified currency does not match specified country                          |
 |10201      |Total invoice amount is exceeded                                             |
 |10202      |Invoice issuer not found                                                     |
 |10203      |Account validation error                                                     |
@@ -693,9 +683,6 @@ A set of business rules apply for an `invoice` before it gets created. If any of
 |---------------|----------|---------------------------------------------------|-----------|------------------------------------------------------------------|
 |`DueDate`      |DK/FI     |CreatedDate <= DueDate < CreatedDate + 400 days  |10310/10311|`DueDate` must be no more than 400 days in the future.               |
 |`IssueDate`    |DK/FI     |IssueDate <= CreatedDate                         |10312      |`IssueDate` can not be later than invoice creation date.            | 
-|`CountryCode`  |DK/FI     |CountryCode == Consumer CountryCode              |10106      |`CountryCode` must match consumer's `CountryCode`.                  | 
-|`CurrencyCode` |DK        |CurrencyCode == DKK                              |10107      |Only `DKK` is supported for DK invoices.                            |
-|               |FI        |CurrencyCode == EUR                              |10107      |Only `EUR` is supported for FI invoices.                            |
 |`TotalAmount`  |DK        |TotalAmount <= 15000 DKK                         |10201      |`TotalAmount` is limited to 15000 DKK.                              |
 |               |FI        |TotalAmount <= 2000 EUR                           |10201      |`TotalAmount` is limited to 2000 EUR.                                |
 
