@@ -49,7 +49,7 @@ POST api/v1/merchants/{merchantId}/invoices
 |    |`TotalVATAmount`          |`decimal`    |Total VAT amount of article. Decimals separated with a dot.                                                    |
 |    |`TotalPriceIncludingVat`  |`decimal`    |Total price of article including VAT.                                          |
 |    |`Unit`                    |`string`     |Unit, e.g. Pcs, Coli.                                                          |
-|    |`Quantity`                |`decimal`    |**Required.** Quantity of article. Allowed to have more than two decimal digits.             |
+|    |`Quantity`                |`decimal`    |Quantity of article. Allowed to have more than two decimal digits.             |
 |    |`PricePerUnit`            |`decimal`    |Price per unit. Allowed to have more than two decimal digits.                  |
 |    |`PriceReduction`          |`decimal`    |Price reduction.                                                                             |
 |    |`PriceDiscount`           |`decimal`    |Price discount.                                                                              |
@@ -226,7 +226,7 @@ POST api/v1/merchants/{merchantId}/invoices/link
 |    |`TotalVATAmount`          |`decimal`    |Total VAT amount of article. Decimals separated with a dot.                                                   |
 |    |`TotalPriceIncludingVat`  |`decimal`    |Total price of article including VAT.                                          |
 |    |`Unit`                    |`string`     |Unit, e.g. Pcs, Coli.                                                          |
-|    |`Quantity`                |`decimal`    |**Required.** Quantity of article. Allowed to have more than two decimal digits.                                                           |
+|    |`Quantity`                |`decimal`    |Quantity of article. Allowed to have more than two decimal digits.                                                           |
 |    |`PricePerUnit`            |`decimal`    |Price per unit. Allowed to have more than two decimal digits.                                                                |
 |    |`PriceReduction`          |`decimal`    |Price reduction.                                                                             |
 |    |`PriceDiscount`           |`decimal`    |Price discount.                                                                              |
