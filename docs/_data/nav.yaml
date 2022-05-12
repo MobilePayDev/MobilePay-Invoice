@@ -35,6 +35,9 @@ api_reference_url: "api_reference"
 callbacks_title: Callbacks
 callbacks_url: "callbacks"
 
+notifications_title: Notifications
+notifications_url: "notifications"
+
 invoiceinapp_title: Visual examples
 invoiceinapp_url: "visual_examples"
 
