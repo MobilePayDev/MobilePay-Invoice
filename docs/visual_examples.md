@@ -4,13 +4,21 @@ layout: default
 
 ## Visual examples
 
-### <a name="payment-screens"></a> Payment screens
-Scheme represents flow when users opens invoice in the app and pays/schedules the payment.  Furthermore, it is explained what data of merchant/invoice issuer/invoice is used in the app and where.
-[![](assets/images/pay_flow_50.png)](assets/images/pay_flow_50.png)
+### <a name="payment-screens"></a> User pays invoice 
 
-### <a name="review-invoice"></a> Review invoice
-Scheme represents flow when users reviews invoices in app activity list.  Furthermore, it is explained what data of merchant/invoice issuer/invoice is used in the app and where.
-[![](assets/images/activity_list_50.png)](assets/images/activity_list_50.png)
+[![](assets/images/how_user_initiates_payment.jpeg)](assets/images/how_user_initiates_payment.jpeg)
+
+[![](assets/images/pay_invoice_now.jpeg)](assets/images/pay_invoice_now.jpeg)
+
+[![](assets/images/schedule_invoice_payment_for_future.jpeg)](assets/images/schedule_invoice_payment_for_future.jpeg)
+
+
+### <a name="review-invoice"></a> View bill
+[![](assets/images/view_bill.jpeg)](assets/images/view_bill.jpeg)
+
+### <a name="reject-invoice"></a> Reject Invoice
+
+[![](assets/images/reject_invoice.jpeg)](assets/images/reject_invoice.jpeg)
 
 ### <a name="pdf"></a> PDF example
 Image explains what data of merchant/invoice issuer/invoice is used in the generated PDF and where.
