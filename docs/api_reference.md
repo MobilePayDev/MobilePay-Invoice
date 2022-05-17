@@ -219,6 +219,7 @@ POST api/v1/merchants/{merchantId}/invoices/link
 |`BuyerOrderNumber`|                |`string`      |The buyer order number for the invoice used externally by the merchant.               |
 |`PaymentReference`  |              |`string(60)*`  |**At least one of the fields `InvoiceNumber` or `PaymentReference` is required.** Reference used on the payment to do reconciliation. If not filled, invoice number will be used as reference.|
 |`InvoiceUrl`  |              |`string`  |URL to the Invoice PDF provided by merchant.|
+|`RedirectUrl`  |              |`string`  |URL to the Invoice PDF provided by merchant.|
 |`InvoiceArticles` |            |`array`      |**At least one is required.**                                                                |
 |    |`ArticleNumber`           |`string`     |Article Number, e.g. 123456ABC                                                 |
 |    |`ArticleDescription`      |`string`     |**Required.** Article Description.                                                           |
@@ -271,6 +272,7 @@ POST api/v1/merchants/{merchantId}/invoices/link
   "MerchantOrderNumber": "938",
   "BuyerOrderNumber": "631",
   "PaymentReference": "186",
+  "RedirectUrl" : "https://ProvidedUrl.com/"
   "InvoiceArticles": [
     {
       "ArticleNumber": "1-123",
