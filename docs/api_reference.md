@@ -188,7 +188,13 @@ High level `InvoiceLink` flow diagram
 You can create an invoice and receive a link. That link can be sent to the user by any channel like email, sms, etc. and user can choose to pay with MobilePay. Check `InvoiceLink` flows and how invoice looks in the app [here](visual_examples#link-flows).
 
 <div class="note">
-Note: Request does not require a <code>ConsumerAlias</code>. It's because InvoiceLink can be paid by any MobilePay user.
+    <strong>Note:</strong>
+    <p>
+        * Request does not require a <code>ConsumerAlias</code>. It's because InvoiceLink can be paid by any MobilePay user.
+    </p>
+    <p>
+        * InvoiceLink has an optional "RedirectUrl" property. It can be set when creating single or multiple Invoice links. User will be redirected to provided url after accepting invoice link payment for the future, or paying for it instantly. Redirect will happen with appropriate query parameters, i.e. if provided RedirectUrl value is "https://ProvidedUrl.com/" in case of accepted payment user will be redirected to "https://ProvidedUrl.com/?status=accepted" and in case of instant payment user will be redirected to "https://ProvidedUrl.com/?status=paid". This feature supports both webUrls and deeplinks.
+    </p>
 </div>
 
 ```
@@ -219,6 +225,7 @@ POST api/v1/merchants/{merchantId}/invoices/link
 |`BuyerOrderNumber`|                |`string`      |The buyer order number for the invoice used externally by the merchant.               |
 |`PaymentReference`  |              |`string(60)*`  |**At least one of the fields `InvoiceNumber` or `PaymentReference` is required.** Reference used on the payment to do reconciliation. If not filled, invoice number will be used as reference.|
 |`InvoiceUrl`  |              |`string`  |URL to the Invoice PDF provided by merchant.|
+|`RedirectUrl`  |              |`string`  |Redirect url for accepting and paying invoice link.|
 |`InvoiceArticles` |            |`array`      |**At least one is required.**                                                                |
 |    |`ArticleNumber`           |`string`     |Article Number, e.g. 123456ABC                                                 |
 |    |`ArticleDescription`      |`string`     |**Required.** Article Description.                                                           |
@@ -271,6 +278,7 @@ POST api/v1/merchants/{merchantId}/invoices/link
   "MerchantOrderNumber": "938",
   "BuyerOrderNumber": "631",
   "PaymentReference": "186",
+  "RedirectUrl" : "https://ProvidedUrl.com/"
   "InvoiceArticles": [
     {
       "ArticleNumber": "1-123",
