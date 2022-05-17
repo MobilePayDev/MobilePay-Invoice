@@ -188,10 +188,9 @@ High level `InvoiceLink` flow diagram
 You can create an invoice and receive a link. That link can be sent to the user by any channel like email, sms, etc. and user can choose to pay with MobilePay. Check `InvoiceLink` flows and how invoice looks in the app [here](visual_examples#link-flows).
 
 <div class="note">
-    <strong>Notes:</strong>
+    <strong>Note:</strong>
     <p>
-        * Request does not require a <code>ConsumerAlias</code>. It's because InvoiceLink can be paid by any MobilePay user.
-        * InvoiceLink has an optional "RedirectUrl" property. It can be set when creating single or multiple Invoice links. User will be redirected to provided url after accepting invoice link payment for the future, or paying for it instantly. Redirect will happen with appropriate query parameters, i.e. if provided RedirectUrl value is "https://ProvidedUrl.com/" in case of accepted payment user will be redirected to "https://ProvidedUrl.com/?status=accepted" and in case of instant payment user will be redirected to "https://ProvidedUrl.com/?status=paid". This feature supports both webUrls and deeplinks.
+        Request does not require a <code>ConsumerAlias</code>. It's because InvoiceLink can be paid by any MobilePay user.
     </p>
 </div>
 
