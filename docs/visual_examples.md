@@ -64,8 +64,8 @@ Image explains what data of merchant/invoice issuer/invoice is used in the gener
 
 #### Dual device flow
 Scheme represents flow when user press on `InvoiceLink` link in the desktop device or tablet.
-[![](assets/images/lp/d_flow.png)](assets/images/lp/dual_device_flow.png)
+[![](assets/images/lp/dual_device_flow.png)](assets/images/lp/dual_device_flow.png)
 
 #### Single device flow
 Scheme represents flow when user press on `InvoiceLink` link in the mobile device (except tablet).
-[![](assets/images/lp/s_flow.png)](assets/images/lp/single_device_flow.png)
+[![](assets/images/lp/single_device_flow.png)](assets/images/lp/single_device_flow.png)
