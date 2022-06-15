@@ -375,7 +375,7 @@ it doesn't contain the link itself. This is because we are processing batches as
 </div>
 
 ### <a name="canceling"/> Cancel invoice
-You can cancel an invoice which has not yet been paid, rejected and has not expired.
+You can cancel an invoice which has not yet been paid, rejected and has not expired. If the user has chosen to pay at a later point, then the invoice can still be canceled by the merchant. The customer does not receive a notification. Changes will be visible in the MobilePay Activity List. The pending Invoice Payment will be changed to canceled. On payment date (if the user set the invoice to be paid at later point), MobilePay checks the status of the invoice. If it is canceled , then MobilePay ignores "Pay" command.
 ```
 PUT api/v1/merchants/{merchantId}/invoices/{invoiceId}/cancel
 ```
