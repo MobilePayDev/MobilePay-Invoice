@@ -165,8 +165,12 @@ HTTP 202 Accepted
   "Rejected": [
     {
       "InvoiceNumber": "<original invoice number sent by the merchant>",
-      "ErrorText": "<description of error>",
-      "ErrorCode": 10504
+           "Errors:[
+              {
+              "ErrorText": "<description of error>",
+              "ErrorCode": 10504
+              }
+       ]
     },
     ...
   ]
@@ -361,8 +365,12 @@ HTTP 202 Accepted
   "Rejected": [
     {
       "InvoiceNumber": "<original invoice number sent by the merchant>",
-      "ErrorText": "<description of error>",
-      "ErrorCode": 10504
+           "Errors:[
+              {
+              "ErrorText": "<description of error>",
+              "ErrorCode": 10504
+              }
+       ]
     },
     ...
   ]
