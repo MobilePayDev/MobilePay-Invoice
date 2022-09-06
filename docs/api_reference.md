@@ -705,4 +705,4 @@ A set of business rules apply for an `invoice` before it gets created. If any of
 If all of the fields in the request are exactly the same as some existing invoice's fields, the duplication validation fails and the invoice cannot be created.
 
 ##### Limits
-* Consumer daily invoice count <= 10. No more then 10 invoices can be created per consumer from single merchant.
+* Consumer daily invoice count <= 10. No more than 10 invoices can be created per consumer from single merchant.
